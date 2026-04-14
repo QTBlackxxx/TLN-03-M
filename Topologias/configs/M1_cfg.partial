@@ -1,0 +1,69 @@
+interface Loopback0
+ ip address 172.16.1.1 255.255.255.255
+!
+interface Ethernet0/1
+ ip address 10.0.0.5 255.255.255.252
+ ip ospf network point-to-point
+!
+interface Ethernet0/2
+ ip address 10.0.0.9 255.255.255.252
+ ip ospf network point-to-point
+!
+interface Ethernet0/3
+ ip address 10.0.0.13 255.255.255.252
+ ip ospf network point-to-point
+!
+interface Ethernet1/0
+ ip address 10.0.0.1 255.255.255.252
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+!
+router ospf 10
+ router-id 172.16.1.1
+ network 10.0.0.4 0.0.0.3 area 0
+ network 10.0.0.8 0.0.0.3 area 0
+ network 10.0.0.12 0.0.0.3 area 0
+ network 172.16.1.1 0.0.0.0 area 0
+!
+router bgp 100
+ bgp router-id 172.16.1.1
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 172.16.1.2 remote-as 100
+ neighbor 172.16.1.2 update-source Loopback0
+ neighbor 172.16.1.3 remote-as 100
+ neighbor 172.16.1.3 update-source Loopback0
+ neighbor 172.16.1.4 remote-as 100
+ neighbor 172.16.1.4 update-source Loopback0
+ !
+ address-family ipv4
+  redistribute static route-map POOL_CLIENTES
+  neighbor 172.16.1.2 activate
+  neighbor 172.16.1.2 next-hop-self
+  neighbor 172.16.1.3 activate
+  neighbor 172.16.1.3 next-hop-self
+  neighbor 172.16.1.4 activate
+  neighbor 172.16.1.4 next-hop-self
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+ip ftp username dubuntu
+ip ftp password 123456
+ip http server
+ip http secure-server
+ip route 200.0.0.0 255.255.255.248 10.0.0.2 tag 200
+!
+route-map POOL_CLIENTES permit 10 
+ match tag 200
