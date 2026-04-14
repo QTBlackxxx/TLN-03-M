@@ -1,0 +1,31 @@
+network-automation-course
+│
+├── labs
+│   ├── lab1_python_basics
+│   ├── lab2_cli_automation
+│   ├── lab3_config_generator
+│   ├── lab4_ansible
+│   ├── lab5_api
+│   ├── lab6_testing
+│
+├── topology
+│   ├── containerlab-topology.yml
+│
+├── templates
+│   ├── ospf.j2
+│   ├── bgp.j2
+│
+├── inventory
+│   ├── devices.yaml
+│
+├── scripts
+│   ├── backup_configs.py
+│   ├── deploy_configs.py
+│
+├── ansible
+│   ├── playbooks
+│
+├── tests
+│   ├── pyats_tests
+│
+└── project_final
