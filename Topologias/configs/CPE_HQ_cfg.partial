@@ -1,0 +1,20 @@
+interface Loopback0
+ ip address 200.0.0.1 255.255.255.255
+!
+interface Ethernet0/1
+ ip address 10.0.0.2 255.255.255.252
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+ip forward-protocol nd
+!
+!
+ip http server
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 10.0.0.1
