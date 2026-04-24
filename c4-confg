@@ -1,0 +1,168 @@
+
+!
+! Last configuration change at 08:47:33 UTC Fri Apr 24 2026 by admin
+!
+version 17.12
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname C4
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition clab-mgmt
+ description clab-mgmt
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name lab
+ip cef
+login on-success log
+ipv6 unicast-routing
+ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+memory free low-watermark processor 55011
+!
+!
+spanning-tree mode rapid-pvst
+!
+!
+username admin privilege 15 secret 9 $9$d9Wmh4lQ6vgty.$TBDWDlJ1aKRhlWfUVOgel/9k1Zn1kqa2ANwt9puGYsc
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 172.16.2.4 255.255.255.255
+!
+interface Ethernet0/0
+ description clab-mgmt
+ vrf forwarding clab-mgmt
+ ip address 172.20.20.12 255.255.255.0
+ ipv6 address 3FFF:172:20:20::C/64
+!
+interface Ethernet0/1
+ ip address 10.0.0.45 255.255.255.252
+!
+interface Ethernet0/2
+ ip address 10.0.0.30 255.255.255.252
+!
+interface Ethernet0/3
+ ip address 10.0.0.37 255.255.255.252
+!
+router ospf 1
+ router-id 172.16.2.4
+ passive-interface default
+ no passive-interface Ethernet0/1
+ no passive-interface Ethernet0/3
+ network 10.0.0.36 0.0.0.3 area 0
+ network 10.0.0.44 0.0.0.3 area 0
+ network 172.16.2.4 0.0.0.0 area 0
+!
+router bgp 200
+ bgp router-id 172.16.2.4
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 10.0.0.29 remote-as 100
+ neighbor 172.16.2.1 remote-as 200
+ neighbor 172.16.2.1 update-source Loopback0
+ neighbor 172.16.2.2 remote-as 200
+ neighbor 172.16.2.2 update-source Loopback0
+ neighbor 172.16.2.3 remote-as 200
+ neighbor 172.16.2.3 update-source Loopback0
+ neighbor 172.16.2.5 remote-as 200
+ neighbor 172.16.2.5 update-source Loopback0
+ !
+ address-family ipv4
+  neighbor 10.0.0.29 activate
+  neighbor 172.16.2.1 activate
+  neighbor 172.16.2.1 next-hop-self
+  neighbor 172.16.2.2 activate
+  neighbor 172.16.2.2 next-hop-self
+  neighbor 172.16.2.3 activate
+  neighbor 172.16.2.3 next-hop-self
+  neighbor 172.16.2.5 activate
+  neighbor 172.16.2.5 next-hop-self
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+ip ftp username dubuntu
+ip ftp password 123456
+ip http server
+ip http secure-server
+ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
+ip ssh bulk-mode 131072
+!
+ipv6 route vrf clab-mgmt ::/0 Ethernet0/0 3FFF:172:20:20::1
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+!
+end
