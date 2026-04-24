@@ -5,7 +5,7 @@
 Repositorio base para el curso Electivo TLN03 de la Universidad Nacional de Ingenieria.
 
 ## Topología
-![Topologia]
+![Topologia](docs/Topologia%20Base-1.png)
 ## Tecnologías
 - Linux
 - Docker
@@ -14,30 +14,6 @@ Repositorio base para el curso Electivo TLN03 de la Universidad Nacional de Inge
 - Python
 - Ansible
 
-| Router | IP |
-|--------|----|
-| R1     | 192.168.1.1 |
-| R2     | 192.168.1.2 |
-
-#```bash
-#docker ps
-#containerlab deploy
-
-#---
-
-## ✔ Badges (very common)
+## Configuraciones Base
 ```markdown
-![GitHub repo size](https://img.shields.io/github/repo-size/user/repo)
-
-- [x] Configurar OSPF
-- [ ] Validar conectividad
-
-
-<details>
-<summary>Solución</summary>
-
-Configuración OSPF:
-
-```bash
-router ospf 1
- network 192.168.1.0 0.0.0.255 area 0
+Por desarrollar
