@@ -10,6 +10,7 @@ topology:
     AS300:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
+      startup-config: configs/R-AS300_cfg.partial
       
     #########################################
     #    Head Quarter (Oficina Principal)

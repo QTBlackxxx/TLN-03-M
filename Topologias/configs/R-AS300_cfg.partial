@@ -1,0 +1,28 @@
+hostname R-AS300
+!
+interface Loopback0
+ description Simulacion Internet (Google DNS)
+ ip address 8.8.8.8 255.255.255.255
+!
+interface Ethernet0/1
+ description Enlace hacia Movistar (M2)
+ ip address 10.100.23.1 255.255.255.252
+ no shutdown
+!
+interface Ethernet0/2
+ description Enlace hacia Claro (C2)
+ ip address 10.200.22.1 255.255.255.252
+ no shutdown
+!
+router bgp 300
+ bgp router-id 3.3.3.3
+ ! Vecinos eBGP (Sesiones con M2 y C2)
+ neighbor 10.100.23.2 remote-as 100
+ neighbor 10.200.22.2 remote-as 200
+ !
+ address-family ipv4
+  neighbor 10.100.23.2 activate
+  neighbor 10.200.22.2 activate
+  ! Anunciar la red de Internet
+  network 8.8.8.8 mask 255.255.255.255
+ exit-address-family
