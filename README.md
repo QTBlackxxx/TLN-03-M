@@ -1,26 +1,29 @@
-# Proyecto de Redes
+# UNIVERSIDAD NACIONAL DE INGENIERIA 
+# CURSO - TLN03 - AUTOMATIZACIÓN Y PROGRAMABILIDAD DE REDES
 
-## Descripción
-Este laboratorio implementa una topología con Containerlab y Ansible.
+ Descripción
+Repositorio base para el curso Electivo TLN03 de la Universidad Nacional de Ingenieria.
 
 ## Topología
-![Topologia](docs/topologia.png)
-
+![Topologia]
 ## Tecnologías
-- Containerlab
-- Ansible
+- Linux
 - Docker
+- Containerlab
+- Cisco
+- Python
+- Ansible
 
 | Router | IP |
 |--------|----|
 | R1     | 192.168.1.1 |
 | R2     | 192.168.1.2 |
 
-```bash
-docker ps
-containerlab deploy
+#```bash
+#docker ps
+#containerlab deploy
 
----
+#---
 
 ## ✔ Badges (very common)
 ```markdown
