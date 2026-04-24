@@ -2,7 +2,15 @@ name: ISP-TDP-CLARO-IOL
 
 topology:
   nodes:
+  
+    ############################################
+    #                  AS300                   #
+    ############################################
 
+    AS300:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.1
+      
     #########################################
     #    Head Quarter (Oficina Principal)
     #
@@ -12,6 +20,10 @@ topology:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/CPE_HQ_cfg.partial
+
+    CPE-HQ-BACK:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.1
 
     SW-PISO1:
       kind: cisco_iol
@@ -74,6 +86,10 @@ topology:
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/CPE_BRANCH_cfg.partial
 
+    CPE-BRANCH-BACK:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.1
+
     SW-R-PISO1:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:L2-17.12.1
@@ -101,7 +117,7 @@ topology:
     PC4-R-VLAN15:
       kind: linux
       image: alpine:3.23
-
+    
     #########################################
     #    Claro (AS 200)
     #
@@ -132,6 +148,13 @@ topology:
       startup-config: configs/C5_cfg.partial
 
   links:
+
+    #########################################
+    # ENLACES A INTERNET AS 300
+    #########################################
+    - endpoints: [ "AS300:e0/1", "M2:e0/3" ]
+    - endpoints: [ "AS300:e0/2", "C2:e1/1" ]
+
     #########################################
     #
     # Enlaces dentro del ISP Movistar
@@ -144,12 +167,16 @@ topology:
     - endpoints: [ "M2:e0/2", "M4:e0/2" ]
     - endpoints: [ "M3:e0/2", "M4:e0/3" ]
 
+    ########## ENLACES PARA EL BRANCH #################
+    - endpoints: [ "M1:e1/1", "CPE-BRANCH:e0/1" ]
+
     #########################################
     #
     # Enlaces dentro del ISP Claro
     #
     #########################################
-    - endpoints: [ "C1:e1/0", "CPE-BRANCH:e0/1" ]
+    - endpoints: [ "C1:e0/3", "CPE-HQ-BACK:e0/1" ]
+    - endpoints: [ "C1:e1/0", "CPE-BRANCH-BACK:e0/1" ]
     - endpoints: [ "C2:e0/1", "C3:e0/1" ]
     - endpoints: [ "C2:e0/2", "C4:e0/1" ]
     - endpoints: [ "C2:e1/0", "C1:e0/1" ]
@@ -164,6 +191,7 @@ topology:
     # Enlaces dentro del Head Quarter
     #########################################
     - endpoints: [ "CPE-HQ:e0/2", "SW-PISO1:e0/1" ]
+    - endpoints: [ "CPE-HQ-BACK:e0/2", "SW-PISO1:e1/1" ]
     - endpoints: [ "SW-PISO1:e0/2", "SW-PISO2:e0/1" ]
     - endpoints: [ "SW-PISO1:e0/3", "PC1-VLAN10:eth1" ]
     - endpoints: [ "SW-PISO1:e1/0", "PC2-VLAN10:eth1" ]
@@ -174,6 +202,7 @@ topology:
     # Enlaces dentro del Branch Office
     #########################################
     - endpoints: [ "CPE-BRANCH:e0/2", "SW-R-PISO1:e0/1" ]
+    - endpoints: [ "CPE-BRANCH-BACK:e0/2", "SW-R-PISO1:e1/1" ]
     - endpoints: [ "SW-R-PISO1:e0/2", "SW-R-PISO2:e0/1" ]
     - endpoints: [ "SW-R-PISO1:e0/3", "PC1-R-VLAN5:eth1" ]
     - endpoints: [ "SW-R-PISO1:e1/0", "PC2-R-VLAN5:eth1" ]
