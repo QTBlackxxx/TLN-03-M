@@ -16,7 +16,12 @@ topology:
     PC1-INTERNET:
       kind: linux
       image: alpine:3.23
-
+      binds:
+        - configs/internet.html:/usr/share/nginx/html/internet.html
+      exec:
+        - ip addr add 8.8.8.8/24 dev eth1
+        - ip route del default
+        - ip route add default via 8.8.8.1
     #########################################
     #    Head Quarter (Oficina Principal)
     #
@@ -170,7 +175,7 @@ topology:
     #########################################
     - endpoints: [ "AS300:e0/1", "M2:e0/3" ]
     - endpoints: [ "AS300:e0/2", "C2:e1/1" ]
-    - endpoints: [ "AS300:e0/3", "PC1-INTERNET:e0/1" ]
+    - endpoints: [ "AS300:e0/3", "PC1-INTERNET:eth1" ]
 
     #########################################
     #
