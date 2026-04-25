@@ -130,6 +130,9 @@ topology:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/C5_cfg.partial
+  # Internet (AS300)
+    
+
 
   links:
     #########################################
@@ -179,3 +182,7 @@ topology:
     - endpoints: [ "SW-R-PISO1:e1/0", "PC2-R-VLAN5:eth1" ]
     - endpoints: [ "SW-R-PISO2:e0/2", "PC3-R-VLAN15:eth1" ]
     - endpoints: [ "SW-R-PISO2:e0/3", "PC4-R-VLAN15:eth1" ]
+
+
+    # Enlaces de Internet
+    #############################################
