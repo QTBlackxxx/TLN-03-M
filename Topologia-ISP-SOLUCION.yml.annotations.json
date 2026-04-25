@@ -1,0 +1,196 @@
+{
+  "freeTextAnnotations": [],
+  "freeShapeAnnotations": [],
+  "trafficRateAnnotations": [],
+  "groupStyleAnnotations": [],
+  "networkNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "CPE-HQ",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -860,
+        "y": 100
+      }
+    },
+    {
+      "id": "SW-PISO1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -1100,
+        "y": 40
+      }
+    },
+    {
+      "id": "SW-PISO2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -1020,
+        "y": -80
+      }
+    },
+    {
+      "id": "M1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -640,
+        "y": 60
+      }
+    },
+    {
+      "id": "M2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -100,
+        "y": 80
+      }
+    },
+    {
+      "id": "M3",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -560,
+        "y": -60
+      }
+    },
+    {
+      "id": "M4",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -220,
+        "y": -40
+      }
+    },
+    {
+      "id": "CPE-BRANCH",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -860,
+        "y": 240
+      }
+    },
+    {
+      "id": "SW-R-PISO1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -1120,
+        "y": 360
+      }
+    },
+    {
+      "id": "SW-R-PISO2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -960,
+        "y": 480
+      }
+    },
+    {
+      "id": "C1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -640,
+        "y": 320
+      }
+    },
+    {
+      "id": "C2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -100,
+        "y": 240
+      }
+    },
+    {
+      "id": "C3",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -460,
+        "y": 600
+      }
+    },
+    {
+      "id": "C4",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -240,
+        "y": 700
+      }
+    },
+    {
+      "id": "C5",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 60,
+        "y": 460
+      }
+    },
+    {
+      "id": "INTERNET",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 260,
+        "y": 0
+      }
+    },
+    {
+      "id": "PC1-VLAN10",
+      "position": {
+        "x": -1260,
+        "y": 20
+      }
+    },
+    {
+      "id": "PC2-VLAN10",
+      "position": {
+        "x": -1200,
+        "y": 140
+      }
+    },
+    {
+      "id": "PC3-VLAN20",
+      "position": {
+        "x": -1180,
+        "y": -100
+      }
+    },
+    {
+      "id": "PC4-VLAN20",
+      "position": {
+        "x": -1180,
+        "y": -200
+      }
+    },
+    {
+      "id": "PC1-R-VLAN5",
+      "position": {
+        "x": -1300,
+        "y": 260
+      }
+    },
+    {
+      "id": "PC2-R-VLAN5",
+      "position": {
+        "x": -1300,
+        "y": 420
+      }
+    },
+    {
+      "id": "PC3-R-VLAN15",
+      "position": {
+        "x": -1040,
+        "y": 620
+      }
+    },
+    {
+      "id": "PC4-R-VLAN15",
+      "position": {
+        "x": -880,
+        "y": 600
+      }
+    }
+  ],
+  "edgeAnnotations": [],
+  "aliasEndpointAnnotations": [],
+  "viewerSettings": {}
+}

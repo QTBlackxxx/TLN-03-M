@@ -1,0 +1,95 @@
+hostname M3
+!
+no aaa new-model
+!
+ip domain name lab
+!
+ip cef
+!
+ipv6 unicast-routing
+!
+no ip domain lookup
+!
+username admin privilege 15 secret admin
+!
+vrf definition clab-mgmt
+ description clab-mgmt
+ address-family ipv4
+ !
+ address-family ipv6
+ !
+!
+interface Ethernet0/0
+
+ vrf forwarding clab-mgmt
+ description clab-mgmt
+ ip address 172.20.20.21 255.255.255.0
+ ipv6 address 3fff:172:20:20::15/64
+ no shutdown
+!
+interface Ethernet0/1
+ no shutdown
+!
+interface Ethernet0/2
+ no shutdown
+!
+ip forward-protocol nd
+!
+ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
+ipv6 route vrf clab-mgmt ::/0 Ethernet0/0 3fff:172:20:20::1
+!
+ip ssh version 2
+crypto key generate rsa modulus 2048
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+interface Loopback0
+ ip address 172.16.1.3 255.255.255.255
+!
+interface Ethernet0/1
+ ip address 10.0.0.10 255.255.255.252
+ ip ospf network point-to-point
+ no shutdown
+!
+interface Ethernet0/2
+ ip address 10.0.0.21 255.255.255.252
+ ip ospf network point-to-point
+ no shutdown
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+router ospf 10
+ router-id 172.16.1.3
+ network 10.0.0.8 0.0.0.3 area 0
+ network 10.0.0.20 0.0.0.3 area 0
+ network 172.16.1.3 0.0.0.0 area 0
+!
+router bgp 100
+ bgp router-id 172.16.1.3
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 172.16.1.1 remote-as 100
+ neighbor 172.16.1.1 update-source Loopback0
+ neighbor 172.16.1.2 remote-as 100
+ neighbor 172.16.1.2 update-source Loopback0
+ neighbor 172.16.1.4 remote-as 100
+ neighbor 172.16.1.4 update-source Loopback0
+ !
+ address-family ipv4
+  neighbor 172.16.1.1 activate
+  neighbor 172.16.1.1 next-hop-self
+  neighbor 172.16.1.2 activate
+  neighbor 172.16.1.2 next-hop-self
+  neighbor 172.16.1.4 activate
+  neighbor 172.16.1.4 next-hop-self
+ exit-address-family
+!
+ip forward-protocol nd
+ip ftp username dubuntu
+ip ftp password 123456
+
+end
