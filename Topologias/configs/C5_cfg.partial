@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 08:27:12 UTC Sat Apr 25 2026 by admin
+! Last configuration change at 20:42:44 UTC Sat Apr 25 2026 by admin
 !
 version 17.12
 service timestamps debug datetime msec
@@ -124,9 +124,8 @@ interface Loopback0
 interface Ethernet0/0
  description clab-mgmt
  vrf forwarding clab-mgmt
- ip address 172.20.20.7 255.255.255.0
- ipv6 address 3FFF:172:20:20::7/64
- ipv6 address 3FFF:172:20:20::8/64
+ ip address 172.20.20.19 255.255.255.0
+ ipv6 address 3FFF:172:20:20::A/64
 !
 interface Ethernet0/1
  ip address 10.0.0.50 255.255.255.252
@@ -141,8 +140,7 @@ interface Ethernet1/0
  ip address 10.0.0.57 255.255.255.252
 !
 interface Ethernet1/1
- no ip address
- shutdown
+ ip address 10.0.0.65 255.255.255.252
 !
 interface Ethernet1/2
  no ip address
@@ -168,6 +166,8 @@ router ospf 1
 router bgp 200
  bgp router-id 172.16.2.5
  bgp log-neighbor-changes
+ neighbor 10.0.0.66 remote-as 65001
+ neighbor 10.0.0.66 description Conexion C5_HQB
  neighbor 172.16.2.3 remote-as 200
  neighbor 172.16.2.3 description RR-PRIMARIO-C3
  neighbor 172.16.2.3 update-source Loopback0
@@ -176,6 +176,7 @@ router bgp 200
  neighbor 172.16.2.4 update-source Loopback0
  !
  address-family ipv4
+  neighbor 10.0.0.66 activate
   neighbor 172.16.2.3 activate
   neighbor 172.16.2.3 next-hop-self
   neighbor 172.16.2.4 activate
