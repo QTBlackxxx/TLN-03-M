@@ -12,6 +12,11 @@ topology:
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/R-AS300_cfg.partial
       mgmt-ipv4: 172.20.20.2
+
+    PC1-INTERNET:
+      kind: linux
+      image: alpine:3.23
+
     #########################################
     #    Head Quarter (Oficina Principal)
     #
@@ -165,6 +170,7 @@ topology:
     #########################################
     - endpoints: [ "AS300:e0/1", "M2:e0/3" ]
     - endpoints: [ "AS300:e0/2", "C2:e1/1" ]
+    - endpoints: [ "AS300:e0/3", "PC1-INTERNET:e0/1" ]
 
     #########################################
     #
@@ -179,14 +185,14 @@ topology:
     - endpoints: [ "M3:e0/2", "M4:e0/3" ]
 
     ########## ENLACES PARA EL BRANCH #################
-    - endpoints: [ "M1:e1/1", "CPE-BRANCH:e0/1" ]
+    - endpoints: [ "M3:e0/3", "CPE-BRANCH:e0/1" ]
 
     #########################################
     #
     # Enlaces dentro del ISP Claro
     #
     #########################################
-    - endpoints: [ "C1:e0/3", "CPE-HQ-BACK:e0/1" ]
+    - endpoints: [ "C5:e1/1", "CPE-HQ-BACK:e0/1" ]
     - endpoints: [ "C1:e1/0", "CPE-BRANCH-BACK:e0/1" ]
     - endpoints: [ "C2:e0/1", "C3:e0/1" ]
     - endpoints: [ "C2:e0/2", "C4:e0/1" ]
