@@ -97,6 +97,7 @@ topology:
     CPE-BRANCH-BACK:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
+      startup-config: configs/CPE_BRANCH_BACK_cfg.partial
       mgmt-ipv4: 172.20.20.12
 
     SW-R-PISO1:
