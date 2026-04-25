@@ -132,7 +132,10 @@ topology:
       startup-config: configs/C5_cfg.partial
   # Internet (AS300)
     
-
+    R-INTERNET:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.1
+      startup-config: configs/R-INTERNET_cfg.partial
 
   links:
     #########################################
@@ -187,3 +190,5 @@ topology:
 
     # Enlaces de Internet
     #############################################
+    - endpoints: ["R-INTERNET:e0/1", "M2:e1/1"]
+    - endpoints: ["R-INTERNET:e0/2", "C2:e1/1"]
