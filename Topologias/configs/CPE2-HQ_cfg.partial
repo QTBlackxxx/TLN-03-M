@@ -1,0 +1,36 @@
+interface Loopback0
+ ip address 200.0.0.2 255.255.255.255
+! 
+interface Ethernet0/2
+ ip address 172.16.0.5 255.255.255.252
+ no shut
+!
+interface Ethernet0/3
+ ip address 10.0.0.66 255.255.255.252
+ no shut
+!
+interface Ethernet0/1
+ ip address 10.0.0.70 255.255.255.252
+ no shut
+!
+router ospf 1
+router-id 20.1.1.4
+  network 172.16.0.4 0.0.0.3 area 0
+  network 10.0.0.68 0.0.0.3 area 0
+  network 200.0.0.2 0.0.0.0 area 0
+  default-information originate always metric 10
+!
+ip as-path access-list 1 permit ^$
+!
+route-map PREPEND-OUT permit 10
+ set as-path prepend 400 400 400
+!
+router bgp 400
+ network 192.168.10.0 mask 255.255.255.0
+ network 192.168.20.0 mask 255.255.255.0
+ neighbor 10.0.0.65 remote-as 200
+ neighbor 10.0.0.65 route-map PREPEND-OUT out
+ neighbor 10.0.0.65 filter-list 1 out
+ neighbor 200.0.0.1 remote-as 400
+ neighbor 200.0.0.1 update-source Loopback0
+ neighbor 200.0.0.1 next-hop-self

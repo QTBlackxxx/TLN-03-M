@@ -1,4 +1,4 @@
-name: ISP-TDP-CLARO-IOL
+name: ISP_NETWORK
 
 topology:
   nodes:
@@ -8,38 +8,65 @@ topology:
     #
     #########################################
 
-    CPE-HQ:
+    CPE1-HQ:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/CPE_HQ_cfg.partial
+
+    CPE2-HQ:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      startup-config: configs/CPE2-HQ_cfg.partial      
+
+    CORE1-HQ:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      startup-config: configs/CORE1-HQ_cfg.partial
+
+    CORE2-HQ:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01   
+      startup-config: configs/CORE2-HQ_cfg.partial   
+
+    AGG1-HQ:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:l2-17.12.01
+      type: l2
+      startup-config: configs/AGG1-HQ_cfg.partial      
+
+    AGG2-HQ:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:l2-17.12.01        
+      type: l2
+      startup-config: configs/AGG2-HQ_cfg.partial      
 
     SW-PISO1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
       type: l2
       startup-config: configs/SW-PISO1_cfg.partial
 
     SW-PISO2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
       type: l2
       startup-config: configs/SW-PISO2_cfg.partial
 
     PC1-VLAN10:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
 
     PC2-VLAN10:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
 
     PC3-VLAN20:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
 
     PC4-VLAN20:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
 
     #########################################
     #    Movistar (AS 100)
@@ -47,22 +74,22 @@ topology:
     #########################################
     M1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/M1_cfg.partial
 
     M2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/M2_cfg.partial
 
     M3:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/M3_cfg.partial
 
     M4:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/M4_cfg.partial
 
     #########################################
@@ -71,36 +98,36 @@ topology:
     #########################################
     CPE-BRANCH:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/CPE_BRANCH_cfg.partial
 
     SW-R-PISO1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
       type: l2
       startup-config: configs/SW-R-PISO1_cfg.partial
 
     SW-R-PISO2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
       type: l2
       startup-config: configs/SW-R-PISO2_cfg.partial
 
     PC1-R-VLAN5:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
 
     PC2-R-VLAN5:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
 
     PC3-R-VLAN15:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
 
     PC4-R-VLAN15:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
 
     #########################################
     #    Claro (AS 200)
@@ -108,28 +135,65 @@ topology:
     #########################################
     C1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C1_cfg.partial
 
     C2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C2_cfg.partial
 
     C3:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C3_cfg.partial
 
     C4:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C4_cfg.partial
 
     C5:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C5_cfg.partial
+
+    #########################################
+    #    Internet (AS 300)
+    #
+    #########################################
+    CARR-1:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      startup-config: configs/CARR-1_cfg.partial      
+
+    CARR-2:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      startup-config: configs/CARR-2_cfg.partial      
+
+    CARR-CORE:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      startup-config: configs/CARR-CORE_cfg.partial      
+
+    SW-CORE1:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:l2-17.12.01
+      type: l2
+
+    SW-CORE2:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:l2-17.12.01
+      type: l2
+
+    WEB-SERVER:
+      kind: linux
+      image: alpine:latest
+
+    DNS-SERVER:
+      kind: linux
+      image: alpine:latest      
 
   links:
     #########################################
@@ -137,12 +201,14 @@ topology:
     # Enlaces dentro del ISP Movistar
     #
     #########################################
-    - endpoints: [ "M1:e1/0", "CPE-HQ:e0/1" ]
     - endpoints: [ "M1:e0/1", "M2:e0/1" ]
     - endpoints: [ "M1:e0/2", "M3:e0/1" ]
     - endpoints: [ "M1:e0/3", "M4:e0/1" ]
     - endpoints: [ "M2:e0/2", "M4:e0/2" ]
+    - endpoints: [ "M2:e0/3", "CARR-1:e0/3" ]       
     - endpoints: [ "M3:e0/2", "M4:e0/3" ]
+    - endpoints: [ "M3:e1/0", "CPE1-HQ:e0/1" ]   
+
 
     #########################################
     #
@@ -154,21 +220,48 @@ topology:
     - endpoints: [ "C2:e0/2", "C4:e0/1" ]
     - endpoints: [ "C2:e1/0", "C1:e0/1" ]
     - endpoints: [ "C3:e0/2", "M4:e1/0" ]
-    - endpoints: [ "C4:e0/2", "M4:e1/1" ]
+    - endpoints: [ "C3:e1/0", "CARR-2:e1/0" ]    
+    - endpoints: [ "C4:e0/2", "M4:e1/1" ] 
+    - endpoints: [ "C5:e1/1", "CPE2-HQ:e0/3" ]    
     - endpoints: [ "C5:e0/2", "C4:e0/3" ]
     - endpoints: [ "C5:e0/3", "C3:e0/3" ]
     - endpoints: [ "C5:e0/1", "C2:e0/3" ]
     - endpoints: [ "C5:e1/0", "C1:e0/2" ]
 
+   #########################################
+    #
+    # Enlaces dentro de Internet
+    #
+    #########################################
+    - endpoints: [ "CARR-CORE:e0/1", "CARR-1:e0/1" ]
+    - endpoints: [ "CARR-CORE:e1/0", "CARR-2:e0/1" ]
+    - endpoints: [ "CARR-CORE:e0/2", "SW-CORE1:e0/2" ]
+    - endpoints: [ "CARR-CORE:e0/3", "SW-CORE2:e0/3" ]        
+    - endpoints: [ "SW-CORE1:e0/1", "WEB-SERVER:e0/1" ]
+    - endpoints: [ "SW-CORE2:e0/1", "DNS-SERVER:e0/1" ]   
+
     #########################################
     # Enlaces dentro del Head Quarter
     #########################################
-    - endpoints: [ "CPE-HQ:e0/2", "SW-PISO1:e0/1" ]
-    - endpoints: [ "SW-PISO1:e0/2", "SW-PISO2:e0/1" ]
-    - endpoints: [ "SW-PISO1:e0/3", "PC1-VLAN10:eth1" ]
-    - endpoints: [ "SW-PISO1:e1/0", "PC2-VLAN10:eth1" ]
-    - endpoints: [ "SW-PISO2:e0/2", "PC3-VLAN20:eth1" ]
-    - endpoints: [ "SW-PISO2:e0/3", "PC4-VLAN20:eth1" ]
+
+    - endpoints: [ "CPE1-HQ:e0/2", "CORE1-HQ:e0/2" ]
+    - endpoints: [ "CPE1-HQ:e0/3", "CPE2-HQ:e0/1" ]    
+    - endpoints: [ "CPE2-HQ:e0/2", "CORE2-HQ:e0/2" ]  
+    - endpoints: [ "CORE1-HQ:e0/3", "CORE2-HQ:e0/3" ]          
+    - endpoints: [ "CORE1-HQ:e1/0", "CORE2-HQ:e1/0" ]   
+
+    - endpoints: [ "AGG1-HQ:e0/1", "CORE1-HQ:e0/1" ]          
+    - endpoints: [ "AGG2-HQ:e0/1", "CORE2-HQ:e0/1" ]    
+    - endpoints: [ "AGG2-HQ:e0/2", "AGG1-HQ:e0/2" ]        
+    - endpoints: [ "AGG1-HQ:e0/3", "SW-PISO1:e0/3" ]
+    - endpoints: [ "AGG2-HQ:e0/3", "SW-PISO2:e0/3" ]         
+
+    - endpoints: [ "SW-PISO1:e1/0", "AGG2-HQ:e1/0" ]
+    - endpoints: [ "SW-PISO2:e1/0", "AGG1-HQ:e1/0" ]
+    - endpoints: [ "SW-PISO1:e0/1", "PC1-VLAN10:eth1" ]
+    - endpoints: [ "SW-PISO1:e0/2", "PC2-VLAN10:eth1" ]
+    - endpoints: [ "SW-PISO2:e0/1", "PC3-VLAN20:eth1" ]
+    - endpoints: [ "SW-PISO2:e0/2", "PC4-VLAN20:eth1" ]
 
     #########################################
     # Enlaces dentro del Branch Office
@@ -179,3 +272,4 @@ topology:
     - endpoints: [ "SW-R-PISO1:e1/0", "PC2-R-VLAN5:eth1" ]
     - endpoints: [ "SW-R-PISO2:e0/2", "PC3-R-VLAN15:eth1" ]
     - endpoints: [ "SW-R-PISO2:e0/3", "PC4-R-VLAN15:eth1" ]
+

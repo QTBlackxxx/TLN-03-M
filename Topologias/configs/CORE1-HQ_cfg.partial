@@ -1,0 +1,24 @@
+int e0/1
+no sw
+ip add 20.0.0.10 255.255.255.252
+!
+int e0/2
+no sw
+ip add 172.16.0.2 255.255.255.252
+!
+int e0/3
+no sw
+ip add 20.0.0.17 255.255.255.252
+!
+int e1/0
+no sw
+ip add 20.0.0.5 255.255.255.252
+!
+router ospf 1
+router-id 20.1.1.1
+network 20.0.0.4 0.0.0.3 area 0
+network 20.0.0.8 0.0.0.3 area 0
+network 20.0.0.16 0.0.0.3 area 0
+network 172.16.0.0 0.0.0.3 area 0
+maximum-paths 2
+!
