@@ -116,11 +116,10 @@ interface Ethernet1/3
  no ip address
  shutdown
 !
-router rip
- version 2
- network 10.0.0.0
- network 172.16.0.0
- no auto-summary
+router ospf 1
+ router-id 172.16.2.4
+ network 10.0.0.0 0.0.0.255 area 0
+ network 172.16.2.0 0.0.0.255 area 0
 !
 router bgp 200
  bgp router-id 172.16.2.4
