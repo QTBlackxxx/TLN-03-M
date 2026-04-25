@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 18:42:43 UTC Sat Apr 25 2026 by admin
+! Last configuration change at 21:58:11 UTC Sat Apr 25 2026 by admin
 !
 version 17.12
 service timestamps debug datetime msec
@@ -125,6 +125,7 @@ interface Ethernet0/0
  description clab-mgmt
  vrf forwarding clab-mgmt
  ip address 172.20.20.11 255.255.255.0
+ ipv6 address 3FFF:172:20:20::A/64
  ipv6 address 3FFF:172:20:20::B/64
 !
 interface Ethernet0/1
@@ -145,12 +146,19 @@ interface Ethernet0/3
  no ip address
  shutdown
 !
+router bgp 65002
+ bgp log-neighbor-changes
+ network 190.0.0.1 mask 255.255.255.255
+ network 192.168.5.0
+ network 192.168.15.0
+ neighbor 10.0.0.61 remote-as 200
+ neighbor 10.0.0.61 weight 200
+!
 ip forward-protocol nd
 !
 !
 ip http server
 ip http secure-server
-ip route 0.0.0.0 0.0.0.0 10.0.0.61
 ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
 ip ssh bulk-mode 131072
 !
