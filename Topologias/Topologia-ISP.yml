@@ -1,46 +1,62 @@
 name: ISP-TDP-CLARO-IOL
-
+ 
 topology:
   nodes:
-
+ 
     #########################################
     #    Head Quarter (Oficina Principal)
     #
     #########################################
-
+ 
     CPE-HQ:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/CPE_HQ_cfg.partial
-
+ 
     SW-PISO1:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:L2-17.12.1
       type: l2
       startup-config: configs/SW-PISO1_cfg.partial
-
+ 
     SW-PISO2:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:L2-17.12.1
       type: l2
       startup-config: configs/SW-PISO2_cfg.partial
-
+ 
     PC1-VLAN10:
       kind: linux
       image: alpine:3.23
-
+      exec:
+        - ip addr add 192.168.10.10/24 dev eth1
+        - ip route del default via 172.20.20.1
+        - ip route add default via 192.168.10.1 dev eth1
+ 
     PC2-VLAN10:
       kind: linux
       image: alpine:3.23
-
+      exec:
+        - ip addr add 192.168.10.11/24 dev eth1
+        - ip route del default via 172.20.20.1
+        - ip route add default via 192.168.10.1 dev eth1
+ 
     PC3-VLAN20:
       kind: linux
       image: alpine:3.23
-
+      exec:
+        - ip addr add 192.168.20.10/24 dev eth1
+        - ip route del default via 172.20.20.1
+        - ip route add default via 192.168.20.1 dev eth1
+ 
     PC4-VLAN20:
       kind: linux
       image: alpine:3.23
-
+      exec:
+        - ip addr add 192.168.20.11/24 dev eth1
+        - ip route del default via 172.20.20.1
+        - ip route add default via 192.168.20.1 dev eth1
+ 
     #########################################
     #    Movistar (AS 100)
     #
@@ -49,22 +65,22 @@ topology:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/M1_cfg.partial
-
+ 
     M2:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/M2_cfg.partial
-
+ 
     M3:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/M3_cfg.partial
-
+ 
     M4:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/M4_cfg.partial
-
+ 
     #########################################
     #    Branch Office (Oficina Remota)
     #
@@ -73,35 +89,51 @@ topology:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/CPE_BRANCH_cfg.partial
-
+ 
     SW-R-PISO1:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:L2-17.12.1
       type: l2
       startup-config: configs/SW-R-PISO1_cfg.partial
-
+ 
     SW-R-PISO2:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:L2-17.12.1
       type: l2
       startup-config: configs/SW-R-PISO2_cfg.partial
-
+ 
     PC1-R-VLAN5:
       kind: linux
       image: alpine:3.23
-
+      exec:
+        - ip addr add 192.168.5.10/24 dev eth1
+        - ip route del default via 172.20.20.1
+        - ip route add default via 192.168.5.1 dev eth1
+ 
     PC2-R-VLAN5:
       kind: linux
       image: alpine:3.23
-
+      exec:
+        - ip addr add 192.168.5.11/24 dev eth1
+        - ip route del default via 172.20.20.1
+        - ip route add default via 192.168.5.1 dev eth1
+ 
     PC3-R-VLAN15:
       kind: linux
       image: alpine:3.23
-
+      exec:
+        - ip addr add 192.168.15.10/24 dev eth1
+        - ip route del default via 172.20.20.1
+        - ip route add default via 192.168.15.1 dev eth1
+ 
     PC4-R-VLAN15:
       kind: linux
       image: alpine:3.23
-
+      exec:
+        - ip addr add 192.168.15.11/24 dev eth1
+        - ip route del default via 172.20.20.1
+        - ip route add default via 192.168.15.1 dev eth1
+ 
     #########################################
     #    Claro (AS 200)
     #
@@ -110,27 +142,27 @@ topology:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/C1_cfg.partial
-
+ 
     C2:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/C2_cfg.partial
-
+ 
     C3:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/C3_cfg.partial
-
+ 
     C4:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/C4_cfg.partial
-
+ 
     C5:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.1
       startup-config: configs/C5_cfg.partial
-
+ 
   links:
     #########################################
     #
@@ -143,7 +175,7 @@ topology:
     - endpoints: [ "M1:e0/3", "M4:e0/1" ]
     - endpoints: [ "M2:e0/2", "M4:e0/2" ]
     - endpoints: [ "M3:e0/2", "M4:e0/3" ]
-
+ 
     #########################################
     #
     # Enlaces dentro del ISP Claro
@@ -160,7 +192,7 @@ topology:
     - endpoints: [ "C5:e0/1", "C2:e0/3" ]
     - endpoints: [ "C5:e1/0", "C1:e0/2" ]
     - endpoints: [ "CPE-HQ:e0/3", "C4:e1/0" ]
-
+ 
     #########################################
     # Enlaces dentro del Head Quarter
     #########################################
@@ -170,7 +202,7 @@ topology:
     - endpoints: [ "SW-PISO1:e1/0", "PC2-VLAN10:eth1" ]
     - endpoints: [ "SW-PISO2:e0/2", "PC3-VLAN20:eth1" ]
     - endpoints: [ "SW-PISO2:e0/3", "PC4-VLAN20:eth1" ]
-
+ 
     #########################################
     # Enlaces dentro del Branch Office
     #########################################
@@ -180,3 +212,4 @@ topology:
     - endpoints: [ "SW-R-PISO1:e1/0", "PC2-R-VLAN5:eth1" ]
     - endpoints: [ "SW-R-PISO2:e0/2", "PC3-R-VLAN15:eth1" ]
     - endpoints: [ "SW-R-PISO2:e0/3", "PC4-R-VLAN15:eth1" ]
+ 
