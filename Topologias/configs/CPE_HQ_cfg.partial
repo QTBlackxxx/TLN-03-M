@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 18:40:48 UTC Sat Apr 25 2026 by admin
+! Last configuration change at 21:09:07 UTC Sat Apr 25 2026 by admin
 !
 version 17.12
 service timestamps debug datetime msec
@@ -126,6 +126,7 @@ interface Ethernet0/0
  vrf forwarding clab-mgmt
  ip address 172.20.20.20 255.255.255.0
  ipv6 address 3FFF:172:20:20::6/64
+ ipv6 address 3FFF:172:20:20::F/64
  ipv6 address 3FFF:172:20:20::14/64
 !
 interface Ethernet0/1
@@ -144,6 +145,9 @@ interface Ethernet0/2.20
 !
 interface Ethernet0/3
  ip address 10.0.0.69 255.255.255.252
+!
+router ospf 10
+ network 10.0.0.0 0.0.0.3 area 0
 !
 router bgp 65001
  bgp log-neighbor-changes
