@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 04:49:26 UTC Sat Apr 25 2026 by admin
+! Last configuration change at 18:05:57 UTC Sat Apr 25 2026 by admin
 !
 version 17.12
 service timestamps debug datetime msec
@@ -124,8 +124,8 @@ interface Loopback0
 interface Ethernet0/0
  description clab-mgmt
  vrf forwarding clab-mgmt
- ip address 172.20.20.7 255.255.255.0
- ipv6 address 3FFF:172:20:20::7/64
+ ip address 172.20.20.20 255.255.255.0
+ ipv6 address 3FFF:172:20:20::14/64
 !
 interface Ethernet0/1
  ip address 10.0.0.2 255.255.255.252
@@ -135,7 +135,7 @@ interface Ethernet0/2
  shutdown
 !
 interface Ethernet0/3
- ip address 10.0.0.65 255.255.255.252
+ ip address 10.0.0.69 255.255.255.252
 !
 router bgp 65001
  bgp log-neighbor-changes
@@ -144,8 +144,8 @@ router bgp 65001
  network 200.0.0.1 mask 255.255.255.255
  neighbor 10.0.0.1 remote-as 100
  neighbor 10.0.0.1 weight 200
- neighbor 10.0.0.66 remote-as 200
- neighbor 10.0.0.66 weight 50
+ neighbor 10.0.0.70 remote-as 200
+ neighbor 10.0.0.70 weight 50
 !
 ip forward-protocol nd
 !
