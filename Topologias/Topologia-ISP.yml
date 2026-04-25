@@ -165,14 +165,17 @@ topology:
     CARR-1:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.01
+      startup-config: configs/CARR-1_cfg.partial      
 
     CARR-2:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.01
+      startup-config: configs/CARR-2_cfg.partial      
 
     CARR-CORE:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.01
+      startup-config: configs/CARR-CORE_cfg.partial      
 
     SW-CORE1:
       kind: cisco_iol
