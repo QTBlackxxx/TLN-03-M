@@ -31,10 +31,6 @@ interface Ethernet0/3
 interface Ethernet1/0
  ip address 10.0.0.57 255.255.255.252
 !
-interface Ethernet1/1
- no ip address
- shutdown
-!
 interface Ethernet1/2
  no ip address
  shutdown
@@ -53,6 +49,7 @@ router bgp 200
  bgp router-id 172.16.2.5
  bgp log-neighbor-changes
  no bgp default ipv4-unicast
+ neighbor 10.0.0.66 remote-as 400
  neighbor 172.16.2.1 remote-as 200
  neighbor 172.16.2.1 update-source Loopback0
  neighbor 172.16.2.2 remote-as 200
@@ -63,6 +60,7 @@ router bgp 200
  neighbor 172.16.2.4 update-source Loopback0
  !
  address-family ipv4
+  neighbor 10.0.0.66 activate
   neighbor 172.16.2.1 activate
   neighbor 172.16.2.2 activate
   neighbor 172.16.2.3 activate
@@ -80,10 +78,6 @@ interface Ethernet0/3
 interface Ethernet1/0
  ip address 10.0.0.57 255.255.255.252
 !
-interface Ethernet1/1
- no ip address
- shutdown
-!
 interface Ethernet1/2
  no ip address
  shutdown
@@ -102,6 +96,7 @@ router bgp 200
  bgp router-id 172.16.2.5
  bgp log-neighbor-changes
  no bgp default ipv4-unicast
+ neighbor 10.0.0.66 remote-as 400
  neighbor 172.16.2.1 remote-as 200
  neighbor 172.16.2.1 update-source Loopback0
  neighbor 172.16.2.2 remote-as 200
@@ -112,6 +107,7 @@ router bgp 200
  neighbor 172.16.2.4 update-source Loopback0
  !
  address-family ipv4
+  neighbor 10.0.0.66 activate
   neighbor 172.16.2.1 activate
   neighbor 172.16.2.2 activate
   neighbor 172.16.2.3 activate
