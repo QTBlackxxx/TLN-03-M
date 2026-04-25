@@ -1,5 +1,50 @@
+!
+! Last configuration change at 18:12:32 UTC Sat Apr 25 2026 by admin
+!
+version 17.12
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname C1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition clab-mgmt
+ description clab-mgmt
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no aaa new-model
+!
+no ip domain lookup
+ip domain name lab
+ip cef
+login on-success log
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+memory free low-watermark processor 55011
+!
+spanning-tree mode rapid-pvst
+!
+username admin privilege 15 secret 9 $9$8e/z43c2wP.A7k$5OAHDu8dEGl2eklRRyxMkA9Fyym5GIYG6l9mG8.GbAw
+!
 interface Loopback0
  ip address 172.16.2.1 255.255.255.255
+!
+interface Ethernet0/0
+ description clab-mgmt
+ vrf forwarding clab-mgmt
+ ip address 172.20.20.9 255.255.255.0
+ ipv6 address 3FFF:172:20:20::9/64
 !
 interface Ethernet0/1
  ip address 10.0.0.54 255.255.255.252
@@ -26,11 +71,10 @@ interface Ethernet1/3
  no ip address
  shutdown
 !
-router rip
- version 2
- network 10.0.0.0
- network 172.16.0.0
- no auto-summary
+router ospf 1
+ router-id 172.16.2.1
+ network 10.0.0.0 0.0.0.255 area 0
+ network 172.16.2.0 0.0.0.255 area 0
 !
 router bgp 200
  bgp router-id 172.16.2.1
@@ -44,23 +88,41 @@ router bgp 200
  neighbor 172.16.2.4 update-source Loopback0
  neighbor 172.16.2.5 remote-as 200
  neighbor 172.16.2.5 update-source Loopback0
+ neighbor 10.0.0.62 remote-as 65002
  !
  address-family ipv4
   redistribute static route-map to_EXTERNAL
+  network 10.0.0.60 mask 255.255.255.252
   neighbor 172.16.2.2 activate
   neighbor 172.16.2.3 activate
   neighbor 172.16.2.4 activate
   neighbor 172.16.2.5 activate
+  neighbor 10.0.0.62 activate
+  neighbor 10.0.0.62 default-originate
  exit-address-family
 !
 ip forward-protocol nd
-!
 !
 ip ftp username dubuntu
 ip ftp password 123456
 ip http server
 ip http secure-server
 ip route 190.0.0.0 255.255.255.248 10.0.0.62 tag 190
+ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
+ip ssh bulk-mode 131072
+!
+ipv6 route vrf clab-mgmt ::/0 Ethernet0/0 3FFF:172:20:20::1
 !
 route-map to_EXTERNAL permit 10 
  match tag 190
+!
+control-plane
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+end

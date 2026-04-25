@@ -1,12 +1,12 @@
 
 !
-! Last configuration change at 18:46:02 UTC Sat Apr 25 2026 by admin
+! Last configuration change at 21:19:57 UTC Sat Apr 25 2026 by admin
 !
 version 17.12
 service timestamps debug datetime msec
 service timestamps log datetime msec
 !
-hostname SW-R-PISO1
+hostname R-INTERNET
 !
 boot-start-marker
 boot-end-marker
@@ -35,8 +35,6 @@ no aaa new-model
 !
 !
 !
-ip audit notify log
-ip audit po max-events 100
 no ip domain lookup
 ip domain name lab
 ip cef
@@ -50,65 +48,80 @@ ipv6 cef
 !
 !
 !
-vtp version 1
+!
 multilink bundle-name authenticated
 !
 !
 !
 !
-memory free low-watermark processor 54375
+!
+memory free low-watermark processor 55011
 !
 !
 spanning-tree mode rapid-pvst
-spanning-tree extend system-id
 !
-username admin privilege 15 secret 9 $9$yW2tKh1Xq5zI7.$BYyd/MKctPmZ9CYYBrRl5QHWwyWgXMmkERvmbNHUrIY
 !
-vlan internal allocation policy ascending
+username admin privilege 15 secret 9 $9$pzUPCfXiLW1IOU$gk82E7tpXMr0OvxX4fTSt6vK2JPM0p1AYgcBl3aoSPM
 !
 !
 !
 !
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 8.8.8.8 255.255.255.255
 !
 interface Ethernet0/0
  description clab-mgmt
- no switchport
  vrf forwarding clab-mgmt
- ip address 172.20.20.2 255.255.255.0
- ipv6 address 3FFF:172:20:20::2/64
+ ip address 172.20.20.12 255.255.255.0
+ ipv6 address 3FFF:172:20:20::C/64
 !
 interface Ethernet0/1
- switchport trunk encapsulation dot1q
- switchport trunk allowed vlan 5,15
- switchport mode trunk
+ ip address 10.0.1.2 255.255.255.252
 !
 interface Ethernet0/2
- switchport trunk encapsulation dot1q
- switchport trunk allowed vlan 5,15
- switchport mode trunk
+ ip address 10.0.1.6 255.255.255.252
 !
 interface Ethernet0/3
- switchport access vlan 5
- switchport mode access
+ no ip address
+ shutdown
 !
-interface Ethernet1/0
- switchport access vlan 5
- switchport mode access
-!
-interface Ethernet1/1
-!
-interface Ethernet1/2
-!
-interface Ethernet1/3
+router bgp 300
+ bgp router-id 8.8.8.8
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 10.0.1.1 remote-as 100
+ neighbor 10.0.1.5 remote-as 200
+ !
+ address-family ipv4
+  network 8.8.8.8 mask 255.255.255.255
+  neighbor 10.0.1.1 activate
+  neighbor 10.0.1.5 activate
+ exit-address-family
 !
 ip forward-protocol nd
 !
 !
 ip http server
 ip http secure-server
-ip ssh bulk-mode 131072
 ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
-!
+ip ssh bulk-mode 131072
 !
 ipv6 route vrf clab-mgmt ::/0 Ethernet0/0 3FFF:172:20:20::1
 !
@@ -125,6 +138,8 @@ line aux 0
 line vty 0 4
  login local
  transport input ssh
+!
+!
 !
 !
 end
