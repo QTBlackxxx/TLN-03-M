@@ -11,11 +11,10 @@ interface Ethernet0/2
 interface Ethernet0/3
  ip address 10.0.0.41 255.255.255.252
 !
-router rip
- version 2
- network 10.0.0.0
- network 172.16.0.0
- no auto-summary
+router ospf 1
+ router-id 172.16.2.3
+ network 10.0.0.0 0.0.0.255 area 0
+ network 172.16.2.0 0.0.0.255 area 0
 !
 router bgp 200
  bgp router-id 172.16.2.3
