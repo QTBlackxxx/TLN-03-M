@@ -101,6 +101,7 @@ interface Ethernet0/2
 interface Ethernet0/3
  ip address 10.0.0.37 255.255.255.252
 !
+<<<<<<< HEAD
 interface Ethernet1/0
  ip address 10.0.0.70 255.255.255.252
 !
@@ -116,6 +117,8 @@ interface Ethernet1/3
  no ip address
  shutdown
 !
+=======
+>>>>>>> antonio
 router ospf 1
  router-id 172.16.2.4
  network 10.0.0.0 0.0.0.255 area 0
