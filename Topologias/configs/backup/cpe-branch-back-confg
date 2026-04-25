@@ -1,17 +1,33 @@
 !
 ! Last configuration change at 16:35:50 UTC Sat Apr 25 2026 by admin
+
+! Last configuration change at 16:35:50 UTC Sat Apr 25 2026 by admin
+
 !
+
 version 17.12
+
 service timestamps debug datetime msec
+
 service timestamps log datetime msec
+
 !
 hostname CPE-BRANCH-BACK
+
+hostname CPE-BRANCH-BACK
+
 !         
+
 boot-start-marker
+
 boot-end-marker
+
 !
+
 !
+
 vrf definition clab-mgmt
+
  description clab-mgmt
  !
  address-family ipv4
@@ -147,3 +163,149 @@ line vty 0 4
 !
 !
 end    
+ 
+  !
+  
+   address-family ipv4
+   
+    exit-address-family
+    
+     !        
+     
+      address-family ipv6
+      
+       exit-address-family
+       
+       !
+       
+       no aaa new-model
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !         
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       no ip domain lookup
+       
+       ip domain name lab
+       
+       ip cef    
+       
+       login on-success log
+       
+       ipv6 unicast-routing
+       
+       ipv6 cef
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !         
+       
+       !
+       
+       multilink bundle-name authenticated
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       memory free low-watermark processor 55011
+       
+       !
+       
+       !         
+       
+       spanning-tree mode rapid-pvst
+       
+       !
+       
+       !
+       
+       username admin privilege 15 secret 9 $9$fb31ITIP6v3zE.$0rSga/7DbrhP8yAbbiOnkjoW5BHf6J2NNf8gA4o93co
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !         
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !         
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       !
+       
+       interface Ethernet0/0
+       
+        description clab-mgmt
+        
+         vrf forwarding clab-mgmt
+         
+          ip add
