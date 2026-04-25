@@ -1,0 +1,1279 @@
+{
+  "name": "ISP-TDP-CLARO-IOL",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-1f830fc861dc",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": [],
+  "nodes": {
+    "C1": {
+      "index": "0",
+      "shortname": "C1",
+      "longname": "clab-ISP-TDP-CLARO-IOL-C1",
+      "fqdn": "C1.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C1",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.8",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::8",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C1",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-C1",
+        "clab-node-name": "C1",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "C2": {
+      "index": "1",
+      "shortname": "C2",
+      "longname": "clab-ISP-TDP-CLARO-IOL-C2",
+      "fqdn": "C2.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C2",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.17",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::11",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C2",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-C2",
+        "clab-node-name": "C2",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "C3": {
+      "index": "2",
+      "shortname": "C3",
+      "longname": "clab-ISP-TDP-CLARO-IOL-C3",
+      "fqdn": "C3.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C3",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.9",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::9",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C3",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-C3",
+        "clab-node-name": "C3",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "C4": {
+      "index": "3",
+      "shortname": "C4",
+      "longname": "clab-ISP-TDP-CLARO-IOL-C4",
+      "fqdn": "C4.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C4",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.15",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::f",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C4",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-C4",
+        "clab-node-name": "C4",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "C5": {
+      "index": "4",
+      "shortname": "C5",
+      "longname": "clab-ISP-TDP-CLARO-IOL-C5",
+      "fqdn": "C5.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C5",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/C5",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-C5",
+        "clab-node-name": "C5",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "CPE-BRANCH": {
+      "index": "5",
+      "shortname": "CPE-BRANCH",
+      "longname": "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH",
+      "fqdn": "CPE-BRANCH.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/CPE-BRANCH",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/CPE-BRANCH",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH",
+        "clab-node-name": "CPE-BRANCH",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "CPE-HQ": {
+      "index": "6",
+      "shortname": "CPE-HQ",
+      "longname": "clab-ISP-TDP-CLARO-IOL-CPE-HQ",
+      "fqdn": "CPE-HQ.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/CPE-HQ",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.22",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::16",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/CPE-HQ",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-CPE-HQ",
+        "clab-node-name": "CPE-HQ",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "INTERNET": {
+      "index": "7",
+      "shortname": "INTERNET",
+      "longname": "clab-ISP-TDP-CLARO-IOL-INTERNET",
+      "fqdn": "INTERNET.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/INTERNET",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.20",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::14",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/INTERNET",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-INTERNET",
+        "clab-node-name": "INTERNET",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "M1": {
+      "index": "8",
+      "shortname": "M1",
+      "longname": "clab-ISP-TDP-CLARO-IOL-M1",
+      "fqdn": "M1.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/M1",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/M1",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-M1",
+        "clab-node-name": "M1",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "M2": {
+      "index": "9",
+      "shortname": "M2",
+      "longname": "clab-ISP-TDP-CLARO-IOL-M2",
+      "fqdn": "M2.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/M2",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.18",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::12",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/M2",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-M2",
+        "clab-node-name": "M2",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "M3": {
+      "index": "10",
+      "shortname": "M3",
+      "longname": "clab-ISP-TDP-CLARO-IOL-M3",
+      "fqdn": "M3.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/M3",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.21",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::15",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/M3",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-M3",
+        "clab-node-name": "M3",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "M4": {
+      "index": "11",
+      "shortname": "M4",
+      "longname": "clab-ISP-TDP-CLARO-IOL-M4",
+      "fqdn": "M4.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/M4",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.13",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::d",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/M4",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-M4",
+        "clab-node-name": "M4",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "PC1-R-VLAN5": {
+      "index": "12",
+      "shortname": "PC1-R-VLAN5",
+      "longname": "clab-ISP-TDP-CLARO-IOL-PC1-R-VLAN5",
+      "fqdn": "PC1-R-VLAN5.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC1-R-VLAN5",
+      "kind": "linux",
+      "image": "alpine:3.23",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.19",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::13",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC1-R-VLAN5",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-PC1-R-VLAN5",
+        "clab-node-name": "PC1-R-VLAN5",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "PC1-VLAN10": {
+      "index": "13",
+      "shortname": "PC1-VLAN10",
+      "longname": "clab-ISP-TDP-CLARO-IOL-PC1-VLAN10",
+      "fqdn": "PC1-VLAN10.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC1-VLAN10",
+      "kind": "linux",
+      "image": "alpine:3.23",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.5",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::5",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC1-VLAN10",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-PC1-VLAN10",
+        "clab-node-name": "PC1-VLAN10",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "PC2-R-VLAN5": {
+      "index": "14",
+      "shortname": "PC2-R-VLAN5",
+      "longname": "clab-ISP-TDP-CLARO-IOL-PC2-R-VLAN5",
+      "fqdn": "PC2-R-VLAN5.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC2-R-VLAN5",
+      "kind": "linux",
+      "image": "alpine:3.23",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.10",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::a",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC2-R-VLAN5",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-PC2-R-VLAN5",
+        "clab-node-name": "PC2-R-VLAN5",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "PC2-VLAN10": {
+      "index": "15",
+      "shortname": "PC2-VLAN10",
+      "longname": "clab-ISP-TDP-CLARO-IOL-PC2-VLAN10",
+      "fqdn": "PC2-VLAN10.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC2-VLAN10",
+      "kind": "linux",
+      "image": "alpine:3.23",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.24",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::18",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC2-VLAN10",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-PC2-VLAN10",
+        "clab-node-name": "PC2-VLAN10",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "PC3-R-VLAN15": {
+      "index": "16",
+      "shortname": "PC3-R-VLAN15",
+      "longname": "clab-ISP-TDP-CLARO-IOL-PC3-R-VLAN15",
+      "fqdn": "PC3-R-VLAN15.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC3-R-VLAN15",
+      "kind": "linux",
+      "image": "alpine:3.23",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.12",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::c",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC3-R-VLAN15",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-PC3-R-VLAN15",
+        "clab-node-name": "PC3-R-VLAN15",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "PC3-VLAN20": {
+      "index": "17",
+      "shortname": "PC3-VLAN20",
+      "longname": "clab-ISP-TDP-CLARO-IOL-PC3-VLAN20",
+      "fqdn": "PC3-VLAN20.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC3-VLAN20",
+      "kind": "linux",
+      "image": "alpine:3.23",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.23",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::17",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC3-VLAN20",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-PC3-VLAN20",
+        "clab-node-name": "PC3-VLAN20",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "PC4-R-VLAN15": {
+      "index": "18",
+      "shortname": "PC4-R-VLAN15",
+      "longname": "clab-ISP-TDP-CLARO-IOL-PC4-R-VLAN15",
+      "fqdn": "PC4-R-VLAN15.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC4-R-VLAN15",
+      "kind": "linux",
+      "image": "alpine:3.23",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.25",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::19",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC4-R-VLAN15",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-PC4-R-VLAN15",
+        "clab-node-name": "PC4-R-VLAN15",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "PC4-VLAN20": {
+      "index": "19",
+      "shortname": "PC4-VLAN20",
+      "longname": "clab-ISP-TDP-CLARO-IOL-PC4-VLAN20",
+      "fqdn": "PC4-VLAN20.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC4-VLAN20",
+      "kind": "linux",
+      "image": "alpine:3.23",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.6",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::6",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/PC4-VLAN20",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-PC4-VLAN20",
+        "clab-node-name": "PC4-VLAN20",
+        "clab-node-type": "",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "SW-PISO1": {
+      "index": "20",
+      "shortname": "SW-PISO1",
+      "longname": "clab-ISP-TDP-CLARO-IOL-SW-PISO1",
+      "fqdn": "SW-PISO1.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/SW-PISO1",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:L2-17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.14",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::e",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/SW-PISO1",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-SW-PISO1",
+        "clab-node-name": "SW-PISO1",
+        "clab-node-type": "l2",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "SW-PISO2": {
+      "index": "21",
+      "shortname": "SW-PISO2",
+      "longname": "clab-ISP-TDP-CLARO-IOL-SW-PISO2",
+      "fqdn": "SW-PISO2.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/SW-PISO2",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:L2-17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.16",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::10",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/SW-PISO2",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-SW-PISO2",
+        "clab-node-name": "SW-PISO2",
+        "clab-node-type": "l2",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "SW-R-PISO1": {
+      "index": "22",
+      "shortname": "SW-R-PISO1",
+      "longname": "clab-ISP-TDP-CLARO-IOL-SW-R-PISO1",
+      "fqdn": "SW-R-PISO1.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/SW-R-PISO1",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:L2-17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.7",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::7",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/SW-R-PISO1",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-SW-R-PISO1",
+        "clab-node-name": "SW-R-PISO1",
+        "clab-node-type": "l2",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    },
+    "SW-R-PISO2": {
+      "index": "23",
+      "shortname": "SW-R-PISO2",
+      "longname": "clab-ISP-TDP-CLARO-IOL-SW-R-PISO2",
+      "fqdn": "SW-R-PISO2.ISP-TDP-CLARO-IOL.io",
+      "group": "",
+      "labdir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/SW-R-PISO2",
+      "kind": "cisco_iol",
+      "image": "vrnetlab/cisco_iol:L2-17.12.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.11",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::b",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-1f830fc861dc",
+        "clab-node-group": "",
+        "clab-node-kind": "cisco_iol",
+        "clab-node-lab-dir": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/clab-ISP-TDP-CLARO-IOL/SW-R-PISO2",
+        "clab-node-longname": "clab-ISP-TDP-CLARO-IOL-SW-R-PISO2",
+        "clab-node-name": "SW-R-PISO2",
+        "clab-node-type": "l2",
+        "clab-owner": "alberth-joel",
+        "clab-topo-file": "/home/alberth-joel/pc1-containerlab-doble-isp-main/pc1-containerlab-doble-isp-main/Topologia-ISP-SOLUCION.yml",
+        "containerlab": "ISP-TDP-CLARO-IOL"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "M1",
+          "interface": "eth4",
+          "mac": "aa:c1:ab:99:1c:d2",
+          "peer": "z"
+        },
+        "z": {
+          "node": "CPE-HQ",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:64:2c:9b",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "M1",
+          "interface": "eth5",
+          "mac": "aa:c1:ab:41:a1:37",
+          "peer": "z"
+        },
+        "z": {
+          "node": "CPE-BRANCH",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:fe:f2:6c",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "M1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:89:12:c4",
+          "peer": "z"
+        },
+        "z": {
+          "node": "M2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:8e:ec:eb",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "M1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:e6:ea:ab",
+          "peer": "z"
+        },
+        "z": {
+          "node": "M3",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:9c:41:72",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "M1",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:82:92:7f",
+          "peer": "z"
+        },
+        "z": {
+          "node": "M4",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:eb:2f:22",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "M2",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:0d:bd:9f",
+          "peer": "z"
+        },
+        "z": {
+          "node": "M4",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:e9:f6:7e",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "M3",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:69:6b:17",
+          "peer": "z"
+        },
+        "z": {
+          "node": "M4",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:90:95:b9",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "M4",
+          "interface": "eth6",
+          "mac": "aa:c1:ab:d7:65:6b",
+          "peer": "z"
+        },
+        "z": {
+          "node": "INTERNET",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:ec:1f:6b",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C1",
+          "interface": "eth4",
+          "mac": "aa:c1:ab:56:ad:7f",
+          "peer": "z"
+        },
+        "z": {
+          "node": "CPE-BRANCH",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:56:18:a4",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C1",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:c7:ed:20",
+          "peer": "z"
+        },
+        "z": {
+          "node": "CPE-HQ",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:b8:bb:16",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:9f:ef:d6",
+          "peer": "z"
+        },
+        "z": {
+          "node": "C3",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:20:eb:f7",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C2",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:56:4d:37",
+          "peer": "z"
+        },
+        "z": {
+          "node": "C4",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:97:a3:ed",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C2",
+          "interface": "eth4",
+          "mac": "aa:c1:ab:a6:f2:38",
+          "peer": "z"
+        },
+        "z": {
+          "node": "C1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:7b:2d:93",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C3",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:48:44:2a",
+          "peer": "z"
+        },
+        "z": {
+          "node": "M4",
+          "interface": "eth4",
+          "mac": "aa:c1:ab:b2:92:9d",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C4",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:b9:a2:77",
+          "peer": "z"
+        },
+        "z": {
+          "node": "M4",
+          "interface": "eth5",
+          "mac": "aa:c1:ab:52:ce:60",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C5",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:50:12:d5",
+          "peer": "z"
+        },
+        "z": {
+          "node": "C4",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:76:1a:b3",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C5",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:35:75:46",
+          "peer": "z"
+        },
+        "z": {
+          "node": "C3",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:5c:73:c7",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C5",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:d6:0c:ad",
+          "peer": "z"
+        },
+        "z": {
+          "node": "C2",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:ac:2f:37",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C5",
+          "interface": "eth4",
+          "mac": "aa:c1:ab:b0:0a:ce",
+          "peer": "z"
+        },
+        "z": {
+          "node": "C1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:ba:28:f7",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "C5",
+          "interface": "eth5",
+          "mac": "aa:c1:ab:51:87:dd",
+          "peer": "z"
+        },
+        "z": {
+          "node": "INTERNET",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:57:ca:6b",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "CPE-HQ",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:b1:ae:c1",
+          "peer": "z"
+        },
+        "z": {
+          "node": "SW-PISO1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:97:c4:c2",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-PISO1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:46:f1:1c",
+          "peer": "z"
+        },
+        "z": {
+          "node": "SW-PISO2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:fe:40:cb",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-PISO1",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:4e:6e:00",
+          "peer": "z"
+        },
+        "z": {
+          "node": "PC1-VLAN10",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:26:d5:49",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-PISO1",
+          "interface": "eth4",
+          "mac": "aa:c1:ab:1e:76:40",
+          "peer": "z"
+        },
+        "z": {
+          "node": "PC2-VLAN10",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:b3:1a:00",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-PISO2",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:6b:d3:9d",
+          "peer": "z"
+        },
+        "z": {
+          "node": "PC3-VLAN20",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:1a:e5:34",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-PISO2",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:03:fe:bf",
+          "peer": "z"
+        },
+        "z": {
+          "node": "PC4-VLAN20",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:72:13:7e",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "CPE-BRANCH",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:9d:54:a1",
+          "peer": "z"
+        },
+        "z": {
+          "node": "SW-R-PISO1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:75:9d:58",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-R-PISO1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:b0:3e:81",
+          "peer": "z"
+        },
+        "z": {
+          "node": "SW-R-PISO2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:fe:62:61",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-R-PISO1",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:f9:6f:6f",
+          "peer": "z"
+        },
+        "z": {
+          "node": "PC1-R-VLAN5",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:f6:b9:f3",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-R-PISO1",
+          "interface": "eth4",
+          "mac": "aa:c1:ab:30:d1:27",
+          "peer": "z"
+        },
+        "z": {
+          "node": "PC2-R-VLAN5",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:06:90:ab",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-R-PISO2",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:10:7d:cc",
+          "peer": "z"
+        },
+        "z": {
+          "node": "PC3-R-VLAN15",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:88:6c:a2",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "SW-R-PISO2",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:47:ad:59",
+          "peer": "z"
+        },
+        "z": {
+          "node": "PC4-R-VLAN15",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:93:de:84",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}
