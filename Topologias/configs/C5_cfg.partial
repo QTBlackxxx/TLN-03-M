@@ -40,7 +40,7 @@ interface Ethernet1/3
  shutdown
 !
 router ospf 1
- router-id 172.16.2.2
+ router-id 172.16.2.5
  network 10.0.0.0 0.0.0.255 area 0
  network 172.16.2.0 0.0.0.255 area 0
 !
