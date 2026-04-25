@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 21:58:11 UTC Sat Apr 25 2026 by admin
+! Last configuration change at 22:48:54 UTC Sat Apr 25 2026 by admin
 !
 version 17.12
 service timestamps debug datetime msec
@@ -110,6 +110,19 @@ username admin privilege 15 secret 9 $9$OYzBukfh.BWvnU$KVrV0C4Dwj8xYM/VXEWOeuugi
 !
 !
 !
+crypto isakmp policy 10
+ encryption aes 256
+ hash sha256
+ authentication pre-share
+ group 14
+crypto isakmp key grupo_2 address 10.0.0.2       
+!
+!
+crypto ipsec transform-set VPN-TRANSFORM esp-aes 256 esp-sha256-hmac 
+ mode tunnel
+!
+crypto ipsec profile VPN-PROFILE
+ set transform-set VPN-TRANSFORM 
 !
 !
 !
@@ -121,10 +134,17 @@ username admin privilege 15 secret 9 $9$OYzBukfh.BWvnU$KVrV0C4Dwj8xYM/VXEWOeuugi
 interface Loopback0
  ip address 190.0.0.1 255.255.255.255
 !
+interface Tunnel0
+ ip address 172.16.100.2 255.255.255.252
+ tunnel source Ethernet0/1
+ tunnel destination 10.0.0.2
+ tunnel protection ipsec profile VPN-PROFILE
+!
 interface Ethernet0/0
  description clab-mgmt
  vrf forwarding clab-mgmt
  ip address 172.20.20.11 255.255.255.0
+ ipv6 address 3FFF:172:20:20::8/64
  ipv6 address 3FFF:172:20:20::A/64
  ipv6 address 3FFF:172:20:20::B/64
 !
@@ -159,6 +179,8 @@ ip forward-protocol nd
 !
 ip http server
 ip http secure-server
+ip route 192.168.10.0 255.255.255.0 Tunnel0
+ip route 192.168.20.0 255.255.255.0 Tunnel0
 ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
 ip ssh bulk-mode 131072
 !
