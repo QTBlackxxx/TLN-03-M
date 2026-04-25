@@ -159,7 +159,7 @@ topology:
     - endpoints: [ "C5:e0/3", "C3:e0/3" ]
     - endpoints: [ "C5:e0/1", "C2:e0/3" ]
     - endpoints: [ "C5:e1/0", "C1:e0/2" ]
-    - endpoints: [ "C1:e0/3", "CPE-HQ:e0/3" ]
+    - endpoints: [ "CPE-HQ:e0/3", "C4:e1/0" ]
 
     #########################################
     # Enlaces dentro del Head Quarter
