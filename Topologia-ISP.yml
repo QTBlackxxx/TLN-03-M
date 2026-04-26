@@ -1,0 +1,208 @@
+name: LAB-ISP-HQ-BRANCH
+
+topology:
+  nodes:
+
+############################
+# HQ
+############################
+
+    CPE-HQ:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.1
+      startup-config: configs/CPE_HQ_cfg.partial
+
+    SW-HQ-1:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:L2-17.12.1
+      type: l2
+      startup-config: configs/SW-PISO1_cfg.partial
+
+    SW-HQ-2:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:L2-17.12.1
+      type: l2
+      startup-config: configs/SW-PISO2_cfg.partial
+
+    PC-HQ-1:
+      kind: linux
+      image: alpine:3.23
+      exec: 
+       - ip address add 100.64.30.10/24 dev eth1
+       - route add default gw 100.64.30.1 eth1
+
+    PC-HQ-2:
+      kind: linux
+      image: alpine:3.23
+      exec: 
+       - ip address add 100.64.40.10/24 dev eth1
+       - route add default gw 100.64.40.1 eth1
+
+    PC-HQ-3:
+      kind: linux
+      image: alpine:3.23
+      exec: 
+       - ip address add 100.64.50.10/24 dev eth1
+       - route add default gw 100.64.50.1 eth1
+
+    PC-HQ-4:
+      kind: linux
+      image: alpine:3.23
+      exec: 
+       - ip address add 100.64.60.10/24 dev eth1
+       - route add default gw 100.64.60.1 eth1
+
+############################
+# BRANCH
+############################
+
+    CPE-BRANCH:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.1
+      startup-config: configs/CPE_BRANCH_cfg.partial
+
+    SW-BR-1:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:L2-17.12.1
+      type: l2
+      startup-config: configs/SW-R-PISO1_cfg.partial
+
+    SW-BR-2:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:L2-17.12.1
+      type: l2
+      startup-config: configs/SW-R-PISO2_cfg.partial
+
+    PC-BR-1:
+      kind: linux
+      image: alpine:3.23
+      exec: 
+       - ip address add 192.168.5.10/24 dev eth1
+       - route add default gw 192.168.5.1 eth1
+
+    PC-BR-2:
+      kind: linux
+      image: alpine:3.23
+      exec: 
+       - ip address add 192.168.10.10/24 dev eth1
+       - route add default gw 192.168.10.1 eth1
+    PC-BR-3:
+      kind: linux
+      image: alpine:3.23
+      exec: 
+       - ip address add 192.168.15.10/24 dev eth1
+       - route add default gw 192.168.15.1 eth1
+
+    PC-BR-4:
+      kind: linux
+      image: alpine:3.23
+      exec: 
+       - ip address add 192.168.20.10/24 dev eth1
+       - route add default gw 192.168.20.1 eth1
+
+############################
+# MOVISTAR
+############################
+
+    M1: { kind: cisco_iol, image: vrnetlab/cisco_iol:17.12.1, startup-config: configs/M1_cfg.partial}
+    M2: { kind: cisco_iol, image: vrnetlab/cisco_iol:17.12.1, startup-config: configs/M2_cfg.partial}
+    M3: { kind: cisco_iol, image: vrnetlab/cisco_iol:17.12.1, startup-config: configs/M3_cfg.partial}
+    M4: { kind: cisco_iol, image: vrnetlab/cisco_iol:17.12.1, startup-config: configs/M4_cfg.partial}
+
+############################
+# CLARO
+############################
+
+    C1: { kind: cisco_iol, image: vrnetlab/cisco_iol:17.12.1, startup-config: configs/C1_cfg.partial}
+    C2: { kind: cisco_iol, image: vrnetlab/cisco_iol:17.12.1, startup-config: configs/C2_cfg.partial}
+    C3: { kind: cisco_iol, image: vrnetlab/cisco_iol:17.12.1, startup-config: configs/C3_cfg.partial}
+    C4: { kind: cisco_iol, image: vrnetlab/cisco_iol:17.12.1, startup-config: configs/C4_cfg.partial}
+    C5: { kind: cisco_iol, image: vrnetlab/cisco_iol:17.12.1, startup-config: configs/C5_cfg.partial}
+
+############################
+# INTERNET
+############################
+
+    INTERNET:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.1
+      startup-config: configs/INTERNET_cfg.partial
+      
+
+  links:
+
+############################
+# HQ LAN
+############################
+
+    - endpoints: ["CPE-HQ:e0/2","SW-HQ-1:e0/1"]
+    - endpoints: ["CPE-HQ:e1/0","SW-HQ-2:e0/1"]
+
+    - endpoints: ["SW-HQ-1:e0/2","PC-HQ-1:eth1"]
+    - endpoints: ["SW-HQ-1:e0/3","PC-HQ-2:eth1"]
+    - endpoints: ["SW-HQ-2:e0/2","PC-HQ-3:eth1"]
+    - endpoints: ["SW-HQ-2:e0/3","PC-HQ-4:eth1"]
+
+############################
+# BRANCH LAN
+############################
+
+    - endpoints: ["CPE-BRANCH:e0/2","SW-BR-1:e0/1"]
+    - endpoints: ["CPE-BRANCH:e1/0","SW-BR-2:e0/1"]
+
+    - endpoints: ["SW-BR-1:e0/2","PC-BR-1:eth1"]
+    - endpoints: ["SW-BR-1:e0/3","PC-BR-2:eth1"]
+    - endpoints: ["SW-BR-2:e0/2","PC-BR-3:eth1"]
+    - endpoints: ["SW-BR-2:e0/3","PC-BR-4:eth1"]
+
+############################
+# HQ hacia ISP
+############################
+
+    - endpoints: ["CPE-HQ:e0/3","C2:e1/1"]
+    - endpoints: ["CPE-HQ:e0/1","M1:e1/0"]
+
+############################
+# BRANCH hacia ISP
+############################
+
+    - endpoints: ["CPE-BRANCH:e0/1","C1:e1/0"]
+    - endpoints: ["CPE-BRANCH:e0/3","M3:e0/3"]
+
+############################
+# INTERNET
+############################
+
+    - endpoints: ["INTERNET:e0/1","C5:e1/1"]
+    - endpoints: ["INTERNET:e0/2","M2:e0/3"]
+
+############################
+# MOVISTAR
+############################
+
+    - endpoints: ["M1:e0/1","M2:e0/1"]
+    - endpoints: ["M1:e0/2","M3:e0/1"]
+    - endpoints: ["M1:e0/3","M4:e0/1"]
+
+    - endpoints: ["M4:e0/2","M2:e0/2"]
+    - endpoints: ["M4:e0/3","M3:e0/2"]
+
+############################
+# CLARO
+############################
+
+    - endpoints: ["C2:e0/3","C5:e0/1"]
+    - endpoints: ["C5:e1/0","C1:e0/2"]
+    - endpoints: ["C2:e1/0","C1:e0/1"]
+    - endpoints: ["C2:e0/1","C3:e0/1"]
+    - endpoints: ["C2:e0/2","C4:e0/1"]
+
+    - endpoints: ["C5:e0/3","C3:e0/3"]
+    - endpoints: ["C5:e0/2","C4:e0/3"]
+
+############################
+# M4 interconexion
+############################
+
+    - endpoints: ["M4:e1/0","C3:e0/2"]
+    - endpoints: ["M4:e1/1","C4:e0/2"]
