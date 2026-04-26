@@ -1,0 +1,27 @@
+!
+interface Loopback8
+ ip address 8.8.8.8 255.255.255.255
+!
+interface Ethernet0/1
+ ip address 209.168.20.1 255.255.255.252
+ no shutdown
+!
+interface Ethernet0/2
+ ip address 209.168.10.1 255.255.255.252
+ no shutdown
+!
+router bgp 300
+ bgp router-id 8.8.8.8
+ !Vecino Claro
+ neighbor 209.168.20.2 remote-as 200
+ !Vecino Movistar
+ neighbor 209.168.10.2 remote-as 100
+ address-family ipv4
+  neighbor 209.168.20.2 activate
+  neighbor 209.168.10.2 activate
+  neighbor 209.168.20.2 default-originate
+  neighbor 209.168.10.2 default-originate
+  network 8.8.8.8 mask 255.255.255.255
+ exit-address-family
+!
+ 
