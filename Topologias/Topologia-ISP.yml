@@ -9,75 +9,75 @@ topology:
 
     CPE-HQ:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/CPE_HQ_cfg.partial
 
     CPE-HQ-BK:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/CPE_HQ_BK_cfg.partial
 
     SW-PISO1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
       type: l2
       startup-config: configs/SW-PISO1_cfg.partial
 
     SW-PISO2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
       type: l2
       startup-config: configs/SW-PISO2_cfg.partial
 
     PC1-VLAN10:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
         - ip add add 192.168.10.10/24 dev eth1
         - ip route replace default via 192.168.10.1 dev eth1
 
     PC2-VLAN10:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
         - ip add add 192.168.10.20/24 dev eth1
         - ip route replace default via 192.168.10.1 dev eth1
 
     PC3-VLAN20:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
         - ip add add 192.168.20.10/24 dev eth1
         - ip route replace default via 192.168.20.1 dev eth1
 
     PC4-VLAN20:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
-          - ip add add 192.168.20.20/24 dev eth1
-          - ip route replace default via 192.168.20.1 dev eth1
+        - ip add add 192.168.20.20/24 dev eth1
+        - ip route replace default via 192.168.20.1 dev eth1
 
     #########################################
     #    Movistar (AS 100)
     #########################################
     M1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/M1_cfg.partial
 
     M2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/M2_cfg.partial
 
     M3:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/M3_cfg.partial
 
     M4:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/M4_cfg.partial
 
     #########################################
@@ -85,50 +85,50 @@ topology:
     #########################################
     CPE-BRANCH:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/CPE_BRANCH_cfg.partial
-    
+
     CPE-BRANCH-BK:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/CPE_BRANCH_BK_cfg.partial
 
     SW-R-PISO1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
       type: l2
       startup-config: configs/SW-R-PISO1_cfg.partial
 
     SW-R-PISO2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
       type: l2
       startup-config: configs/SW-R-PISO2_cfg.partial
 
     PC1-R-VLAN5:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
         - ip add add 192.168.5.10/24 dev eth1
         - ip route replace default via 192.168.5.1 dev eth1
 
     PC2-R-VLAN5:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
         - ip add add 192.168.5.20/24 dev eth1
         - ip route replace default via 192.168.5.1 dev eth1
 
     PC3-R-VLAN15:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
         - ip add add 192.168.15.10/24 dev eth1
         - ip route replace default via 192.168.15.1 dev eth1
 
     PC4-R-VLAN15:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
         - ip add add 192.168.15.20/24 dev eth1
         - ip route replace default via 192.168.15.1 dev eth1
@@ -138,45 +138,45 @@ topology:
     #########################################
     C1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C1_cfg.partial
 
     C2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C2_cfg.partial
 
     C3:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C3_cfg.partial
 
     C4:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C4_cfg.partial
 
     C5:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/C5_cfg.partial
-        
+
     #########################################
     #    Telxius (AS 10)
     #########################################
     T1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/T1_cfg.partial
 
     T2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/T2_cfg.partial
 
     T3:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/T3_cfg.partial
 
     #########################################
@@ -184,17 +184,17 @@ topology:
     #########################################
     ATT1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/ATT1_cfg.partial
 
     ATT2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/ATT2_cfg.partial
 
     ATT3:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/ATT3_cfg.partial
 
     #########################################
@@ -202,17 +202,17 @@ topology:
     #########################################
     OR1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/OR1_cfg.partial
 
     OR2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/OR2_cfg.partial
 
     OR3:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/OR3_cfg.partial
 
     #########################################
@@ -220,17 +220,17 @@ topology:
     #########################################
     LU1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/LU1_cfg.partial
 
     LU2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/LU2_cfg.partial
 
     LU3:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/LU3_cfg.partial
 
     #########################################
@@ -238,9 +238,9 @@ topology:
     #########################################
     GOOGLE:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
       startup-config: configs/GOOGLE_cfg.partial
-  
+
   links:
     #########################################
     # Enlaces de Google
@@ -249,7 +249,7 @@ topology:
     - endpoints: [ "GOOGLE:e0/2", "ATT3:e0/1" ]
     - endpoints: [ "GOOGLE:e0/3", "OR3:e0/1" ]
     - endpoints: [ "GOOGLE:e1/0", "LU3:e0/1" ]
-    
+
     #########################################
     # Enlaces en Telxius
     #########################################
@@ -289,7 +289,7 @@ topology:
     # Enlaces dentro del ISP Movistar con Telxius
     #########################################
     - endpoints: [ "M2:e0/3", "T1:e0/1" ]
-    
+
     #########################################
     # Enlaces dentro del ISP Movistar con ATT
     #########################################
@@ -316,7 +316,7 @@ topology:
     # Enlaces dentro del ISP Claro con Orange
     #########################################
     - endpoints: [ "C2:e1/1", "OR1:e0/1" ]
-    
+
     #########################################
     # Enlaces dentro del ISP Claro con Lumen
     #########################################
