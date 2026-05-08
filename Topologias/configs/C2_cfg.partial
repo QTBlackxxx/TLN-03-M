@@ -80,6 +80,7 @@ ip prefix-list PL-EXTERNOS seq 10 deny 190.0.1.0/29
 ip prefix-list PL-EXTERNOS seq 15 permit 0.0.0.0/0 le 32
 ip prefix-list PL-PUB-CLARO seq 5 permit 190.0.0.0/29
 ip prefix-list PL-PUB-CLARO seq 10 permit 190.0.1.0/29
+ip prefix-list PL-PUB-CLARO seq 15 permit 190.0.2.0/29
 !
 route-map RM-PUB-CLARO permit 10 
  match ip address prefix-list PL-PUB-CLARO

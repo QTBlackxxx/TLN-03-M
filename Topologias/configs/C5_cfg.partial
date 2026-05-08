@@ -36,6 +36,7 @@ interface Ethernet1/1
 !
 interface Ethernet1/2
  ip address 10.0.0.77 255.255.255.252
+ no shutdown
 !
 !router rip
 ! version 2
@@ -83,6 +84,7 @@ ip ftp username dubuntu
 ip ftp password 12345
 !
 ip route 190.0.1.0 255.255.255.248 10.0.0.66 tag 190
+ip route 190.0.2.0 255.255.255.248 10.0.0.78 
 !
 route-map to_EXTERNAL permit 10 
  match tag 190
