@@ -1,7 +1,7 @@
 vtp mode transparent
 !
-vlan 10
-vlan 20
+vlan 25
+vlan 30
 !
 int e0/1
  switchport trunk encapsulation dot1q
