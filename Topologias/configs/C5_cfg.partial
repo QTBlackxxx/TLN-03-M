@@ -34,6 +34,9 @@ interface Ethernet1/0
 interface Ethernet1/1
  ip address 10.0.0.65 255.255.255.252
 !
+interface Ethernet1/2
+ ip address 10.0.0.77 255.255.255.252
+!
 !router rip
 ! version 2
 ! network 10.0.0.0

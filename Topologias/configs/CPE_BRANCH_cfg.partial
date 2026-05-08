@@ -1,20 +1,6 @@
 track 10 ip route 192.168.10.0 255.255.255.0 reachability
 track 20 ip route 192.168.20.0 255.255.255.0 reachability
 !
-crypto isakmp policy 10
- encr aes
- hash md5
- authentication pre-share
- group 5
- lifetime 1000
-crypto isakmp key TLN03 address 200.0.0.1 
-!
-crypto ipsec transform-set TS-TO-HQ esp-3des esp-md5-hmac 
- mode transport
-!
-crypto ipsec profile PF-TO-HQ
- set transform-set TS-TO-HQ
-!
 interface Loopback0
  ip address 190.0.0.1 255.255.255.255
 !
@@ -49,22 +35,6 @@ interface Ethernet0/2.15
 interface Ethernet0/3
  no ip address
  shutdown
-!
-interface Tunnel1
- ip address 172.16.10.2 255.255.255.252
- tunnel source 190.0.0.1
- tunnel destination 200.0.0.1
- ip ospf hello-interval 5
- ip ospf dead-interval 20
- tunnel protection ipsec profile PF-TO-HQ
-!
-router ospf 10
-router-id 2.2.2.2
-passive-interface ethernet0/2.5
-passive-interface ethernet0/2.15
-network 172.16.10.0 0.0.0.3 area 0
-network 192.168.5.0 0.0.0.255 area 0
-network 192.168.15.0 0.0.0.255 area 0
 !
 ip access-list standard 10
  10 permit 192.168.5.0 0.0.0.255
