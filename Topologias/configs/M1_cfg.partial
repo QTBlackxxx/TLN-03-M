@@ -35,6 +35,7 @@ router ospf 10
  network 10.0.0.8 0.0.0.3 area 0
  network 10.0.0.12 0.0.0.3 area 0
  network 172.16.1.1 0.0.0.0 area 0
+ redistribute bgp 100 subnets route-map REDIST-BGP-TO-OSPF
 !
 router bgp 100
  bgp router-id 172.16.1.1
@@ -59,12 +60,16 @@ router bgp 100
 !
 ip forward-protocol nd
 !
-!
 ip ftp username dubuntu
 ip ftp password 123456
 ip http server
 ip http secure-server
 ip route 200.0.0.0 255.255.255.248 10.0.0.2 tag 200
 !
-route-map POOL_CLIENTES permit 10 
+route-map POOL_CLIENTES permit 10
  match tag 200
+!
+ip prefix-list PL-BRANCH2 seq 5 permit 200.0.2.0/29
+!
+route-map REDIST-BGP-TO-OSPF permit 10
+ match ip address prefix-list PL-BRANCH2
