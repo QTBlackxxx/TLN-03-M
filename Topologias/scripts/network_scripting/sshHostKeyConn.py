@@ -46,7 +46,7 @@ def ssh_exec(ssh_client, comandos):
         
         for comando in comandos:
             SHELL_ACCESO.send(f'{comando}\n')
-            time.sleep(1)
+            time.sleep(0.5)
             output = SHELL_ACCESO.recv(65535)
             print(output.decode('ascii'), end="") 
 
@@ -58,7 +58,6 @@ def ssh_exec_multiple(comandos):
     try:
         for hostname, comando_key in comandos.items():
             device_obj = device(hostname, "admin", "admin")
-            device_obj.set_password()
             ssh_client = conexion_ssh(device_obj)
             if ssh_client:
                 ssh_exec(ssh_client, COMANDOS[comando_key])
