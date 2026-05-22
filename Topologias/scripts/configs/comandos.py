@@ -2,54 +2,54 @@ COMANDOS = {
     "CPE-HQ": [
         "no crypto isakmp key TLN03 address 190.0.0.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
-        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac"
-        "mode transport"
-        "crypto ipsec profile PF-DMVPN"
-        "set transform-set TS-DMVPN"
-        "no interface Tunnel1"
-        "interface Tunnel1"
-        "ip address 172.16.10.1 255.255.255.0"
-        "no ip redirects"
-        "ip nhrp network-id 100"
-        "ip nhrp authentication DMVPN_AUTH"
-        "ip nhrp map multicast dynamic"
-        "ip nhrp redirect"
-        "tunnel source Loopback0"
-        "tunnel mode gre multipoint"
-        "tunnel protection ipsec profile PF-DMVPN"
-        "ip ospf priority 255"
-        "ip ospf cost 10"
-        "ip ospf hello-interval 5"
-        "ip ospf dead-interval 20"
-        "router ospf 10"
-        "no network 172.16.10.0 0.0.0.3 area 0"
+        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
+        "mode transport",
+        "crypto ipsec profile PF-DMVPN",
+        "set transform-set TS-DMVPN",
+        "no interface Tunnel1",
+        "interface Tunnel1",
+        "ip address 172.16.10.1 255.255.255.0",
+        "no ip redirects",
+        "ip nhrp network-id 100",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp map multicast dynamic",
+        "ip nhrp redirect",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf priority 255",
+        "ip ospf cost 10",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "router ospf 10",
+        "no network 172.16.10.0 0.0.0.3 area 0",
         "network 172.16.10.0 0.0.0.255 area 0"
     ],
     
     "CPE-HQ-BK": [
         "no crypto isakmp key TLN03 address 200.0.1.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
-        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac"
-        "mode transport"
-        "crypto ipsec profile PF-DMVPN"
-        "set transform-set TS-DMVPN"
-        "no interface Tunnel1"
-        "interface Tunnel2"
-        "ip address 172.16.20.1 255.255.255.0"
-        "no ip redirects"
-        "ip nhrp network-id 200"
-        "ip nhrp authentication DMVPN_AUTH"
-        "ip nhrp map multicast dynamic"
-        "ip nhrp redirect"
-        "tunnel source Loopback0"
-        "tunnel mode gre multipoint"
-        "tunnel protection ipsec profile PF-DMVPN"
-        "ip ospf priority 255"
-        "ip ospf cost 100"
-        "ip ospf hello-interval 5"
-        "ip ospf dead-interval 20"
-        "router ospf 10"
-        "no network 172.16.20.0 0.0.0.3 area 0"
+        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
+        "mode transport",
+        "crypto ipsec profile PF-DMVPN",
+        "set transform-set TS-DMVPN",
+        "no interface Tunnel1",
+        "interface Tunnel2",
+        "ip address 172.16.20.1 255.255.255.0",
+        "no ip redirects",
+        "ip nhrp network-id 200",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp map multicast dynamic",
+        "ip nhrp redirect",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf priority 255",
+        "ip ospf cost 100",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "router ospf 10",
+        "no network 172.16.20.0 0.0.0.3 area 0",
         "network 172.16.20.0 0.0.0.255 area 0"
     ],
 
@@ -126,7 +126,7 @@ COMANDOS = {
         "router ospf 10",
         "no network 172.16.20.0 0.0.0.3 area 0",
         "network 172.16.10.0 0.0.0.255 area 0",
-        "network 172.16.20.0 0.0.0.255 area 0",
+        "network 172.16.20.0 0.0.0.255 area 0"
     ],
 
     "CPE-BRANCH2": [
