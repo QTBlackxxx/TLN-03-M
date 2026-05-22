@@ -2,7 +2,7 @@ from network_scripting import sshHostKeyConn
 from getpass import getpass
 import paramiko
 import time
-from comandos import COMANDOS
+from configs.comandos import COMANDOS
 
 #Creación del objeto del dispositivo con la clase device
 R1 = sshHostKeyConn.device("clab-ISP-TDP-CLARO-IOL-M4", "admin", "")
