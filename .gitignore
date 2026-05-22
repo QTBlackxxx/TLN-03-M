@@ -1,5 +1,7 @@
 .env
-Topologias/venv
+Topologias/venv/
+Topologias/__pycache__/
+Topologias/*.pyc
 seccion-m.txt
 Estructura\ del\ Repositorio
 Topologias/Topologia-ISP.yml.annotations.json
