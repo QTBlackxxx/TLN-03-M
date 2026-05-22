@@ -20,8 +20,8 @@ nombre_comando = {
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH-BK": "CPE-BRANCH-BK",
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2": "CPE-BRANCH2",
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK": "CPE-BRANCH2-BK",
-    "clab-ISP-TDP-CLARO-IOL-C2": "C2",
-    "clab-ISP-TDP-CLARO-IOL-M2": "M2"
+    "clab-ISP-TDP-CLARO-IOL-C5": "C5",
+    "clab-ISP-TDP-CLARO-IOL-M3": "M3"
 }
 
 sshHostKeyConn.ssh_exec_multiple(nombre_comando)

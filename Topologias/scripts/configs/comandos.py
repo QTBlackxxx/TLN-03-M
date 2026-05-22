@@ -26,11 +26,14 @@ COMANDOS = {
         "ip ospf cost 10",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
         "router ospf 10",
         "no network 172.16.10.0 0.0.0.3 area 0",
-        "network 172.16.10.0 0.0.0.255 area 0"
+        "network 172.16.10.0 0.0.0.255 area 0",
+        "exit",
+        "end",
     ],
-    
+ 
     "CPE-HQ-BK": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.1.1",
@@ -58,18 +61,21 @@ COMANDOS = {
         "ip ospf cost 100",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
         "router ospf 10",
         "no network 172.16.20.0 0.0.0.3 area 0",
-        "network 172.16.20.0 0.0.0.255 area 0"
+        "network 172.16.20.0 0.0.0.255 area 0",
+        "exit",
+        "end",
     ],
-
+ 
     "CPE-BRANCH": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.0.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
         "no interface Tunnel1",
-        "no crypto ipsec profile PF-TO-HQ", 
-        "no crypto ipsec transform-set TS-TO-HQ", 
+        "no crypto ipsec profile PF-TO-HQ",
+        "no crypto ipsec transform-set TS-TO-HQ",
         "crypto ipsec transform-set TS-DMVPN esp-aes esp-sha-hmac",
         "mode transport",
         "exit",
@@ -88,6 +94,7 @@ COMANDOS = {
         "ip ospf cost 10",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
         "interface Tunnel2",
         "ip address 172.16.20.2 255.255.255.0",
         "ip nhrp network-id 200",
@@ -100,12 +107,15 @@ COMANDOS = {
         "ip ospf cost 100",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
         "router ospf 10",
         "no network 172.16.10.0 0.0.0.3 area 0",
         "network 172.16.10.0 0.0.0.255 area 0",
-        "network 172.16.20.0 0.0.0.255 area 0"
+        "network 172.16.20.0 0.0.0.255 area 0",
+        "exit",
+        "end",
     ],
-
+ 
     "CPE-BRANCH-BK": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 190.0.1.1",
@@ -131,6 +141,7 @@ COMANDOS = {
         "ip ospf cost 10",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
         "interface Tunnel2",
         "ip address 172.16.20.3 255.255.255.0",
         "ip nhrp network-id 200",
@@ -143,34 +154,43 @@ COMANDOS = {
         "ip ospf cost 100",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
         "router ospf 10",
         "no network 172.16.20.0 0.0.0.3 area 0",
         "network 172.16.10.0 0.0.0.255 area 0",
-        "network 172.16.20.0 0.0.0.255 area 0"
+        "network 172.16.20.0 0.0.0.255 area 0",
+        "exit",
+        "end",
     ],
-
+ 
     "CPE-BRANCH2": [
         "conf terminal",
+        # Crypto - sin hash md5 ni group 5 que fallan en esta version IOS
         "crypto isakmp policy 10",
         "encr aes",
-        "hash md5",
         "authentication pre-share",
-        "group 5",
         "lifetime 1000",
+        "exit",
         "crypto isakmp key TLN03 address 0.0.0.0",
         "crypto ipsec transform-set TS-DMVPN esp-aes esp-sha-hmac",
         "mode transport",
+        "exit",
         "crypto ipsec profile PF-DMVPN",
         "set transform-set TS-DMVPN",
+        "exit",
+        # Interfaces
         "interface Loopback0",
         "ip address 180.0.0.1 255.255.255.255",
+        "exit",
         "interface Ethernet0/1",
         "ip address 10.0.0.73 255.255.255.252",
         "ip nat outside",
         "no shutdown",
+        "exit",
         "interface Ethernet0/2",
         "no ip address",
         "no shutdown",
+        "exit",
         "interface Ethernet0/2.25",
         "encapsulation dot1Q 25",
         "ip address 192.168.25.2 255.255.255.0",
@@ -178,7 +198,8 @@ COMANDOS = {
         "vrrp 25 ip 192.168.25.1",
         "vrrp 25 priority 110",
         "vrrp 25 preempt",
-        "no shutdown",
+        "exit",
+        # Tunnels
         "interface Tunnel1",
         "ip address 172.16.10.4 255.255.255.0",
         "ip nhrp network-id 100",
@@ -191,6 +212,7 @@ COMANDOS = {
         "ip ospf cost 10",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
         "interface Tunnel2",
         "ip address 172.16.20.4 255.255.255.0",
         "ip nhrp network-id 200",
@@ -203,41 +225,53 @@ COMANDOS = {
         "ip ospf cost 100",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
+        # OSPF
         "router ospf 10",
         "router-id 5.5.5.5",
         "network 172.16.10.0 0.0.0.255 area 0",
         "network 172.16.20.0 0.0.0.255 area 0",
         "network 192.168.25.0 0.0.0.255 area 0",
         "passive-interface Ethernet0/2.25",
+        "exit",
+        # NAT y rutas
         "ip route 0.0.0.0 0.0.0.0 10.0.0.74",
         "ip access-list standard 10",
         "10 permit 192.168.25.0 0.0.0.255",
+        "exit",
         "ip nat pool BRANCH2-POOL 180.0.0.2 180.0.0.6 prefix-length 29",
-        "ip nat inside source list 10 pool BRANCH2-POOL overload"
+        "ip nat inside source list 10 pool BRANCH2-POOL overload",
+        "end",
     ],
-
+ 
     "CPE-BRANCH2-BK": [
         "conf terminal",
+        # Crypto - sin hash md5 ni group 5
         "crypto isakmp policy 10",
         "encr aes",
-        "hash md5",
         "authentication pre-share",
-        "group 5",
         "lifetime 1000",
+        "exit",
         "crypto isakmp key TLN03 address 0.0.0.0",
         "crypto ipsec transform-set TS-DMVPN esp-aes esp-sha-hmac",
         "mode transport",
+        "exit",
         "crypto ipsec profile PF-DMVPN",
         "set transform-set TS-DMVPN",
+        "exit",
+        # Interfaces
         "interface Loopback0",
         "ip address 180.0.1.1 255.255.255.255",
+        "exit",
         "interface Ethernet0/1",
         "ip address 10.0.0.77 255.255.255.252",
         "ip nat outside",
         "no shutdown",
+        "exit",
         "interface Ethernet0/2",
         "no ip address",
         "no shutdown",
+        "exit",
         "interface Ethernet0/2.25",
         "encapsulation dot1Q 25",
         "ip address 192.168.25.3 255.255.255.0",
@@ -245,7 +279,8 @@ COMANDOS = {
         "vrrp 25 ip 192.168.25.1",
         "vrrp 25 priority 100",
         "vrrp 25 preempt",
-        "no shutdown",
+        "exit",
+        # Tunnels
         "interface Tunnel1",
         "ip address 172.16.10.5 255.255.255.0",
         "ip nhrp network-id 100",
@@ -258,6 +293,7 @@ COMANDOS = {
         "ip ospf cost 10",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
         "interface Tunnel2",
         "ip address 172.16.20.5 255.255.255.0",
         "ip nhrp network-id 200",
@@ -270,36 +306,58 @@ COMANDOS = {
         "ip ospf cost 100",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "exit",
+        # OSPF
         "router ospf 10",
         "router-id 6.6.6.6",
         "network 172.16.10.0 0.0.0.255 area 0",
         "network 172.16.20.0 0.0.0.255 area 0",
         "network 192.168.25.0 0.0.0.255 area 0",
         "passive-interface Ethernet0/2.25",
+        "exit",
+        # NAT y rutas
         "ip route 0.0.0.0 0.0.0.0 10.0.0.78",
         "ip access-list standard 10",
         "10 permit 192.168.25.0 0.0.0.255",
-        "ip nat pool BRANCH2-POOL 180.0.1.2 180.0.1.6 prefix-length 29",
-        "ip nat inside source list 10 pool BRANCH2-POOL overload"
+        "exit",
+        "ip nat pool BRANCH2-BK-POOL 180.0.1.2 180.0.1.6 prefix-length 29",
+        "ip nat inside source list 10 pool BRANCH2-BK-POOL overload",
+        "end",
     ],
-
-    "M2": [
+ 
+    "M3": [
         "conf terminal",
         "interface Ethernet1/0",
         "ip address 10.0.0.74 255.255.255.252",
         "ip ospf network point-to-point",
         "no shutdown",
+        "exit",
         "router ospf 10",
-        "network 10.0.0.72 0.0.0.3 area 0"
+        "network 10.0.0.72 0.0.0.3 area 0",
+        "exit",
+        # Ruta estatica - M3 usa redistribute static sin tag
+        "ip route 180.0.0.0 255.255.255.248 10.0.0.73",
+        "end",
     ],
-
-    "C2": [
+ 
+    "C5": [
         "conf terminal",
         "interface Ethernet1/2",
         "ip address 10.0.0.78 255.255.255.252",
         "ip ospf network point-to-point",
         "no shutdown",
+        "exit",
         "router ospf 1",
-        "network 10.0.0.76 0.0.0.3 area 0"
+        "network 10.0.0.76 0.0.0.3 area 0",
+        "exit",
+        # Ruta estatica con tag 190 para que route-map to_EXTERNAL la redistribuya
+        "ip route 180.0.1.0 255.255.255.248 10.0.0.77 tag 190",
+        # Activar redistribute en BGP por si no estaba aplicado
+        "router bgp 200",
+        "address-family ipv4",
+        "redistribute static route-map to_EXTERNAL",
+        "exit-address-family",
+        "exit",
+        "end",
     ],
 }
