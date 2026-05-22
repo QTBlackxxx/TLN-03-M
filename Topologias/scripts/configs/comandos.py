@@ -1,5 +1,6 @@
 COMANDOS = {
     "CPE-HQ": [
+        "conf terminal",
         "no crypto isakmp key TLN03 address 190.0.0.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
         "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
@@ -27,6 +28,7 @@ COMANDOS = {
     ],
     
     "CPE-HQ-BK": [
+        "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.1.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
         "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
@@ -54,6 +56,7 @@ COMANDOS = {
     ],
 
     "CPE-BRANCH": [
+        "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.1.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
         "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
@@ -92,6 +95,7 @@ COMANDOS = {
     ],
 
     "CPE-BRANCH-BK": [
+        "conf terminal",
         "no crypto isakmp key TLN03 address 190.0.1.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
         "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
@@ -130,6 +134,7 @@ COMANDOS = {
     ],
 
     "CPE-BRANCH2": [
+        "conf terminal",
         "crypto isakmp policy 10",
         "encr aes",
         "hash md5",
@@ -196,6 +201,7 @@ COMANDOS = {
     ],
 
     "CPE-BRANCH2-BK": [
+        "conf terminal",
         "crypto isakmp policy 10",
         "encr aes",
         "hash md5",
@@ -262,6 +268,7 @@ COMANDOS = {
     ],
 
     "M2": [
+        "conf terminal",
         "interface Ethernet1/0",
         "ip address 10.0.0.74 255.255.255.252",
         "ip ospf network point-to-point",
@@ -271,6 +278,7 @@ COMANDOS = {
     ],
 
     "C2": [
+        "conf terminal",
         "interface Ethernet1/2",
         "ip address 10.0.0.78 255.255.255.252",
         "ip ospf network point-to-point",
