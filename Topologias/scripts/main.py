@@ -15,32 +15,32 @@ from configs.comandos import COMANDOS
 
 CPE_HQ = sshHostKeyConn.device("clab-ISP-TDP-CLARO-IOL-CPE-HQ", "admin", "admin")
 ssh_client_cpe_hq = sshHostKeyConn.conexion_ssh(CPE_HQ)
-sshHostKeyConn.ssh_exec(ssh_client_cpe_hq, COMANDOS["CPE_HQ"])
+sshHostKeyConn.ssh_exec(ssh_client_cpe_hq, COMANDOS["CPE-HQ"])
 ssh_client_cpe_hq.close()
 
 CPE_HQ_BK = sshHostKeyConn.device("clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK", "admin", "admin")
 ssh_client_cpe_hq_bk = sshHostKeyConn.conexion_ssh(CPE_HQ_BK)
-sshHostKeyConn.ssh_exec(ssh_client_cpe_hq_bk, COMANDOS["CPE_HQ_BK"])
+sshHostKeyConn.ssh_exec(ssh_client_cpe_hq_bk, COMANDOS["CPE-HQ-BK"])
 ssh_client_cpe_hq_bk.close()
 
 CPE_BRANCH = sshHostKeyConn.device("clab-ISP-TDP-CLARO-IOL-CPE-BRANCH", "admin", "admin")
 ssh_client_cpe_branch = sshHostKeyConn.conexion_ssh(CPE_BRANCH)
-sshHostKeyConn.ssh_exec(ssh_client_cpe_branch, COMANDOS["CPE_BRANCH"])
+sshHostKeyConn.ssh_exec(ssh_client_cpe_branch, COMANDOS["CPE-BRANCH"])
 ssh_client_cpe_branch.close()
 
 CPE_BRANCH_BK = sshHostKeyConn.device("clab-ISP-TDP-CLARO-IOL-CPE-BRANCH-BK", "admin", "admin")
 ssh_client_cpe_branch_bk = sshHostKeyConn.conexion_ssh(CPE_BRANCH_BK)
-sshHostKeyConn.ssh_exec(ssh_client_cpe_branch_bk, COMANDOS["CPE_BRANCH_BK"])
+sshHostKeyConn.ssh_exec(ssh_client_cpe_branch_bk, COMANDOS["CPE-BRANCH-BK"])
 ssh_client_cpe_branch_bk.close()
 
 CPE_BRANCH2 = sshHostKeyConn.device("clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2", "admin", "admin")
 ssh_client_cpe_branch2 = sshHostKeyConn.conexion_ssh(CPE_BRANCH2)
-sshHostKeyConn.ssh_exec(ssh_client_cpe_branch2, COMANDOS["CPE_BRANCH2"])
+sshHostKeyConn.ssh_exec(ssh_client_cpe_branch2, COMANDOS["CPE-BRANCH2"])
 ssh_client_cpe_branch2.close()
 
 CPE_BRANCH2_BK = sshHostKeyConn.device("clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK", "admin", "admin")
 ssh_client_cpe_branch2_bk = sshHostKeyConn.conexion_ssh(CPE_BRANCH2_BK)
-sshHostKeyConn.ssh_exec(ssh_client_cpe_branch2_bk, COMANDOS["CPE_BRANCH2_BK"])
+sshHostKeyConn.ssh_exec(ssh_client_cpe_branch2_bk, COMANDOS["CPE-BRANCH2-BK"])
 ssh_client_cpe_branch2_bk.close()
 
 C2 = sshHostKeyConn.device("clab-ISP-TDP-CLARO-IOL-C2", "admin", "admin")

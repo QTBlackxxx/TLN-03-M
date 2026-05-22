@@ -38,7 +38,7 @@ def ssh_exec(ssh_client, comandos):
         SHELL_ACCESO.send("terminal length 0\n")
         for comando in comandos:
             SHELL_ACCESO.send(f'{comando}\n')
-            time.sleep(3)
+            time.sleep(1)
             output = SHELL_ACCESO.recv(65535)
             print(output.decode('ascii')) 
 
