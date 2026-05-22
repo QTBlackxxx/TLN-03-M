@@ -1,4 +1,5 @@
 import paramiko
+import time
 from getpass import getpass
 
 class device(object):
@@ -11,10 +12,6 @@ class device(object):
         self.password = getpass(prompt=f"Ingresar contraseña para: {self.username}@{self.hostname}: ")
 
 def conexion_ssh(device):
-    comandos = [
-        "show version",
-        "show ip interface brief",
-        "show running-config"]
 
     try:
         ssh_client = paramiko.SSHClient()
@@ -23,16 +20,28 @@ def conexion_ssh(device):
         ssh_client.connect(
             hostname=device.hostname, 
             username=device.username, 
-            password=device.password
+            password=device.password,
+            look_for_keys=False
         )
 
-        for comando in comandos:
-            stdin, stdout, stderr = ssh_client.exec_command(comando)
-            time.sleep(1)  # Esperar un momento para que el comando se ejecute
-            print(f"Salida de '{comando}' en {device.hostname}:\n{stdout.read().decode()}")
+        print("Conexión exitosa a", device.hostname)
 
         return ssh_client
-        
+
     except Exception as e:
         print(f"Error al conectar a {device.hostname}: {e}")
+        return None
+
+def ssh_exec(ssh_client, comandos):
+    try:
+        SHELL_ACCESO = ssh_client.invoke_shell()
+        SHELL_ACCESO.send("terminal length 0\n")
+        for comando in comandos:
+            SHELL_ACCESO.send(f'{comando}\n')
+            time.sleep(3)
+            output = SHELL_ACCESO.recv(65535)
+            print(output.decode('ascii')) 
+
+    except Exception as e:
+        print(f"Error al ejecutar el comando '{comando}': {e}")
         return None
