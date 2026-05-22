@@ -57,7 +57,6 @@ ip prefix-list PL-EXTERNOS seq 10 deny 200.0.1.0/29
 ip prefix-list PL-EXTERNOS seq 15 permit 0.0.0.0/0 le 32
 ip prefix-list PL-PUB-MOVISTAR seq 5 permit 200.0.0.0/29
 ip prefix-list PL-PUB-MOVISTAR seq 10 permit 200.0.1.0/29
-ip prefix-list PL-PUB-MOVISTAR seq 15 permit 200.0.2.0/29
 !
 route-map RM-PUB-MOVISTAR permit 10 
  match ip address prefix-list PL-PUB-MOVISTAR

@@ -13,10 +13,6 @@ interface Ethernet0/2
 interface Ethernet0/3
  ip address 10.0.0.69 255.255.255.252
 !
-interface Ethernet1/0
- ip address 10.0.0.73 255.255.255.252
- no shutdown
-!
 router ospf 10
  router-id 3.3.3.3
  prefix-suppression
@@ -48,7 +44,6 @@ router bgp 100
 ip forward-protocol nd
 !
 ip route 200.0.1.0 255.255.255.248 10.0.0.70
-ip route 200.0.2.0 255.255.255.248 10.0.0.74
 !
 ip ftp username dubuntu
 ip ftp password 123456
