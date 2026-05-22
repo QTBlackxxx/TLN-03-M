@@ -380,8 +380,8 @@ topology:
 #########################################
     # Enlaces dentro del Branch Office 2
     #########################################
-    - endpoints: [ "M2:e1/0", "CPE-BRANCH2:e0/1" ]
-    - endpoints: [ "C2:e1/2", "CPE-BRANCH2-BK:e0/1" ]
+    - endpoints: [ "M3:e1/0", "CPE-BRANCH2:e0/1" ]
+    - endpoints: [ "C5:e1/2", "CPE-BRANCH2-BK:e0/1" ]
     - endpoints: [ "CPE-BRANCH2:e0/2", "SW2-R-PISO1:e0/1" ]
     - endpoints: [ "CPE-BRANCH2-BK:e0/2", "SW2-R-PISO1:e0/2" ]
     - endpoints: [ "SW2-R-PISO1:e0/3", "PC1-R2-VLAN25:eth1" ]
