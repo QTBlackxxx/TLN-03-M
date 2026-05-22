@@ -1,14 +1,281 @@
 COMANDOS = {
-    "M1": [
-        "show version",
-        "show ip interface brief",
-        "show running-config"
+    "CPE-HQ": [
+        "no crypto isakmp key TLN03 address 190.0.0.1",
+        "crypto isakmp key TLN03 address 0.0.0.0",
+        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac"
+        "mode transport"
+        "crypto ipsec profile PF-DMVPN"
+        "set transform-set TS-DMVPN"
+        "no interface Tunnel1"
+        "interface Tunnel1"
+        "ip address 172.16.10.1 255.255.255.0"
+        "no ip redirects"
+        "ip nhrp network-id 100"
+        "ip nhrp authentication DMVPN_AUTH"
+        "ip nhrp map multicast dynamic"
+        "ip nhrp redirect"
+        "tunnel source Loopback0"
+        "tunnel mode gre multipoint"
+        "tunnel protection ipsec profile PF-DMVPN"
+        "ip ospf priority 255"
+        "ip ospf cost 10"
+        "ip ospf hello-interval 5"
+        "ip ospf dead-interval 20"
+        "router ospf 10"
+        "no network 172.16.10.0 0.0.0.3 area 0"
+        "network 172.16.10.0 0.0.0.255 area 0"
     ],
     
-    "R1": [
-        "show version",
-        "show ip interface brief",
-        "show running-config"
+    "CPE-HQ-BK": [
+        "no crypto isakmp key TLN03 address 200.0.1.1",
+        "crypto isakmp key TLN03 address 0.0.0.0",
+        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac"
+        "mode transport"
+        "crypto ipsec profile PF-DMVPN"
+        "set transform-set TS-DMVPN"
+        "no interface Tunnel1"
+        "interface Tunnel2"
+        "ip address 172.16.20.1 255.255.255.0"
+        "no ip redirects"
+        "ip nhrp network-id 200"
+        "ip nhrp authentication DMVPN_AUTH"
+        "ip nhrp map multicast dynamic"
+        "ip nhrp redirect"
+        "tunnel source Loopback0"
+        "tunnel mode gre multipoint"
+        "tunnel protection ipsec profile PF-DMVPN"
+        "ip ospf priority 255"
+        "ip ospf cost 100"
+        "ip ospf hello-interval 5"
+        "ip ospf dead-interval 20"
+        "router ospf 10"
+        "no network 172.16.20.0 0.0.0.3 area 0"
+        "network 172.16.20.0 0.0.0.255 area 0"
     ],
 
+    "CPE-BRANCH": [
+        "no crypto isakmp key TLN03 address 200.0.1.1",
+        "crypto isakmp key TLN03 address 0.0.0.0",
+        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
+        "mode transport",
+        "crypto ipsec profile PF-DMVPN",
+        "set transform-set TS-DMVPN",
+        "no interface Tunnel1",
+        "interface Tunnel1",
+        "ip address 172.16.10.2 255.255.255.0",
+        "ip nhrp network-id 100",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp nhs 172.16.10.1 nbma 200.0.0.1 multicast",
+        "ip nhrp shortcut",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf cost 10",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "interface Tunnel2",
+        "ip address 172.16.20.2 255.255.255.0",
+        "ip nhrp network-id 200",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp nhs 172.16.20.1 nbma 190.0.1.1 multicast",
+        "ip nhrp shortcut",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf cost 100",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "router ospf 10",
+        "no network 172.16.10.0 0.0.0.3 area 0",
+        "network 172.16.10.0 0.0.0.255 area 0",
+        "network 172.16.20.0 0.0.0.255 area 0"
+    ],
+
+    "CPE-BRANCH-BK": [
+        "no crypto isakmp key TLN03 address 190.0.1.1",
+        "crypto isakmp key TLN03 address 0.0.0.0",
+        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
+        "mode transport",
+        "crypto ipsec profile PF-DMVPN",
+        "set transform-set TS-DMVPN",
+        "no interface Tunnel1",
+        "interface Tunnel1",
+        "ip address 172.16.10.3 255.255.255.0",
+        "ip nhrp network-id 100",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp nhs 172.16.10.1 nbma 200.0.0.1 multicast",
+        "ip nhrp shortcut",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf cost 10",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "interface Tunnel2",
+        "ip address 172.16.20.3 255.255.255.0",
+        "ip nhrp network-id 200",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp nhs 172.16.20.1 nbma 190.0.1.1 multicast",
+        "ip nhrp shortcut",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf cost 100",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "router ospf 10",
+        "no network 172.16.20.0 0.0.0.3 area 0",
+        "network 172.16.10.0 0.0.0.255 area 0",
+        "network 172.16.20.0 0.0.0.255 area 0",
+    ],
+
+    "CPE-BRANCH2": [
+        "crypto isakmp policy 10",
+        "encr aes",
+        "hash md5",
+        "authentication pre-share",
+        "group 5",
+        "lifetime 1000",
+        "crypto isakmp key TLN03 address 0.0.0.0",
+        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
+        "mode transport",
+        "crypto ipsec profile PF-DMVPN",
+        "set transform-set TS-DMVPN",
+        "interface Loopback0",
+        "ip address 180.0.0.1 255.255.255.255",
+        "interface Ethernet0/1",
+        "ip address 10.0.0.73 255.255.255.252",
+        "ip nat outside",
+        "no shutdown",
+        "interface Ethernet0/2",
+        "no ip address",
+        "no shutdown",
+        "interface Ethernet0/2.25",
+        "encapsulation dot1Q 25",
+        "ip address 192.168.25.2 255.255.255.0",
+        "ip nat inside",
+        "vrrp 25 ip 192.168.25.1",
+        "vrrp 25 priority 110",
+        "vrrp 25 preempt",
+        "no shutdown",
+        "interface Tunnel1",
+        "ip address 172.16.10.4 255.255.255.0",
+        "ip nhrp network-id 100",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp nhs 172.16.10.1 nbma 200.0.0.1 multicast",
+        "ip nhrp shortcut",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf cost 10",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "interface Tunnel2",
+        "ip address 172.16.20.4 255.255.255.0",
+        "ip nhrp network-id 200",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp nhs 172.16.20.1 nbma 190.0.1.1 multicast",
+        "ip nhrp shortcut",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf cost 100",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "router ospf 10",
+        "router-id 5.5.5.5",
+        "network 172.16.10.0 0.0.0.255 area 0",
+        "network 172.16.20.0 0.0.0.255 area 0",
+        "network 192.168.25.0 0.0.0.255 area 0",
+        "passive-interface Ethernet0/2.25",
+        "ip route 0.0.0.0 0.0.0.0 10.0.0.74",
+        "ip access-list standard 10",
+        "10 permit 192.168.25.0 0.0.0.255",
+        "ip nat pool BRANCH2-POOL 180.0.0.2 180.0.0.6 prefix-length 29",
+        "ip nat inside source list 10 pool BRANCH2-POOL overload"
+    ],
+
+    "CPE-BRANCH2-BK": [
+        "crypto isakmp policy 10",
+        "encr aes",
+        "hash md5",
+        "authentication pre-share",
+        "group 5",
+        "lifetime 1000",
+        "crypto isakmp key TLN03 address 0.0.0.0",
+        "crypto ipsec transform-set TS-DMVPN esp-3des esp-md5-hmac",
+        "mode transport",
+        "crypto ipsec profile PF-DMVPN",
+        "set transform-set TS-DMVPN",
+        "interface Loopback0",
+        "ip address 180.0.1.1 255.255.255.255",
+        "interface Ethernet0/1",
+        "ip address 10.0.0.77 255.255.255.252",
+        "ip nat outside",
+        "no shutdown",
+        "interface Ethernet0/2",
+        "no ip address",
+        "no shutdown",
+        "interface Ethernet0/2.25",
+        "encapsulation dot1Q 25",
+        "ip address 192.168.25.3 255.255.255.0",
+        "ip nat inside",
+        "vrrp 25 ip 192.168.25.1",
+        "vrrp 25 priority 100",
+        "vrrp 25 preempt",
+        "no shutdown",
+        "interface Tunnel1",
+        "ip address 172.16.10.5 255.255.255.0",
+        "ip nhrp network-id 100",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp nhs 172.16.10.1 nbma 200.0.0.1 multicast",
+        "ip nhrp shortcut",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf cost 10",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "interface Tunnel2",
+        "ip address 172.16.20.5 255.255.255.0",
+        "ip nhrp network-id 200",
+        "ip nhrp authentication DMVPN_AUTH",
+        "ip nhrp nhs 172.16.20.1 nbma 190.0.1.1 multicast",
+        "ip nhrp shortcut",
+        "tunnel source Loopback0",
+        "tunnel mode gre multipoint",
+        "tunnel protection ipsec profile PF-DMVPN",
+        "ip ospf cost 100",
+        "ip ospf hello-interval 5",
+        "ip ospf dead-interval 20",
+        "router ospf 10",
+        "router-id 6.6.6.6",
+        "network 172.16.10.0 0.0.0.255 area 0",
+        "network 172.16.20.0 0.0.0.255 area 0",
+        "network 192.168.25.0 0.0.0.255 area 0",
+        "passive-interface Ethernet0/2.25",
+        "ip route 0.0.0.0 0.0.0.0 10.0.0.78",
+        "ip access-list standard 10",
+        "10 permit 192.168.25.0 0.0.0.255",
+        "ip nat pool BRANCH2-POOL 180.0.1.2 180.0.1.6 prefix-length 29",
+        "ip nat inside source list 10 pool BRANCH2-POOL overload"
+    ],
+
+    "M2": [
+        "interface Ethernet1/0",
+        "ip address 10.0.0.74 255.255.255.252",
+        "ip ospf network point-to-point",
+        "no shutdown",
+        "router ospf 10",
+        "network 10.0.0.72 0.0.0.3 area 0"
+    ],
+
+    "C2": [
+        "interface Ethernet1/2",
+        "ip address 10.0.0.78 255.255.255.252",
+        "ip ospf network point-to-point",
+        "no shutdown",
+        "router ospf 10",
+        "network 10.0.0.76 0.0.0.3 area 0"
+    ],
 }
