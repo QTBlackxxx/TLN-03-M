@@ -299,7 +299,7 @@ COMANDOS = {
         "ip address 10.0.0.78 255.255.255.252",
         "ip ospf network point-to-point",
         "no shutdown",
-        "router ospf 10",
+        "router ospf 1",
         "network 10.0.0.76 0.0.0.3 area 0"
     ],
 }
