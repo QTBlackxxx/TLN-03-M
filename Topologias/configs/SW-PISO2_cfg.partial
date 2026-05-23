@@ -1,0 +1,17 @@
+vtp mode transparent
+!
+vlan 10
+vlan 20
+!
+interface e0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allow vlan 10,20
+!
+interface e0/2
+switchport mode access
+switchport access vlan 20
+!
+interface e0/3
+switchport mode access
+switchport access vlan 20
