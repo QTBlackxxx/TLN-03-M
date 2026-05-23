@@ -26,17 +26,19 @@ Repositorio base para el curso electivo TLN03 de la Universidad Nacional de Inge
 
 ## Funciones
 **Funciones en el archivo sshHostKeyConn.py**
-1. ssh_exec_multiple(comandos):
+1. **ssh_exec_multiple(comandos):**
+    - Uso: EJECUTAR COMANDOS DE CONFIGURACIÓN
     - Input: comandos (diccionario con elementos de la forma "hostname":"nombre_lista_comandos")
     - Descripción: Ejecuta en el dispositivo con hostname "hostname" los comandos que están como una lista dentro del diccionario **COMANDOS** en el archivo **comandos.py**, buscándolos según el nombre "nombre_lista_comandos".
 
-2. ssh_exec_multiple_validar(comandos):
+2. **ssh_exec_multiple_validar(comandos):**
+    - Uso: EJECUTAR COMANDOS DE DIAGNÓSTICO Y VALIDACIÓN
     - Input: comandos (diccionario con elementos de la forma "hostname":"nombre_lista_comandos")
     - Descripción: Ejecuta en el dispositivo con hostname "hostname" los comandos que están como una lista dentro del diccionario **COMANDOS_SUP** en el archivo **comandos_validacion.py**, buscándolos según el nombre "nombre_lista_comandos".
 
 
 ## Clases
-1. device(hostname, username, password):
+1. **device(hostname, username, password):**
     - Descripción: Objeto al cual se le asignan propiedades hostname (nombre de host), username (nombre de usuario de inicio de sesión), password (contraseña de usuario de inicio de sesión).
     - Métodos: 
         set_password: Setea la contraseña a utilizar para el inicio de sesión por ssh.
@@ -51,7 +53,15 @@ Todos los comandos deben ejecutarse desde el archivo:
 TLN-03-M/Topologias/scripts/main.py
 ```
 
+Y en el caso de validación y diagnóstico:
+
+```bash
+TLN-03-M/Topologias/scripts/validacion_diagnostico.py
+```
+
 Bajo ningún motivo borrar las librerías importadas al inicio.
+
+Que los comandos de configuración y validación+diagnóstico se ejecuten desde archivos distintos es meramente por un tema de orden.
 
 ---
 
@@ -117,7 +127,7 @@ Cuando se quiera ejecutar una lista de comandos preestablecidos para diagnóstic
 
 Se deben guardar los comandos en el archivo
 ```bash
-validacion_diagnostico.py
+comandos_validacion.py
 ```
 dentro del diccionario **COMANDOS_SUP**, de la forma:
 
@@ -147,6 +157,24 @@ hostname_comando = {
 Y, de igual forma, en validacion_diagnostico.py se debe escribir el comando para ejecutar:
 
 ```bash
+sshHostKeyConn.ssh_exec_multiple_validar(hostname_comando)
+```
+
+El archivo validacion_diagnostico.py quedará de la forma:
+
+```bash
+from network_scripting import sshHostKeyConn
+from getpass import getpass
+from configs import funcion_comandos
+import paramiko
+import time
+from configs.comandos import COMANDOS
+
+hostname_comando = {
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "CPE-HQ",
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "CPE-HQ-BK"
+}
+
 sshHostKeyConn.ssh_exec_multiple_validar(hostname_comando)
 ```
 

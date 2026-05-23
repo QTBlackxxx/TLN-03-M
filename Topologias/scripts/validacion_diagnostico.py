@@ -6,11 +6,11 @@ import time
 from configs.comandos import COMANDOS
 
 hostname_comando = {
-    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "CPE-HQ",
-    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "CPE-HQ-BK"
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "script_moises",
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "script_moises_c2",
 }
 
-sshHostKeyConn.ssh_exec_multiple(hostname_comando)
+sshHostKeyConn.ssh_exec_multiple_validar(hostname_comando)
 
 
 
