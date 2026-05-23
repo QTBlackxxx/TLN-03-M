@@ -18,8 +18,8 @@ hostname_comando = {
 }
 
 # EJECUCIÓN
-# - conexion_ssh()  → función de sshHostKeyConn, abre la sesión SSH
-# - exec_command()  → método de Paramiko, usado para verificación 
+# - conexion_ssh()  -> función de sshHostKeyConn, abre la sesión SSH
+# - exec_command()  -> método de Paramiko, usado para verificación 
 # NOTA TÉCNICA: Cisco IOL cierra la sesión SSH tras cada exec_command,
 # por eso se abre una conexión nueva por cada comando individualmente.
 # =============================================================================
