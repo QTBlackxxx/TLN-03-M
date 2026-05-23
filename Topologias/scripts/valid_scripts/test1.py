@@ -36,16 +36,37 @@ for router in routers:
 
     shell = cliente.invoke_shell()
 
+    # Espera inicial para estabilizar sesión SSH
+    time.sleep(2)
+
+    # Limpia buffer inicial
+    shell.recv(65535)
+
+    # Desactiva paginación en Cisco IOS
+    shell.send("terminal length 0\n")
+
+    time.sleep(1)
+
+    # Limpia salida del comando anterior
+    shell.recv(65535)
+
     for comando in comandos:
+
+        print(f"\n--- {comando} ---\n")
 
         shell.send(comando + "\n")
 
-        import time
-        time.sleep(2)
+        time.sleep(3)
 
-        salida = shell.recv(65535).decode()
+        salida = ""
 
-        print(f"\n--- {comando} ---\n")
+        # Lee toda la salida disponible
+        while shell.recv_ready():
+
+            salida += shell.recv(65535).decode()
+
+            time.sleep(1)
+
         print(salida)
 
     cliente.close()
