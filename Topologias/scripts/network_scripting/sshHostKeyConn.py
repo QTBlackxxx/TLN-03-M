@@ -69,7 +69,7 @@ def ssh_exec(ssh_client, comandos):
                 
         for comando in comandos:
             SHELL_ACCESO.send(f'{comando}\n')
-            time.sleep(0.5)
+            time.sleep(0.4)
             output = SHELL_ACCESO.recv(65535).decode('ascii')
             
             lineas = output.splitlines()
