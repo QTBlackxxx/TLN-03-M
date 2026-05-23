@@ -25,6 +25,8 @@ hostname_comando = {
     "clab-ISP-TDP-CLARO-IOL-M3": "M3"
 }
 
+sshHostKeyConn.ssh_exec_multiple(hostname_comando)
+
 funcion_comandos.config_hub("comando_1", "CPE-HQ", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.HUB_PARAMS)
 funcion_comandos.config_hub("comando_2", "CPE-HQ-BK", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.HUB_PARAMS)
 
@@ -35,9 +37,8 @@ hostname_comando_funciones = {
 
 sshHostKeyConn.ssh_exec_multiple_json(hostname_comando_funciones)
 
-#sshHostKeyConn.ssh_exec_multiple(strings_comando)"""
+#sshHostKeyConn.ssh_exec_multiple(strings_comando)
 
-#sshHostKeyConn.ssh_exec_multiple(hostname_comando)
 
 
 
