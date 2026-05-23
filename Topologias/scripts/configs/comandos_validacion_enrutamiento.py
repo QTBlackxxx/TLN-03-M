@@ -3,21 +3,21 @@ COMANDOS_SUP = {
     "CPE-HQ": [
         "show version",
         "show ip interface brief",
-        "show running-config"
-        "show crypto isakmp sa"
-        "show crypto ipsec sa"
-        "show ip ospf neighbor"
-        "show ip ospf interface Tunnel1"
-        "show ip ospf database router" 
-        "show ip route ospf"
-        "show ip cef 192.168.25.2"
-        "show ip cef exact-route 172.16.10.1 192.168.25.2"
-        "ping 192.168.25.2"
-        "traceroute 192.168.25.2"
-        "ping 172.16.10.4"
-        "traceroute 172.16.10.4"
-        "ping 180.0.0.1"
-        "traceroute 180.0.0.1"
+        "show running-config",
+        "show crypto isakmp sa",
+        "show crypto ipsec sa",
+        "show ip ospf neighbor",
+        "show ip ospf interface Tunnel1",
+        "show ip ospf database router" ,
+        "show ip route ospf",
+        "show ip cef 192.168.25.2",
+        "show ip cef exact-route 172.16.10.1 192.168.25.2",
+        "ping 192.168.25.2",
+        "traceroute 192.168.25.2",
+        "ping 172.16.10.4",
+        "traceroute 172.16.10.4",
+        "ping 180.0.0.1",
+        "traceroute 180.0.0.1",
     ],
     
     "M3": [
@@ -61,7 +61,7 @@ COMANDOS_SUP = {
         "show interfaces trunk",
         "show mac address-table vlan 25",
         "show interfaces status",
-        "traceroute 192.168.25.2"
+        "traceroute 192.168.25.2",
     ]
 
 }

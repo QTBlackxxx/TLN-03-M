@@ -1,17 +1,50 @@
-from network_scripting import sshHostKeyConn ###
+# Parte 4 - Validación y Diagnóstico de Túneles DMVPN
+#### NO TOCAR
+from network_scripting import sshHostKeyConn
 from getpass import getpass
 import paramiko
 import time
-from configs.comandos_validacion_enrutamiento import COMANDOS_SUP ###
+from configs.comandos_validacion_enrutamiento import COMANDOS_SUP
+###########################################################
 
+# MAPA DE DISPOSITIVOS
+# hostname containerlab  →  clave en COMANDOS_SUP
+# =============================================================================
 hostname_comando = {
-    "clab-ISP-TDP-CLARO-IOL-M1": "M1",
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ":         "CPE-HQ",
+    "clab-ISP-TDP-CLARO-IOL-M3":      "M3",
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2":    "CPE-BRANCH2",
+    "clab-ISP-TDP-CLARO-IOL-SW2-R-PISO1": "SW2-R-PISO1",
 }
 
-sshHostKeyConn.ssh_exec_multiple_validar(hostname_comando)
+# EJECUCIÓN
+# - conexion_ssh()  → función de sshHostKeyConn, abre la sesión SSH
+# - exec_command()  → método de Paramiko, usado para verificación 
+# NOTA TÉCNICA: Cisco IOL cierra la sesión SSH tras cada exec_command,
+# por eso se abre una conexión nueva por cada comando individualmente.
+# =============================================================================
+for hostname_clab, clave in hostname_comando.items():
 
+    device_obj = sshHostKeyConn.device(hostname_clab, "admin", "admin")
 
+    print(f"\n{'='*70}\n  DISPOSITIVO: {clave}\n{'='*70}")
 
+    # PRIMERA PARTE — un exec_command por comando, reconectando cada vez
+    for comando in COMANDOS_SUP[clave]:
+        try:
+            # CONEXIÓN SSH usando función de sshHostKeyConn
+            ssh_client = sshHostKeyConn.conexion_ssh(device_obj)
+            if ssh_client is None:
+                continue
 
+            # VERIFICACIÓN con exec_command
+            stdin, stdout, stderr = ssh_client.exec_command(comando, timeout=10)
+            output = stdout.read().decode("ascii", errors="replace").strip()
+            print(f"\n  >> {comando}")
+            print(output if output else "  [Sin output recibido]")
+            ssh_client.close()
+            time.sleep(0.3)
 
-
+        except Exception as e:
+            print(f"\n  >> {comando}")
+            print(f"  [EXCEPCIÓN] {e}")
