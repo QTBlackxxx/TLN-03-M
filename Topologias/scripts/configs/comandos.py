@@ -1,5 +1,5 @@
 COMANDOS = {
-    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": [
+    "CPE-HQ": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 190.0.0.1",
         "no interface Tunnel1",
@@ -37,13 +37,8 @@ COMANDOS = {
         "exit",
         "end",
     ],
-<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
- 
-    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": [
-=======
 
     "CPE-HQ-BK": [
->>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.1.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -79,15 +74,10 @@ COMANDOS = {
         "network 172.16.20.0 0.0.0.255 area 0",
         "exit",
         "end",
-<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
     ],
  
-    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH": [
-=======
-    ],    
 
     "CPE-BRANCH": [
->>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.0.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -137,9 +127,8 @@ COMANDOS = {
         "exit",
         "end",
     ],
-<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
- 
-    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH-BK": [
+
+    "CPE-BRANCH-BK": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 190.0.1.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -186,10 +175,7 @@ COMANDOS = {
         "end",
     ],
  
-    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2": [
-=======
     "CPE-BRANCH2": [
->>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
         # Crypto - sin hash md5 ni group 5 que fallan en esta version IOS
         "crypto isakmp policy 10",
@@ -273,9 +259,8 @@ COMANDOS = {
         "ip nat inside source list 10 pool BRANCH2-POOL overload",
         "end",
     ],
-<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
- 
-    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK": [
+
+    "CPE-BRANCH2-BK": [
         "conf terminal",
         # Crypto - sin hash md5 ni group 5
         "crypto isakmp policy 10",
@@ -356,11 +341,7 @@ COMANDOS = {
         "end",
     ],
  
-    "clab-ISP-TDP-CLARO-IOL-M3": [
-=======
-
     "M3": [
->>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
         "interface Ethernet1/0",
         "ip address 10.0.0.74 255.255.255.252",
@@ -374,13 +355,29 @@ COMANDOS = {
         "ip route 180.0.0.0 255.255.255.248 10.0.0.73",
         "end",
     ],
-<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
- 
-    "clab-ISP-TDP-CLARO-IOL-C5": [
-=======
+
+    "C5": [
+        "conf terminal",
+        "interface Ethernet1/2",
+        "ip address 10.0.0.78 255.255.255.252",
+        "ip ospf network point-to-point",
+        "no shutdown",
+        "exit",
+        "router ospf 1",
+        "network 10.0.0.76 0.0.0.3 area 0",
+        "exit",
+        # Ruta estatica con tag 190 para que route-map to_EXTERNAL la redistribuya
+        "ip route 180.0.1.0 255.255.255.248 10.0.0.77 tag 190",
+        # Activar redistribute en BGP por si no estaba aplicado
+        "router bgp 200",
+        "address-family ipv4",
+        "redistribute static route-map to_EXTERNAL",
+        "exit-address-family",
+        "exit",
+        "end",
+    ],
 
     "SW2-R-PISO1": [
->>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
         "vlan 25",
         "name VLAN25",

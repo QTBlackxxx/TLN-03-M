@@ -3,7 +3,7 @@ from getpass import getpass
 from configs import funcion_comandos
 import paramiko
 import time
-from configs.comandos import COMANDOS
+from configs.comandos_validacion_enrutamiento import COMANDOS_SUP
 
 
 
