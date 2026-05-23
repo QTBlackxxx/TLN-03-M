@@ -4,6 +4,7 @@ import json
 from getpass import getpass
 from colorama import Fore, Style, init
 from configs.comandos import COMANDOS
+from configs.comandos_validacion import COMANDOS_SUP
 
 class device(object):
     def __init__(self, hostname, username, password):
@@ -62,6 +63,18 @@ def ssh_exec_multiple(comandos):
             ssh_client = conexion_ssh(device_obj)
             if ssh_client:
                 ssh_exec(ssh_client, COMANDOS[comando_key])
+                ssh_client.close()
+
+    except Exception as e:
+        print(f"Error al ejecutar comandos en múltiples dispositivos: {e}")
+
+def ssh_exec_multiple_validar(comandos):
+    try:
+        for hostname, comando_key in comandos.items():
+            device_obj = device(hostname, "admin", "admin")
+            ssh_client = conexion_ssh(device_obj)
+            if ssh_client:
+                ssh_exec(ssh_client, COMANDOS_SUP[comando_key])
                 ssh_client.close()
 
     except Exception as e:
