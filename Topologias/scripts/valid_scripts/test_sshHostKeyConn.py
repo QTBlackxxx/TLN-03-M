@@ -253,21 +253,12 @@ def ssh_exec_multiple(comandos):
             if ssh_client:
 
                 # ==========================================
-                # CONFIGURACIÓN
-                # ==========================================
-
-                ssh_config(
-                    ssh_client,
-                    datos["configuracion"]
-                )
-
-                # ==========================================
                 # VERIFICACIÓN
                 # ==========================================
 
                 ssh_verify(
                     ssh_client,
-                    datos["verificacion"]
+                    datos
                 )
 
                 ssh_client.close()
