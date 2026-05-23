@@ -78,6 +78,12 @@ hostname_comando = {
 }
 ```
 
+Y, de igual forma, en main.py se debe escribir el comando para ejecutar:
+
+```bash
+sshHostKeyConn.ssh_exec_multiple(hostname_comando)
+```
+
 Ahora, se debe ejecutar el archivo main.py de la forma:
 
 ```bash
