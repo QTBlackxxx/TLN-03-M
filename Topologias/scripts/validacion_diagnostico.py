@@ -1,5 +1,4 @@
 # Parte 4 - Validación y Diagnóstico de Túneles DMVPN
-
 #### NO TOCAR
 from network_scripting import sshHostKeyConn
 from getpass import getpass
@@ -8,111 +7,44 @@ import time
 from configs.comandos_validacion import COMANDOS_SUP
 ###########################################################
 
-from colorama import Fore, Style, init
+# MAPA DE DISPOSITIVOS
+# hostname containerlab  →  clave en COMANDOS_SUP
+# =============================================================================
+hostname_comando = {
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ":         "CPE-HQ",
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK":      "CPE-HQ-BK",
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2":    "CPE-BRANCH2",
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK": "CPE-BRANCH2-BK",
+}
 
-init(autoreset=True)
+# EJECUCIÓN
+# - conexion_ssh()  → función de sshHostKeyConn, abre la sesión SSH
+# - exec_command()  → método de Paramiko, usado para verificación 
+# NOTA TÉCNICA: Cisco IOL cierra la sesión SSH tras cada exec_command,
+# por eso se abre una conexión nueva por cada comando individualmente.
+# =============================================================================
+for hostname_clab, clave in hostname_comando.items():
 
-# FUNCIÓN exec_command abre un canal independiente por cada comando, ideal para
-# comandos de solo lectura (show) donde se necesita output limpio y completo.
-def ssh_exec_command(device_obj, comandos):
-    """
-    NOTA TÉCNICA: Cisco IOL cierra el canal SSH después de cada exec_command,
-    por lo que no es posible reusar la misma conexión entre comandos.
-    Solución: se abre una conexión SSH nueva e independiente por cada comando,
-    garantizando que exec_command opere sobre un canal limpio cada vez.
-    """
-    resultados = []
+    device_obj = sshHostKeyConn.device(hostname_clab, "admin", "admin")
 
-    for comando in comandos:
+    print(f"\n{'='*70}\n  DISPOSITIVO: {clave}\n{'='*70}")
+
+    # PRIMERA PARTE — un exec_command por comando, reconectando cada vez
+    for comando in COMANDOS_SUP[clave]:
         try:
-            # Nueva conexión SSH por cada comando 
-            cliente_temp = paramiko.SSHClient()
-            cliente_temp.load_system_host_keys()
-            cliente_temp.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            cliente_temp.connect(
-                hostname=device_obj.hostname,
-                username=device_obj.username,
-                password=device_obj.password,
-                look_for_keys=False
-            )
+            # CONEXIÓN SSH usando función de sshHostKeyConn
+            ssh_client = sshHostKeyConn.conexion_ssh(device_obj)
+            if ssh_client is None:
+                continue
 
-            stdin, stdout, stderr = cliente_temp.exec_command(comando, timeout=10)
+            # VERIFICACIÓN con exec_command
+            stdin, stdout, stderr = ssh_client.exec_command(comando, timeout=10)
             output = stdout.read().decode("ascii", errors="replace").strip()
-            error  = stderr.read().decode("ascii", errors="replace").strip()
-            resultados.append((comando, output, error))
-            cliente_temp.close()
+            print(f"\n  >> {comando}")
+            print(output if output else "  [Sin output recibido]")
+            ssh_client.close()
             time.sleep(0.3)
 
         except Exception as e:
-            resultados.append((comando, "", f"[EXCEPCIÓN] {e}"))
-
-    return resultados
-
-# FUNCIÓN DE IMPRESIÓN 
-def imprimir_resultado(hostname, resultados):
-    """
-    Imprime en consola con colores los resultados de validación.
-    """
-    separador = "=" * 70
-    encabezado = f"\n{separador}\n  DISPOSITIVO: {hostname}\n{separador}"
-
-    print(f"\n{Fore.CYAN}{Style.BRIGHT}{encabezado}{Style.RESET_ALL}")
-
-    for comando, output, error in resultados:
-        # Encabezado del comando 
-        linea_cmd = f"\n  >> {comando}"
-        print(f"{Fore.YELLOW}{Style.BRIGHT}{linea_cmd}{Style.RESET_ALL}")
-
-        # Output normal 
-        if output:
-            print(output)
-
-        # Errores o advertencias
-        if error:
-            print(f"{Fore.RED}  [STDERR] {error}{Style.RESET_ALL}")
-
-        # Sin output ni error
-        if not output and not error:
-            print(f"{Fore.MAGENTA}  [Sin output recibido]{Style.RESET_ALL}")
-
-# MAPA DE DISPOSITIVOS
-# hostname containerlab  ->  clave en COMANDOS_SUP
-hostname_comando = {
-    "clab-ISP-TDP-CLARO-IOL-CPE-HQ":        "CPE-HQ",
-    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK":     "CPE-HQ-BK",
-    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2":   "CPE-BRANCH2",
-    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK":"CPE-BRANCH2-BK",
-}
-
-sshHostKeyConn.ssh_exec_multiple_validar(hostname_comando)
-
-# MAIN — recorre los 4 dispositivos y ejecuta la validación
-def main():
-    encabezado = (
-        f"REPORTE DE VALIDACIÓN DMVPN\n"
-        f"Topología: ISP-TDP-CLARO-IOL\n"
-        + "=" * 70
-    )
-    print(f"\n{Fore.GREEN}{Style.BRIGHT}{encabezado}{Style.RESET_ALL}")
-
-    for hostname_clab, clave in hostname_comando.items():
-
-        # PRIMERA PARTE — CONEXIÓN SSH
-        dispositivo = sshHostKeyConn.device(hostname_clab, USUARIO, PASSWORD)
-        ssh_client  = sshHostKeyConn.conexion_ssh(dispositivo)
-
-        if ssh_client is None:
-            print(f"{Fore.RED}\n[ERROR] No se pudo conectar a {hostname_clab}. Se omite.\n{Style.RESET_ALL}")
-            continue
-
-        # SEGUNDA PARTE — EJECUCIÓN DE COMANDOS con exec_command
-        comandos = COMANDOS_SUP[clave]
-        resultados = ssh_exec_command(dispositivo, comandos)
-
-        # Imprime en consola
-        imprimir_resultado(clave, resultados)
-
-        ssh_client.close()
-
-if __name__ == "__main__":
-    main()
+            print(f"\n  >> {comando}")
+            print(f"  [EXCEPCIÓN] {e}")
