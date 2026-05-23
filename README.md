@@ -18,12 +18,14 @@ Repositorio base para el curso Electivo TLN03 de la Universidad Nacional de Inge
 ## Configuraciones Base
 ```markdown
 Por desarrollar
+```markdown
 
 ## Ejecución
 
 Todos los comandos a ejecutar deben realizarse en el archivo main.py, con ruta:
 ```markdown
 TLN-03-M/Topologías/scripts/main.py
+```markdown
 
 Bajo NINGÚN motivo borrar las librerías importadas al inicio
 
