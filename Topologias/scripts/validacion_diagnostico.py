@@ -5,7 +5,7 @@ from network_scripting import sshHostKeyConn
 from getpass import getpass
 import paramiko
 import time
-from configs.comandos_validacion import COMANDOS_VALIDACION
+from configs.comandos_validacion import COMANDOS_SUP
 ###########################################################
 
 from colorama import Fore, Style, init
@@ -76,16 +76,15 @@ def imprimir_resultado(hostname, resultados):
             print(f"{Fore.MAGENTA}  [Sin output recibido]{Style.RESET_ALL}")
 
 # MAPA DE DISPOSITIVOS
-# hostname containerlab  ->  clave en COMANDOS_VALIDACION
-DISPOSITIVOS = {
+# hostname containerlab  ->  clave en COMANDOS_SUP
+hostname_comando = {
     "clab-ISP-TDP-CLARO-IOL-CPE-HQ":        "CPE-HQ",
     "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK":     "CPE-HQ-BK",
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2":   "CPE-BRANCH2",
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK":"CPE-BRANCH2-BK",
 }
 
-USUARIO   = "admin"
-PASSWORD  = "admin"
+sshHostKeyConn.ssh_exec_multiple_validar(hostname_comando)
 
 # MAIN — recorre los 4 dispositivos y ejecuta la validación
 def main():
@@ -96,7 +95,7 @@ def main():
     )
     print(f"\n{Fore.GREEN}{Style.BRIGHT}{encabezado}{Style.RESET_ALL}")
 
-    for hostname_clab, clave in DISPOSITIVOS.items():
+    for hostname_clab, clave in hostname_comando.items():
 
         # PRIMERA PARTE — CONEXIÓN SSH
         dispositivo = sshHostKeyConn.device(hostname_clab, USUARIO, PASSWORD)
@@ -107,7 +106,7 @@ def main():
             continue
 
         # SEGUNDA PARTE — EJECUCIÓN DE COMANDOS con exec_command
-        comandos = COMANDOS_VALIDACION[clave]
+        comandos = COMANDOS_SUP[clave]
         resultados = ssh_exec_command(dispositivo, comandos)
 
         # Imprime en consola

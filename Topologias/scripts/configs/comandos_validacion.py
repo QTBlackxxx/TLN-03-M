@@ -1,6 +1,6 @@
 # Parte 4 - Validación de Túneles DMVPN
 
-COMANDOS_VALIDACION = {
+COMANDOS_SUP = {
 
     # ------------------------------------------------------------------
     # HUB PRINCIPAL - CPE-HQ
