@@ -11,8 +11,6 @@ COMANDOS_SUP = {
         "show dmvpn detail",
         "show ip nhrp",
         "show interfaces Tunnel1",
-        "show ip ospf neighbor",
-        "show ip route ospf",
     ],
 
     # ------------------------------------------------------------------
@@ -23,7 +21,7 @@ COMANDOS_SUP = {
         "show dmvpn",
         "show dmvpn detail",
         "show ip nhrp",
-        "show interfaces Tunnel2",
+        "show interfaces Tunnel1",
         "show ip ospf neighbor",
         "show ip route ospf",
     ],
@@ -38,11 +36,7 @@ COMANDOS_SUP = {
         "show dmvpn detail",
         "show ip nhrp",
         "show interfaces Tunnel1",
-        "show interfaces Tunnel2",
         "show vrrp brief",
-        "show ip ospf neighbor",
-        "show ip route ospf",
-        "show ip interface brief",
     ],
 
     # ------------------------------------------------------------------
@@ -55,7 +49,6 @@ COMANDOS_SUP = {
         "show dmvpn detail",
         "show ip nhrp",
         "show interfaces Tunnel1",
-        "show interfaces Tunnel2",
         "show vrrp brief",
         "show ip ospf neighbor",
         "show ip route ospf",
