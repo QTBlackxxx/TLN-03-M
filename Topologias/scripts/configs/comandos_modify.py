@@ -2,16 +2,18 @@ COMANDOS = {
     "clab-ISP-TDP-CLARO-IOL-CPE-HQ": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 190.0.0.1",
-        "crypto isakmp key TLN03 address 0.0.0.0",
         "no interface Tunnel1",
         "no crypto ipsec profile PF-TO-BRANCH",
         "no crypto ipsec transform-set TS-TO-BRANCH",
+	    "crypto isakmp key TLN03 address 0.0.0.0",
         "crypto ipsec transform-set TS-DMVPN esp-aes esp-sha-hmac",
         "mode transport",
         "exit",
+
         "crypto ipsec profile PF-DMVPN",
         "set transform-set TS-DMVPN",
         "exit",
+
         "interface Tunnel1",
         "ip address 172.16.10.1 255.255.255.0",
         "no ip redirects",
@@ -22,10 +24,12 @@ COMANDOS = {
         "tunnel source Loopback0",
         "tunnel mode gre multipoint",
         "tunnel protection ipsec profile PF-DMVPN",
+        "tunnel key 100",
         "ip ospf priority 255",
         "ip ospf cost 10",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+	    "ip ospf network broadcast",
         "exit",
         "router ospf 10",
         "no network 172.16.10.0 0.0.0.3 area 0",
@@ -33,8 +37,13 @@ COMANDOS = {
         "exit",
         "end",
     ],
+<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
  
     "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": [
+=======
+
+    "CPE-HQ-BK": [
+>>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.1.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -44,9 +53,11 @@ COMANDOS = {
         "crypto ipsec transform-set TS-DMVPN esp-aes esp-sha-hmac",
         "mode transport",
         "exit",
+
         "crypto ipsec profile PF-DMVPN",
         "set transform-set TS-DMVPN",
         "exit",
+
         "interface Tunnel2",
         "ip address 172.16.20.1 255.255.255.0",
         "no ip redirects",
@@ -57,6 +68,7 @@ COMANDOS = {
         "tunnel source Loopback0",
         "tunnel mode gre multipoint",
         "tunnel protection ipsec profile PF-DMVPN",
+	    "tunnel key 200",
         "ip ospf priority 255",
         "ip ospf cost 100",
         "ip ospf hello-interval 5",
@@ -67,9 +79,15 @@ COMANDOS = {
         "network 172.16.20.0 0.0.0.255 area 0",
         "exit",
         "end",
+<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
     ],
  
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH": [
+=======
+    ],    
+
+    "CPE-BRANCH": [
+>>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.0.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -91,9 +109,11 @@ COMANDOS = {
         "tunnel source Loopback0",
         "tunnel mode gre multipoint",
         "tunnel protection ipsec profile PF-DMVPN shared",
+        "tunnel key 100",
         "ip ospf cost 10",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "ip ospf network broadcast",
         "exit",
         "interface Tunnel2",
         "ip address 172.16.20.2 255.255.255.0",
@@ -104,9 +124,11 @@ COMANDOS = {
         "tunnel source Loopback0",
         "tunnel mode gre multipoint",
         "tunnel protection ipsec profile PF-DMVPN shared",
+        "tunnel key 200",
         "ip ospf cost 100",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "ip ospf network broadcast",
         "exit",
         "router ospf 10",
         "no network 172.16.10.0 0.0.0.3 area 0",
@@ -115,6 +137,7 @@ COMANDOS = {
         "exit",
         "end",
     ],
+<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
  
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH-BK": [
         "conf terminal",
@@ -164,11 +187,15 @@ COMANDOS = {
     ],
  
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2": [
+=======
+    "CPE-BRANCH2": [
+>>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
         # Crypto - sin hash md5 ni group 5 que fallan en esta version IOS
         "crypto isakmp policy 10",
         "encr aes",
         "authentication pre-share",
+        "group 14",
         "lifetime 1000",
         "exit",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -209,9 +236,11 @@ COMANDOS = {
         "tunnel source Loopback0",
         "tunnel mode gre multipoint",
         "tunnel protection ipsec profile PF-DMVPN shared",
+        "tunnel key 100",
         "ip ospf cost 10",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "ip ospf network broadcast",
         "exit",
         "interface Tunnel2",
         "ip address 172.16.20.4 255.255.255.0",
@@ -222,9 +251,11 @@ COMANDOS = {
         "tunnel source Loopback0",
         "tunnel mode gre multipoint",
         "tunnel protection ipsec profile PF-DMVPN shared",
+        "tunnel key 200",
         "ip ospf cost 100",
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
+        "ip ospf network broadcast",
         "exit",
         "router ospf 10",
         "router-id 5.5.5.5",
@@ -242,6 +273,7 @@ COMANDOS = {
         "ip nat inside source list 10 pool BRANCH2-POOL overload",
         "end",
     ],
+<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
  
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK": [
         "conf terminal",
@@ -325,6 +357,10 @@ COMANDOS = {
     ],
  
     "clab-ISP-TDP-CLARO-IOL-M3": [
+=======
+
+    "M3": [
+>>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
         "interface Ethernet1/0",
         "ip address 10.0.0.74 255.255.255.252",
@@ -338,25 +374,35 @@ COMANDOS = {
         "ip route 180.0.0.0 255.255.255.248 10.0.0.73",
         "end",
     ],
+<<<<<<< HEAD:Topologias/scripts/configs/comandos_modify.py
  
     "clab-ISP-TDP-CLARO-IOL-C5": [
+=======
+
+    "SW2-R-PISO1": [
+>>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb:Topologias/scripts/configs/comandos.py
         "conf terminal",
-        "interface Ethernet1/2",
-        "ip address 10.0.0.78 255.255.255.252",
-        "ip ospf network point-to-point",
-        "no shutdown",
+        "vlan 25",
+        "name VLAN25",
         "exit",
-        "router ospf 1",
-        "network 10.0.0.76 0.0.0.3 area 0",
+        "interface ethernet0/1",
+        "switchport trunk encapsulation dot1q",
+        "switchport mode trunk",
+        "switchport trunk allowed vlan 25",
+        "exit"
+        "interface ethernet0/2",
+        "switchport trunk encapsulation dot1q",
+        "switchport mode trunk",
+        "switchport trunk allowed vlan 25",
         "exit",
-        # Ruta estatica con tag 190 para que route-map to_EXTERNAL la redistribuya
-        "ip route 180.0.1.0 255.255.255.248 10.0.0.77 tag 190",
-        # Activar redistribute en BGP por si no estaba aplicado
-        "router bgp 200",
-        "address-family ipv4",
-        "redistribute static route-map to_EXTERNAL",
-        "exit-address-family",
+        "interface ethernet0/3",
+        "switchport mode access",
+        "switchport access vlan 25",
         "exit",
-        "end",
-    ],
+        "interface ethernet1/0",
+        "switchport mode access",
+        "switchport access vlan 25",
+        "exit"
+    ]
+
 }
