@@ -11,9 +11,14 @@ from configs.comandos_validacion_enrutamiento import COMANDOS_SUP
 # hostname containerlab  →  clave en COMANDOS_SUP
 # =============================================================================
 hostname_comando = {
-    "clab-ISP-TDP-CLARO-IOL-CPE-HQ":         "CPE-HQ",
-    "clab-ISP-TDP-CLARO-IOL-M3":      "M3",
-    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2":    "CPE-BRANCH2",
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "CPE-HQ",
+    "clab-ISP-TDP-CLARO-IOL-M3": "M3",
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2": "CPE-BRANCH2",
+    
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH": "CPE-BRANCH",
+    "clab-ISP-TDP-CLARO-IOL-C5": "C5",
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK": "CPE-BRANCH2-BK",    
+    
     "clab-ISP-TDP-CLARO-IOL-SW2-R-PISO1": "SW2-R-PISO1",
 }
 
