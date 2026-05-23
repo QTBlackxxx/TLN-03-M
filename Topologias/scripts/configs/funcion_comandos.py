@@ -1,3 +1,4 @@
+import json
 
 GLOBAL_DMVPN = {
     "isakmp_key" : "TLN03",
@@ -46,7 +47,12 @@ HUB_PARAMS = {
 # FUNCIÓN: Genera el bloque completo del HUB
 # ─────────────────────────────────────────────────────────────────────────────
 
-def block_hub(device_name: str, g: dict, hubs: dict) -> list[str]:
+comandos_generados = "configs/comandos_generados.json"
+
+def config_hub(nombre_comando: str, device_name: str, g: dict, hubs: dict) -> list[str]:
+    comandos_generados = "configs/comandos_generados.json"  
+
+    
     """
     Genera los comandos IOS para un router HUB DMVPN.
  
@@ -57,6 +63,7 @@ def block_hub(device_name: str, g: dict, hubs: dict) -> list[str]:
       4. OSPF: reemplaza red /30 vieja por /24 nueva
  
     Args:
+        nombre_comando: nombre del comando a ejecutar
         device_name : "CPE-HQ" o "CPE-HQ-BK"
         g           : diccionario GLOBAL_DMVPN
         hubs        : diccionario HUB_PARAMS
@@ -66,17 +73,15 @@ def block_hub(device_name: str, g: dict, hubs: dict) -> list[str]:
     """
     h = hubs[device_name]
  
-    return [
+    comando = [
         "conf terminal",
         "",
-        "! ── 1. LIMPIEZA CONFIG ANTERIOR (point-to-point) ───────────",
         f"no crypto isakmp key {g['isakmp_key']} address {h['old_key']}",
         f"crypto isakmp key {g['isakmp_key']} address 0.0.0.0",
         f"no interface {h['tunnel_iface']}",
         f"no crypto ipsec profile {h['old_pf']}",
         f"no crypto ipsec transform-set {h['old_ts']}",
         "",
-        "! ── 2. CRYPTO: Transform-Set + Profile ─────────────────────",
         f"crypto ipsec transform-set {g['ts_name']} {g['ts_enc']} {g['ts_hash']}",
         " mode transport",
         "exit",
@@ -84,7 +89,6 @@ def block_hub(device_name: str, g: dict, hubs: dict) -> list[str]:
         f" set transform-set {g['ts_name']}",
         "exit",
         "",
-        "! ── 3. INTERFACE TUNNEL (NHS = Hub) ─────────────────────────",
         f"interface {h['tunnel_iface']}",
         f" ip address {h['tunnel_ip']} {g['tunnel_mask']}",
         " no ip redirects",                   # evita que el hub redirija paquetes spoke→spoke
@@ -101,7 +105,6 @@ def block_hub(device_name: str, g: dict, hubs: dict) -> list[str]:
         f" ip ospf dead-interval {g['ospf_dead']}",
         "exit",
         "",
-        "! ── 4. OSPF: reemplazar red /30 vieja por /24 DMVPN ────────",
         f"router ospf {g['ospf_pid']}",
         f" no network {h['tunnel_net']} {h['old_net_wc']} area {g['ospf_area']}",
         f" network {h['tunnel_net']} {g['tunnel_wc']} area {g['ospf_area']}",
@@ -109,4 +112,20 @@ def block_hub(device_name: str, g: dict, hubs: dict) -> list[str]:
         "",
         "end",
     ]
+
+    # Guardar comandos generados en un archivo JSON
+
+    with open(comandos_generados, "r") as f:
+        comandos = json.load(f)
+
+    comandos[nombre_comando] = comando
+
+    with open(comandos_generados, "w") as f:
+        json.dump(comandos, f, indent=4)
+
+    print(f"Configuración '{nombre_comando}' guardada.")
+
+    return comandos_generados
+
+
  

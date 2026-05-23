@@ -14,7 +14,7 @@ from configs.comandos import COMANDOS
 #Ejecutar comandos en el dispositivo utilizando la función ssh_exec
 #sshHostKeyConn.ssh_exec(ssh_client, COMANDOS["R1"])
 
-nombre_comando = {
+hostname_comando = {
     "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "CPE-HQ",
     "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "CPE-HQ-BK",
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH": "CPE-BRANCH",
@@ -25,16 +25,19 @@ nombre_comando = {
     "clab-ISP-TDP-CLARO-IOL-M3": "M3"
 }
 
-config_CPE-HQ =funcion_comandos.config_hub("CPE-HQ", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.HUB_PARAMS)
-config_CPE-HQ_BK = funcion_comandos.config_hub("CPE-HQ-BK", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.HUB_PARAMS)
+funcion_comandos.config_hub("comando_1", "CPE-HQ", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.HUB_PARAMS)
+funcion_comandos.config_hub("comando_2", "CPE-HQ-BK", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.HUB_PARAMS)
 
-strings_comando = {
-    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "config_CPE-HQ"
-    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "config_CPE-HQ_BK"
+hostname_comando_funciones = {
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "CPE-HQ",
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "CPE-HQ-BK"
 }
-sshHostKeyConn.ssh_exec_multiple(strings_comando)
 
-sshHostKeyConn.ssh_exec_multiple(nombre_comando)
+sshHostKeyConn.ssh_exec_multiple_json(hostname_comando_funciones)
+
+#sshHostKeyConn.ssh_exec_multiple(strings_comando)"""
+
+#sshHostKeyConn.ssh_exec_multiple(hostname_comando)
 
 
 

@@ -1,0 +1,10 @@
+{
+    "CPE-HQ": [
+        "show running-config",
+        "show ip route"
+    ],
+    "CPE-HQ-BK": [
+        "show running-config",
+        "show ip route"
+    ]
+}
