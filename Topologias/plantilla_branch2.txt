@@ -1,0 +1,131 @@
+!
+{# ---  INTERFAZ DE TRÁNSITO (FÍSICA) --- #}
+interface {{ interfaz_wan }}
+ description ENLACE DE TRANSITO HACIA ISP
+ ip address {{ ip_wan }} {{ mask_wan }}
+ ip nat outside
+ no shutdown
+!
+
+{# ---  INTERFAZ DE SERVICIO (LOOPBACK) --- #}
+interface Loopback0
+ description IP PUBLICA DE SERVICIOS (VPN)
+ ip address {{ ip_publica_loopback }} 255.255.255.255
+!
+
+{# ---  TRACKING ACTIVO (IP SLA AL ISP) --- #}
+ip sla 1
+ icmp-echo {{ gateway_isp }} source-interface {{ interfaz_wan }}
+ threshold 2000
+ timeout 2000
+ frequency 5
+!
+ip sla schedule 1 life forever start-time now
+!
+{# Vinculamos el Track al bot de IP SLA #}
+track 10 ip sla 1 reachability
+!
+
+{# ---  LAN: SUBINTERFACES, VRRP Y NAT INSIDE --- #}
+interface {{ interfaz_lan }}
+ no ip address
+ no shutdown
+!
+{% for vlan in vlans -%}
+interface {{ interfaz_lan }}.{{ vlan.id }}
+ encapsulation dot1q {{ vlan.id }}
+ ip address {{ vlan.ip_fisica }} {{ vlan.mask_lan }}
+ ip nat inside
+ 
+ {# Configuración de VRRP #}
+ vrrp {{ vlan.id }} ip {{ vlan.ip_virtual }}
+ vrrp {{ vlan.id }} preempt
+ 
+ {% if vlan.prioridad and vlan.prioridad != 100 -%}
+ vrrp {{ vlan.id }} priority {{ vlan.prioridad }}
+ {% else -%}
+ vrrp {{ vlan.id }} track 10 decrement 20
+ {% endif -%}
+ 
+ {# --- LÓGICA DE EIGRP PARA EVITAR ENRUTAMIENTO ASIMÉTRICO --- #}
+ {% if vlan.delay -%}
+ delay {{ vlan.delay }}
+ {% endif -%}
+ 
+ no shutdown
+!
+{% endfor -%}
+
+{# --- SALIDA POR DEFECTO --- #}
+ip route 0.0.0.0 0.0.0.0 {{ gateway_isp }}
+!
+
+
+{# ---  NAT DINÁMICO CON POOL Y EXCEPCIÓN VPN --- #}
+ip access-list extended ACL_NAT_SUCURSAL
+ deny ip {{ red_lan_sucursal }} {{ wildcard_sucursal }} {{ red_lan_hq }} {{ wildcard_hq }}
+ permit ip {{ red_lan_sucursal }} {{ wildcard_sucursal }} any
+!
+ip nat pool BRANCH-POOL {{ ip_pool_inicio }} {{ ip_pool_fin }} prefix-length {{ mascara_pool }}
+!
+ip nat inside source list ACL_NAT_SUCURSAL pool BRANCH-POOL overload
+!
+
+{# --- DMVPN-IPSEC-EIGRP --- #}
+
+no router ospf 10
+!
+no crypto isakmp policy 10
+!
+no int tunnel1
+!
+crypto isakmp policy 1
+ encryption aes 192
+ hash sha
+ authentication pre-share
+ group 14
+
+!
+crypto isakmp key 0 {{clave_vpn}} add 0.0.0.0 0.0.0.0
+!
+crypto ipsec transform-set DMVPN_transform esp-aes 256 esp-sha256-hmac
+ mode transport 
+!
+crypto ipsec profile DMVPN_profile 
+ set transform-set DMVPN_transform
+!
+
+int tunnel{{id_tunnel}}
+ ip address {{ip_tunnel_local}} 255.255.255.0
+ tunnel source loopback0
+ tunnel mode gre multipoint
+ ip nhrp network-id 1
+ ip nhrp nhs {{ip_tunnel_hub}} nbma {{ip_publica_hub}} multicast	
+ ip nhrp shortcut
+ tunnel key 1
+ tunnel protection ipsec profile DMVPN_profile shared
+ no sh
+
+!
+
+int tunnel{{id_tunnel_2}}
+ ip address {{ip_tunnel_local_2}} 255.255.255.0
+ tunnel source loopback0
+ tunnel mode gre multipoint
+ ip nhrp network-id 2
+ ip nhrp nhs {{ip_tunnel_hub_2}} nbma {{ip_publica_hub_2}} multicast	
+ ip nhrp shortcut
+ tunnel key 2
+ tunnel protection ipsec profile DMVPN_profile shared
+ no sh
+ delay 8000
+
+!
+
+router eigrp 1
+ network {{lan2}} 0.0.0.255
+ network {{lan1}} 0.0.0.255
+ network {{red_tunnel}} 0.0.0.255  
+ network {{red_tunnel_2}} 0.0.0.255
+
+

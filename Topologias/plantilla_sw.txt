@@ -1,0 +1,32 @@
+! { # CONFIGURACIÓN GENERAL DE SWITCH }
+!
+{# --- 1. CREACIÓN DINÁMICA DE VLANS --- #}
+{% for vlan in lista_vlans -%}
+vlan {{ vlan.id }}
+ name {{ vlan.nombre }}
+!
+{% endfor -%}
+
+{# --- 2. CONFIGURACIÓN DE TRUNK DINÁMICO --- #}
+{# Usamos map e join para crear la lista: "10,20,30" #}
+interface {{ interface_master }}
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan {{ lista_vlans | map(attribute='id') | join(',') }}
+!
+interface {{ interface_backup }}
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan {{ lista_vlans | map(attribute='id') | join(',') }}
+!
+
+{# --- 3. CONFIGURACIÓN DINÁMICA DE PUERTOS DE ACCESO --- #}
+{% for puerto in puertos_acceso -%}
+interface {{ puerto.nombre }}
+ description INTERFAZ_VLAN_{{ puerto.vlan }}
+ switchport mode access
+ switchport access vlan {{ puerto.vlan }}
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+{% endfor -%}

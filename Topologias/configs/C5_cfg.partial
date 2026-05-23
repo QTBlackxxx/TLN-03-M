@@ -1,12 +1,15 @@
 interface Loopback0
  ip address 172.16.2.5 255.255.255.255
 !
-interface Ethernet0/0
- description clab-mgmt
- vrf forwarding clab-mgmt
- ip address 172.20.20.7 255.255.255.0
- ipv6 address 3FFF:172:20:20::7/64
+interface Ethernet0/1
+ ip address 10.0.0.50 255.255.255.252
 !
+interface Ethernet0/2
+ ip address 10.0.0.38 255.255.255.252
+!interface Loopback0
+ ip address 172.16.2.5 255.255.255.255
+!
+
 interface Ethernet0/1
  ip address 10.0.0.50 255.255.255.252
  ip ospf network point-to-point
@@ -26,6 +29,12 @@ interface Ethernet1/0
 interface Ethernet1/1
  ip address 10.0.0.65 255.255.255.252
 !
+!router rip
+! version 2
+! network 10.0.0.0
+! network 172.16.0.0
+! no auto-summary
+!
 router ospf 1
  router-id 172.16.2.5
  prefix-suppression
@@ -33,7 +42,6 @@ router ospf 1
  network 10.0.0.36 0.0.0.3 area 0
  network 10.0.0.40 0.0.0.3 area 0
  network 10.0.0.56 0.0.0.3 area 0
- redistribute bgp 200 subnets route-map REDIST-BGP-TO-OSPF
 !
 router bgp 200
  bgp router-id 172.16.2.5
@@ -62,15 +70,11 @@ router bgp 200
 !
 ip forward-protocol nd
 !
+!
 ip ftp username dubuntu
 ip ftp password 12345
 !
 ip route 190.0.1.0 255.255.255.248 10.0.0.66 tag 190
 !
-route-map to_EXTERNAL permit 10
+route-map to_EXTERNAL permit 10 
  match tag 190
-!
-ip prefix-list PL-BRANCH2-BK seq 5 permit 190.0.2.1/32
-!
-route-map REDIST-BGP-TO-OSPF permit 10
- match ip address prefix-list PL-BRANCH2-BK

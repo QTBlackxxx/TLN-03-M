@@ -1,0 +1,24 @@
+{# --- 1. INTERFAZ WAN NUEVA (HACIA LA NUEVA SEDE) --- #}
+!
+interface {{ nueva_interfaz }}
+ description ENLACE HACIA NUEVA SEDE REMOTA
+ ip address {{ ip_wan }} {{ mask_wan }}
+ no shutdown
+
+!
+{# --- 2. RUTEO ADICIONAL PARA DAR ACCESO A INTERNET A LA NUEVA SEDE --- #}
+
+ip route {{ pool_destino }} {{ mask_pool }} {{ ip_wan_destino }} tag {{ id_tag }}
+!
+route-map {{ nombre_route }} permit 10
+ match tag {{ id_tag }}
+!
+router bgp {{ id_bgp }}
+ address-family ipv4
+ redistribute static route-map {{ nombre_route }}
+!
+
+{# --- 3. ACTUALIZACIÓN DE FILTROS EN LA REDISTRIBUCION DE RUTAS ENTRE AS --- #}
+{# Agregamos la red a las listas de control del ISP para que BGP permita el anuncio #}
+ip prefix-list PL-EXTERNOS seq {{ seq_deny }} deny {{ pool_publico }}/{{ cidr_pool }}
+ip prefix-list PL-PUB-{{ISP}} seq {{ seq_permit }} permit {{ pool_publico }}/{{ cidr_pool }}
