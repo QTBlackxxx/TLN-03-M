@@ -5,7 +5,7 @@ COMANDOS = {
         "no interface Tunnel1",
         "no crypto ipsec profile PF-TO-BRANCH",
         "no crypto ipsec transform-set TS-TO-BRANCH",
-	    "crypto isakmp key TLN03 address 0.0.0.0",
+	"crypto isakmp key TLN03 address 0.0.0.0",
         "crypto ipsec transform-set TS-DMVPN esp-aes esp-sha-hmac",
         "mode transport",
         "exit",
