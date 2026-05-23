@@ -226,7 +226,6 @@ COMANDOS = {
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
         "exit",
-        # OSPF
         "router ospf 10",
         "router-id 5.5.5.5",
         "network 172.16.10.0 0.0.0.255 area 0",
