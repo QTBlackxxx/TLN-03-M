@@ -222,6 +222,12 @@ COMANDOS = {
         "switchport mode access",
         "switchport access vlan 25",
         "exit"
+    ],
+
+    "M4":[
+        "conf terminal",
+        "ip prefix-list PL-PUB-MOVISTAR seq 15 permit 180.0.0.0/29",
+        "end"
     ]
 
 }
