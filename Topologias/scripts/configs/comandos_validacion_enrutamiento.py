@@ -44,7 +44,7 @@ COMANDOS_SUP = {
         "show ip ospf database router",
         "show ip route ospf",
         "show ip route",
-        "show ip nat translations",
+        "show ip nat translations",####
         "show ip nat statistics",
         "show ip interface brief",
         "show run interface Ethernet0/2.25",
@@ -61,7 +61,6 @@ COMANDOS_SUP = {
         "show interfaces trunk",
         "show mac address-table vlan 25",
         "show interfaces status",
-        "traceroute 192.168.25.2",
     ]
 
 }
