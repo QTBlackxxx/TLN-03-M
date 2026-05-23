@@ -22,12 +22,16 @@ sshHostKeyConn.ssh_exec_multiple(hostname_comando)
 
 #funcion_comandos.config_hub("comando_1", "CPE-HQ", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.HUB_PARAMS)
 #funcion_comandos.config_hub("comando_2", "CPE-HQ-BK", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.HUB_PARAMS)
+#funcion_comandos.config_spoke("comando_3", "CPE-BRANCH2", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.SPOKE_PARAMS)
+#funcion_comandos.config_spoke("comando_4", "CPE-BRANCH2-BK", funcion_comandos.GLOBAL_DMVPN, funcion_comandos.SPOKE_PARAMS)
 
-#hostname_comando_funciones = {
-#    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "comando_1",
-#    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "comando_2"
-#}
-
+"""hostname_comando_funciones = {
+    #"clab-ISP-TDP-CLARO-IOL-CPE-HQ": "comando_1",
+    #"clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "comando_2",
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2": "comando_3",
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK": "comando_4"
+}
+"""
 #sshHostKeyConn.ssh_exec_multiple_json(hostname_comando_funciones)
 
 
