@@ -20,7 +20,7 @@ COMANDOS_SUP = {
     "script_moises": [
         "show version",
         "show ip interface brief",
-        "show running-config"
+        "show running-config",
         "show interfaces",
         "show ip route",
         "show ip protocols",
