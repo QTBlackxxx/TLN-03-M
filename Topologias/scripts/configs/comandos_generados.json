@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "CPE-HQ": [
         "show running-config",
         "show ip route"
@@ -85,4 +86,7 @@
         "",
         "end"
     ]
+=======
+    
+>>>>>>> 56b9bfbf1603208ad189e81d98675f6bc83e0701
 }
