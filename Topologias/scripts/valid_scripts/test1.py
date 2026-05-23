@@ -5,22 +5,35 @@ from getpass import getpass
 import time
 
 # Autor: Antonio Alejandro Saenz Camero
-# Objetivo: Primer acercamiento a la automatización de tareas en routers Cisco usando Python y Paramiko.
-# Test1: 2 routers (M1 y M2), comandos show básicos.
+# Objetivo: Automatización básica de comandos show usando Python y Paramiko.
+# Test2: Diccionario escalable, routers con comandos "show" personalizados.
 
 password = getpass("Ingrese password: ")
 
-routers = [
-    "clab-ISP-TDP-CLARO-IOL-M1",
-    "clab-ISP-TDP-CLARO-IOL-M2"
-]
+routers = {
 
-comandos = [
-    "show ip interface brief",
-    "show version"
-]
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": [
+        "show ip interface brief",
+        "show version",
+        "show ip route"
+    ],
 
-for router in routers:
+    "clab-ISP-TDP-CLARO-IOL-M1": [
+        "show ip ospf neighbor",
+        "show ip bgp summary",
+        "show running-config",
+        "show ip interface brief"
+    ],
+
+    "clab-ISP-TDP-CLARO-IOL-M3": [
+        "show ip ospf neighbor",
+        "show ip bgp summary",
+        "show running-config",
+        "show ip interface brief"
+    ],
+}
+
+for router, comandos in routers.items():
 
     print(f"\n======== {router} ========\n")
 
@@ -36,18 +49,17 @@ for router in routers:
 
     shell = cliente.invoke_shell()
 
-    # Espera inicial para estabilizar sesión SSH
+    # Espera inicial
     time.sleep(2)
 
     # Limpia buffer inicial
     shell.recv(65535)
 
-    # Desactiva paginación en Cisco IOS
+    # Desactiva paginación Cisco
     shell.send("terminal length 0\n")
 
     time.sleep(1)
 
-    # Limpia salida del comando anterior
     shell.recv(65535)
 
     for comando in comandos:
@@ -60,7 +72,6 @@ for router in routers:
 
         salida = ""
 
-        # Lee toda la salida disponible
         while shell.recv_ready():
 
             salida += shell.recv(65535).decode()
