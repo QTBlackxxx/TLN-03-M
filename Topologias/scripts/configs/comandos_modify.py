@@ -1,5 +1,5 @@
 COMANDOS = {
-    "CPE-HQ": [
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 190.0.0.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -34,7 +34,7 @@ COMANDOS = {
         "end",
     ],
  
-    "CPE-HQ-BK": [
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.1.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -69,7 +69,7 @@ COMANDOS = {
         "end",
     ],
  
-    "CPE-BRANCH": [
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 200.0.0.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -116,7 +116,7 @@ COMANDOS = {
         "end",
     ],
  
-    "CPE-BRANCH-BK": [
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH-BK": [
         "conf terminal",
         "no crypto isakmp key TLN03 address 190.0.1.1",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -163,7 +163,7 @@ COMANDOS = {
         "end",
     ],
  
-    "CPE-BRANCH2": [
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2": [
         "conf terminal",
         # Crypto - sin hash md5 ni group 5 que fallan en esta version IOS
         "crypto isakmp policy 10",
@@ -243,7 +243,7 @@ COMANDOS = {
         "end",
     ],
  
-    "CPE-BRANCH2-BK": [
+    "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2-BK": [
         "conf terminal",
         # Crypto - sin hash md5 ni group 5
         "crypto isakmp policy 10",
@@ -324,7 +324,7 @@ COMANDOS = {
         "end",
     ],
  
-    "M3": [
+    "clab-ISP-TDP-CLARO-IOL-M3": [
         "conf terminal",
         "interface Ethernet1/0",
         "ip address 10.0.0.74 255.255.255.252",
@@ -339,7 +339,7 @@ COMANDOS = {
         "end",
     ],
  
-    "C5": [
+    "clab-ISP-TDP-CLARO-IOL-C5": [
         "conf terminal",
         "interface Ethernet1/2",
         "ip address 10.0.0.78 255.255.255.252",
