@@ -337,6 +337,27 @@ COMANDOS = {
         "network 172.16.10.0 0.0.0.255 area 0",
         "exit",
         "end",
+    ],
+
+    "C5": [
+        "conf terminal",
+        "interface Ethernet1/2",
+        "ip address 10.0.0.78 255.255.255.252",
+        "ip ospf network point-to-point",
+        "no shutdown",
+        "exit",
+        "router ospf 1",
+        "network 10.0.0.76 0.0.0.3 area 0",
+        "exit",
+        # Ruta estatica con tag 190 para que route-map to_EXTERNAL la redistribuya
+        "ip route 180.0.1.0 255.255.255.248 10.0.0.77",
+        # Activar redistribute en BGP por si no estaba aplicado
+        "router bgp 200",
+        "address-family ipv4",
+        "redistribute static route-map to_EXTERNAL",
+        "exit-address-family",
+        "exit",
+        "end",
     ]
 
 }
