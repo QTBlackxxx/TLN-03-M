@@ -103,7 +103,6 @@ COMANDOS = {
         "tunnel protection ipsec profile PF-DMVPN shared",
         "tunnel key 100",
         "ip ospf cost 10",
-<<<<<<< HEAD
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
         "ip ospf network broadcast",
@@ -120,9 +119,7 @@ COMANDOS = {
         "tunnel protection ipsec profile PF-DMVPN shared",
         "tunnel key 200",
         "ip ospf cost 100",
-=======
         "ip ospf priority 0",
->>>>>>> origin/main
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
         "ip ospf network broadcast",
@@ -242,7 +239,6 @@ COMANDOS = {
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
         "ip ospf network broadcast",
-<<<<<<< HEAD
         "exit",
         #TUNEL2
         "interface Tunnel2",
@@ -259,9 +255,7 @@ COMANDOS = {
         "ip ospf hello-interval 5",
         "ip ospf dead-interval 20",
         "ip ospf network broadcast",
-=======
         "ip ospf priority 0",
->>>>>>> origin/main
         "exit",
         #OSPF  
         "router ospf 10",
@@ -282,19 +276,11 @@ COMANDOS = {
 
     "CPE-BRANCH2-BK": [
         "conf terminal",
-<<<<<<< HEAD
-        # Crypto - sin hash md5 ni group 5 que fallan en esta version IOS
-        "crypto isakmp policy 10",
-        "encr aes",
-        "authentication pre-share",
-        "group 14",
-=======
         # Crypto
         "crypto isakmp policy 10",
         "encr aes",
         "authentication pre-share",
 	    "group 14",
->>>>>>> origin/main
         "lifetime 1000",
         "exit",
         "crypto isakmp key TLN03 address 0.0.0.0",
@@ -322,11 +308,7 @@ COMANDOS = {
         "ip address 192.168.25.3 255.255.255.0",
         "ip nat inside",
         "vrrp 25 ip 192.168.25.1",
-<<<<<<< HEAD
-        "vrrp 25 priority 110",
-=======
         "vrrp 25 priority 100",
->>>>>>> origin/main
         "vrrp 25 preempt",
         "exit",
         # Tunnels
@@ -335,43 +317,11 @@ COMANDOS = {
         "ip nhrp network-id 100",
         "ip nhrp authentication DMVPNKEY",
         "ip nhrp nhs 172.16.10.1 nbma 200.0.0.1 multicast",
-<<<<<<< HEAD
-=======
 	    "ip nhrp nhs 172.16.10.100 nbma 190.0.1.1 multicast",
->>>>>>> origin/main
         "ip nhrp shortcut",
         "tunnel source Loopback0",
         "tunnel mode gre multipoint",
         "tunnel protection ipsec profile PF-DMVPN shared",
-<<<<<<< HEAD
-        "tunnel key 100",
-        "ip ospf cost 10",
-        "ip ospf hello-interval 5",
-        "ip ospf dead-interval 20",
-        "ip ospf network broadcast",
-        "exit",
-        #TUNEL2
-        "interface Tunnel2",
-        "ip address 172.16.20.5 255.255.255.0",
-        "ip nhrp network-id 200",
-        "ip nhrp authentication DMVPNKEY",
-        "ip nhrp nhs 172.16.20.1 nbma 190.0.1.1 multicast",
-        "ip nhrp shortcut",
-        "tunnel source Loopback0",
-        "tunnel mode gre multipoint",
-        "tunnel protection ipsec profile PF-DMVPN shared",
-        "tunnel key 200",
-        "ip ospf cost 100",
-        "ip ospf hello-interval 5",
-        "ip ospf dead-interval 20",
-        "ip ospf network broadcast",
-        "exit",
-        #OSPF  
-        "router ospf 10",
-        "router-id 6.6.6.6",
-        "network 172.16.10.0 0.0.0.255 area 0",
-        "network 172.16.20.0 0.0.0.255 area 0",
-=======
 	    "tunnel key 100",
         "ip ospf cost 10",
         "ip ospf hello-interval 5",
@@ -383,7 +333,6 @@ COMANDOS = {
         "router ospf 10",
         "router-id 6.6.6.6",
         "network 172.16.10.0 0.0.0.255 area 0",
->>>>>>> origin/main
         "network 192.168.25.0 0.0.0.255 area 0",
         "passive-interface Ethernet0/2.25",
         "exit",
@@ -392,13 +341,8 @@ COMANDOS = {
         "ip access-list standard 10",
         "10 permit 192.168.25.0 0.0.0.255",
         "exit",
-<<<<<<< HEAD
-        "ip nat pool BRANCH2-POOL 180.0.1.2 180.0.1.6 prefix-length 29",
-        "ip nat inside source list 10 pool BRANCH2-POOL overload",
-=======
         "ip nat pool BRANCH2-BK-POOL 180.0.1.2 180.0.1.6 prefix-length 29",
         "ip nat inside source list 10 pool BRANCH2-BK-POOL overload",
->>>>>>> origin/main
         "end",
     ],
 
@@ -441,10 +385,7 @@ COMANDOS = {
         "switchport trunk encapsulation dot1q",
         "switchport mode trunk",
         "switchport trunk allowed vlan 25",
-<<<<<<< HEAD
-=======
         "exit",
->>>>>>> origin/main
         "interface ethernet0/2",
         "switchport trunk encapsulation dot1q",
         "switchport mode trunk",
