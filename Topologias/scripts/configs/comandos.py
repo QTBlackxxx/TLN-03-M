@@ -299,6 +299,7 @@ COMANDOS = {
     "M4":[
         "conf terminal",
         "ip prefix-list PL-PUB-MOVISTAR seq 15 permit 180.0.0.0/29",
+        "ip prefix-list PL-PUB-MOVISTAR seq 20 permit 180.0.1.0/29",
         "end"
     ],
 
@@ -350,7 +351,7 @@ COMANDOS = {
         "network 10.0.0.76 0.0.0.3 area 0",
         "exit",
         # Ruta estatica con tag 190 para que route-map to_EXTERNAL la redistribuya
-        "ip route 180.0.1.0 255.255.255.248 10.0.0.77",
+        "ip route 180.0.1.0 255.255.255.248 10.0.0.77 tag 190",
         # Activar redistribute en BGP por si no estaba aplicado
         "router bgp 200",
         "address-family ipv4",
