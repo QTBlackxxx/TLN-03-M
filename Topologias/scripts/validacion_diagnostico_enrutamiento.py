@@ -1,5 +1,4 @@
-# Parte 4 - Validación y Diagnóstico de Túneles DMVPN
-#### NO TOCAR
+
 from network_scripting import sshHostKeyConn
 from getpass import getpass
 import paramiko
@@ -7,8 +6,6 @@ import time
 from configs.comandos_validacion_enrutamiento import COMANDOS_SUP
 ###########################################################
 
-# MAPA DE DISPOSITIVOS
-# hostname containerlab  →  clave en COMANDOS_SUP
 # =============================================================================
 hostname_comando = {
     "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "CPE-HQ",
@@ -22,11 +19,6 @@ hostname_comando = {
     "clab-ISP-TDP-CLARO-IOL-SW2-R-PISO1": "SW2-R-PISO1",
 }
 
-# EJECUCIÓN
-# - conexion_ssh()  → función de sshHostKeyConn, abre la sesión SSH
-# - exec_command()  → método de Paramiko, usado para verificación 
-# NOTA TÉCNICA: Cisco IOL cierra la sesión SSH tras cada exec_command,
-# por eso se abre una conexión nueva por cada comando individualmente.
 # =============================================================================
 for hostname_clab, clave in hostname_comando.items():
 
