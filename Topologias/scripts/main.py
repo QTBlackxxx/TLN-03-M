@@ -9,7 +9,7 @@ from configs.comandos import COMANDOS
 
 hostname_comando = {
     "clab-ISP-TDP-CLARO-IOL-CPE-HQ": "CPE-HQ",
-    #"clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "CPE-HQ-BK",
+    "clab-ISP-TDP-CLARO-IOL-CPE-HQ-BK": "CPE-HQ-BK",
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH": "CPE-BRANCH",
     "clab-ISP-TDP-CLARO-IOL-CPE-BRANCH2": "CPE-BRANCH2",
     "clab-ISP-TDP-CLARO-IOL-M3": "M3",
