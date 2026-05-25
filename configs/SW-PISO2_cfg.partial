@@ -1,0 +1,21 @@
+!
+vlan 50
+!
+vlan 60
+!
+int e0/1
+sw trun enc dot1q
+sw mode trunk
+sw trunk allow vlan 50,60
+no shutdown
+!
+int e0/2
+sw mode access
+sw acc vlan 50
+no shutdown
+!
+int e0/3
+sw mode access
+sw acc vlan 60
+no shutdown
+!
