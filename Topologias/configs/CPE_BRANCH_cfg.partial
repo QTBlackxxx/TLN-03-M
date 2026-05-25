@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 06:39:07 UTC Sat Apr 25 2026 by admin
+! Last configuration change at 04:48:03 UTC Mon May 18 2026
 !
 version 17.12
 service timestamps debug datetime msec
@@ -52,41 +52,41 @@ ipv6 cef
 multilink bundle-name authenticated
 !
 !
-crypto pki trustpoint TP-self-signed-7
+crypto pki trustpoint TP-self-signed-9
  enrollment selfsigned
- subject-name cn=IOS-Self-Signed-Certificate-7
+ subject-name cn=IOS-Self-Signed-Certificate-9
  revocation-check none
- rsakeypair TP-self-signed-7
+ rsakeypair TP-self-signed-9
  hash sha256
 !
 !
-crypto pki certificate chain TP-self-signed-7
+crypto pki certificate chain TP-self-signed-9
  certificate self-signed 01
   3082031E 30820206 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
   28312630 24060355 04030C1D 494F532D 53656C66 2D536967 6E65642D 43657274 
-  69666963 6174652D 37301E17 0D323630 34323530 32313033 325A170D 33363034 
-  32343032 31303332 5A302831 26302406 03550403 0C1D494F 532D5365 6C662D53 
-  69676E65 642D4365 72746966 69636174 652D3730 82012230 0D06092A 864886F7 
-  0D010101 05000382 010F0030 82010A02 82010100 98C609CB DD3DCBB9 5A68ECF5 
-  1B9E1B55 9C5F0E11 C6626814 FD3A7460 01280487 A3E52C27 51C340B5 ED83AD8D 
-  90F2DE02 7B90D003 CDA8D71D A7181FD7 48AC3FF2 57F6346C 08F0788B 1CA9F711 
-  9F718AEE 1FF094A3 DE4E5658 040CA4D3 BA14D95E 17C7ACFD 1C898E5E E0B7FAB3 
-  3FCEEE4E 88D08D26 E9B37C0F A384BBAD DE105ACC 9BB9F5ED 38D2B8D4 A4B85D5A 
-  95D75596 36F53429 6599CF52 F3B6D173 ED634AD4 3BDCB6A0 C98410B6 9F3C1006 
-  4210BFFD 996A8295 C7402B6B 752B01FA 37D24598 EDDA9140 30D7E17B 295DD7E1 
-  4594685A 9BACBE92 61061958 3460CBF5 6ED7C91E DF775770 D60A2FA0 380B826E 
-  FE79210E A258D265 6BDCCD16 F13E74C2 F549A3EF 02030100 01A35330 51301D06 
-  03551D0E 04160414 8BA378A8 617790DD 8CEBF064 41297938 5E9F9EBE 301F0603 
-  551D2304 18301680 148BA378 A8617790 DD8CEBF0 64412979 385E9F9E BE300F06 
+  69666963 6174652D 39301E17 0D323630 35313230 34313233 385A170D 33363035 
+  31313034 31323338 5A302831 26302406 03550403 0C1D494F 532D5365 6C662D53 
+  69676E65 642D4365 72746966 69636174 652D3930 82012230 0D06092A 864886F7 
+  0D010101 05000382 010F0030 82010A02 82010100 B4A1753E DAFA13FC 57C2E594 
+  2263DB36 4885AEE3 3F576FE9 3B8A1AB0 8A713548 F1C32870 F4EB3412 449E01B4 
+  330D9708 6407F46D 97E9C78A 9A7C5A65 281D9BB9 C860D2CA 6541F2D8 04D19B7D 
+  83A22BDF 744724DD 2BD198CA 2AAC3532 3A4EF44C 514AC67E D7AA8772 0EAEDCE7 
+  06424959 CD0B881A 6287D4F7 B053633F 1FEA9D73 10CE2693 4E0B0E37 50C70894 
+  DD326A7E AE397F5A CEC06FE8 DB7B8724 3D847AAE 5E065A70 54D3B151 48D27C51 
+  5C49F183 8E16D8D3 478B510D ECE9EF76 FD8B6005 B1A29CE6 76132534 84130784 
+  8EA81704 ACC21885 4FA87BC2 51B1EED0 F3696E14 8D612D2C 768C5F5B 293BC83D 
+  C853F9D7 C626924E 19745AEF 5A050794 9FEF4E25 02030100 01A35330 51301D06 
+  03551D0E 04160414 A811B3E8 2999F060 5BBEF477 4ABBD75A DE6746E7 301F0603 
+  551D2304 18301680 14A811B3 E82999F0 605BBEF4 774ABBD7 5ADE6746 E7300F06 
   03551D13 0101FF04 05300301 01FF300D 06092A86 4886F70D 01010B05 00038201 
-  01005C97 B72451B0 60B40649 FFC46F93 E42ECBA2 45B2638D 241CE949 61C7EBC4 
-  861E96CB 2AA70D49 42DB2765 8B752CEA 92DC1EC1 F5CA801C 54EE2473 688EB12E 
-  5ACB162F FDDB70D8 F90CBCBC DD4FD54C 5C229826 3B76EF26 26FE52B2 E80BE438 
-  9338F2BF 8ED5BA2D FEAD5C46 7B47162F 5DA4F0FA 9E54D778 61B77B3B 36D196E3 
-  37FDF02B 3F9D2C47 F6946D9D 3D4639AD 7BAA8CAB 3B59F3B9 B95F7ACD 02C57D89 
-  D07D8019 EAC2C5E7 AC32758E 867961FA DE0ADE31 A0F0BA45 6295BB2D 784E3E6A 
-  BE4C507C 5AA49EDF 1777586F 3FBF3141 4BF9FF81 DA05696E 6AD22616 81E036B4 
-  53A01F30 70ED9697 D15C650F BA11D6E3 BFD0C630 CAF40B2A C9EA5314 DAB0A689 3FB8
+  01008275 EDCD0D85 2F083EB6 384DD898 D3F7B158 9121FD9A 62D2FEBE 31F634B8 
+  ADD3417C 331B254B 22D8D8D8 D770B9D8 CDF74BB6 D51E71F9 9BAF8F24 6A1C9345 
+  F12FA296 449E64D0 6EA72365 AE514D16 3C923C98 494EBF9A DC4680A4 62BB50B5 
+  AB7ADB29 F4F30EB9 98EBB67D 3C570BD4 0B02DA20 FC0C42DF BEFE56FB BFD9ED50 
+  5A2D2B2D A09D33C1 97E66B9C 57CD2A18 109A33FC 83D405C8 0F80C604 C364EE50 
+  5A5355B1 019C417C EF70B3D5 FDDF1194 46B1DD39 8443A754 94EBD1B6 EDFECA1C 
+  EB2386C1 D31A6908 A02AAC17 8745D2D1 78E289EC 9492E16F 76169890 96106E5C 
+  6680F41E 4A30C1B5 F9A96C3F 56DD9AF8 CC717775 F146CAAC 110103AB AB009FFB 24F5
   	quit
 !
 !
@@ -96,11 +96,14 @@ memory free low-watermark processor 55011
 spanning-tree mode rapid-pvst
 !
 !
-username admin privilege 15 secret 9 $9$jf3mOAneQdQzyE$s.In3s1qOIJYogVDumKrxU5GQT1aoEpVqZ5aYVQA26I
+username admin privilege 15 secret 9 $9$nqrxU6hlRks3ZU$aKNEupEXv/1aUGV2cHBzcFBHgwNdFxcUdKe7HSzNmys
 !
 !
 !
 !
+!
+track 100 ip sla 1 reachability
+ delay down 10 up 20
 !
 ! 
 !
@@ -110,6 +113,22 @@ username admin privilege 15 secret 9 $9$jf3mOAneQdQzyE$s.In3s1qOIJYogVDumKrxU5GQ
 !
 !
 !
+crypto isakmp policy 10
+ encryption aes
+ hash sha
+ authentication pre-share
+ group 14
+ lifetime 1000
+crypto isakmp key TLN03 address 200.0.0.1      
+crypto isakmp key TLN03 address 190.0.1.1      
+crypto isakmp key TLN03 address 190.0.0.1      
+crypto isakmp key TLN03 address 200.0.1.1      
+crypto isakmp key TLN03 address 200.0.2.1      
+crypto isakmp key TLN03 address 190.0.2.1      
+!
+!
+!
+crypto ipsec profile PF-TO-HQ
 !
 !
 !
@@ -119,34 +138,65 @@ username admin privilege 15 secret 9 $9$jf3mOAneQdQzyE$s.In3s1qOIJYogVDumKrxU5GQ
 !
 !
 interface Loopback0
- ip address 192.168.10.254 255.255.255.255
+ ip address 190.0.0.1 255.255.255.255
 !
-interface Ethernet0/0
- description clab-mgmt
- vrf forwarding clab-mgmt
- ip address 172.20.20.16 255.255.255.0
- ipv6 address 3FFF:172:20:20::10/64
- ipv6 address 3FFF:172:20:20::13/64
+interface Tunnel1
+ ip address 172.16.10.11 255.255.255.0
+ no ip redirects
+ ip mtu 1400
+ ip nhrp authentication DMVPN123
+ ip nhrp map 172.16.10.1 200.0.0.1
+ ip nhrp map multicast 200.0.0.1
+ ip nhrp map 172.16.10.2 190.0.1.1
+ ip nhrp map multicast 190.0.1.1
+ ip nhrp network-id 1
+ ip nhrp nhs 172.16.10.1
+ ip nhrp nhs 172.16.10.2
+ ip tcp adjust-mss 1360
+ ip ospf network broadcast
+ ip ospf dead-interval 20
+ ip ospf hello-interval 5
+ ip ospf priority 0
+ ip ospf cost 10
+ tunnel source Loopback0
+ tunnel mode gre multipoint
+ tunnel key 100
+ tunnel protection ipsec profile PF-TO-HQ
 !
 interface Ethernet0/1
- ip address 10.0.0.73 255.255.255.252
+ ip address 10.0.0.62 255.255.255.252
+ ip nat outside
 !
 interface Ethernet0/2
  no ip address
- shutdown
+!
+interface Ethernet0/2.5
+ encapsulation dot1Q 5
+ ip address 192.168.5.2 255.255.255.0
+ ip nat inside
+ vrrp 5 ip 192.168.5.1
+ vrrp 5 priority 110
+ vrrp 5 track 100 decrement 20
+!
+interface Ethernet0/2.15
+ encapsulation dot1Q 15
+ ip address 192.168.15.2 255.255.255.0
+ ip nat inside
+ vrrp 15 ip 192.168.15.1
+ vrrp 15 priority 110
+ vrrp 15 track 100 decrement 20
 !
 interface Ethernet0/3
  no ip address
  shutdown
 !
-router bgp 65002
- bgp router-id 192.168.10.254
- bgp log-neighbor-changes
- network 10.0.0.72 mask 255.255.255.252
- neighbor 10.0.0.74 remote-as 100
- neighbor 10.0.0.74 description PE-M3-MOVISTAR-PRINCIPAL
- neighbor 10.0.0.74 route-map RM-IN-MOVISTAR in
- neighbor 10.0.0.74 route-map RM-OUT-MOVISTAR out
+router ospf 10
+ router-id 2.2.2.2
+ passive-interface Ethernet0/2.5
+ passive-interface Ethernet0/2.15
+ network 172.16.10.0 0.0.0.255 area 0
+ network 192.168.5.0 0.0.0.255 area 0
+ network 192.168.15.0 0.0.0.255 area 0
 !
 ip forward-protocol nd
 !
@@ -155,17 +205,20 @@ ip ftp username dubuntu
 ip ftp password 123456
 ip http server
 ip http secure-server
+ip nat pool BRANCH-POOL 190.0.0.2 190.0.0.6 prefix-length 29
+ip nat inside source list 10 pool BRANCH-POOL overload
 ip route 0.0.0.0 0.0.0.0 10.0.0.61
 ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
 ip ssh bulk-mode 131072
 !
+ip sla 1
+ icmp-echo 8.8.8.8 source-interface Loopback0
+  frequency 5
+ip sla schedule 1 life forever start-time now
+ip access-list standard 10
+ 10 permit 192.168.5.0 0.0.0.255
+ 20 permit 192.168.15.0 0.0.0.255
 ipv6 route vrf clab-mgmt ::/0 Ethernet0/0 3FFF:172:20:20::1
-!
-route-map RM-OUT-MOVISTAR permit 10 
- set metric 10
-!
-route-map RM-IN-MOVISTAR permit 10 
- set local-preference 200
 !
 !
 !
