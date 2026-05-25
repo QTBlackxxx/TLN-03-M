@@ -1,16 +1,47 @@
+track 10 ip route 192.168.10.0 255.255.255.0 reachability
+track 20 ip route 192.168.20.0 255.255.255.0 reachability
+!
 interface Loopback0
  ip address 190.0.0.1 255.255.255.255
 !
 interface Ethernet0/1
  ip address 10.0.0.62 255.255.255.252
+ ip nat outside
 !
 interface Ethernet0/2
- no ip address
- shutdown
+ no ip address 
+ no shutdown
+!
+interface Ethernet0/2.5
+ encapsulation dot1q 5
+ ip address 192.168.5.2 255.255.255.0
+ ip nat inside
+ vrrp 5 ip 192.168.5.1
+ vrrp 5 preempt
+ vrrp 5 track 10
+ vrrp 5 track 20
+ no shutdown
+!
+interface Ethernet0/2.15
+ encapsulation dot1q 15 
+ ip address 192.168.15.2 255.255.255.0
+ ip nat inside
+ vrrp 15 ip 192.168.15.1
+ vrrp 15 preempt
+ vrrp 15 track 10
+ vrrp 15 track 20
+ no shutdown
 !
 interface Ethernet0/3
  no ip address
  shutdown
+!
+ip access-list standard 10
+ 10 permit 192.168.5.0 0.0.0.255
+ 20 permit 192.168.15.0 0.0.0.255
+!
+ip nat pool BRANCH-POOL 190.0.0.2 190.0.0.6 prefix-length 29
+ip nat inside source list 10 pool BRANCH-POOL overload
 !
 ip forward-protocol nd
 !
@@ -18,3 +49,6 @@ ip forward-protocol nd
 ip http server
 ip http secure-server
 ip route 0.0.0.0 0.0.0.0 10.0.0.61
+!
+ip ftp username dubuntu
+ip ftp password 123456

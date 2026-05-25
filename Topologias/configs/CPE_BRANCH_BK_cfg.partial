@@ -1,0 +1,44 @@
+!
+interface Loopback0
+ ip address 200.0.1.1 255.255.255.255
+!
+interface Ethernet0/1
+ ip address 10.0.0.70 255.255.255.252
+ ip nat outside
+!
+interface Ethernet0/2
+ no ip address 
+ no shutdown
+!
+interface Ethernet0/2.5
+ encapsulation dot1q 5
+ ip address 192.168.5.3 255.255.255.0
+ ip nat inside
+ vrrp 5 ip 192.168.5.1
+ vrrp 5 priority 95
+ no shutdown
+!
+interface Ethernet0/2.15
+ encapsulation dot1q 15 
+ ip address 192.168.15.3 255.255.255.0
+ ip nat inside
+ vrrp 15 ip 192.168.15.1
+ vrrp 15 priority 95
+ no shutdown
+!
+ip access-list standard 10
+ 10 permit 192.168.5.0 0.0.0.255
+ 20 permit 192.168.15.0 0.0.0.255
+!
+ip nat pool BRANCH-POOL 200.0.1.2 200.0.1.6 prefix-length 29
+ip nat inside source list 10 pool BRANCH-POOL overload
+!
+ip forward-protocol nd
+!
+!
+ip http server
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 10.0.0.69
+!
+ip ftp username dubuntu
+ip ftp password 123456
