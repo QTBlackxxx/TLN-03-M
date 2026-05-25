@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 
+=======
+vtp mode transparent
+!
+vlan 5
+vlan 15
+>>>>>>> 054cfc389c0d2e8e52f5e914c43a3494e00df9ec
 !
 ! Last configuration change at 18:46:42 UTC Sat Apr 25 2026
 !

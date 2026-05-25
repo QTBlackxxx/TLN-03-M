@@ -1,14 +1,20 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 04ac0b9cbb7932acb48da58587eaf87614a180c0
 .env
+Topologias/venv/
+Topologias/__pycache__/
+Topologias/*.pyc
 seccion-m.txt
 Estructura\ del\ Repositorio
 Topologias/Topologia-ISP.yml.annotations.json
+Topologias/clab-ISP-TDP-CLARO-IOL
+venv/
+__pycache__/
+**/__pycache__/
+**/*.pyc
+
 <<<<<<< HEAD
-Topologias/clab-ISP-TDP-CLARO-IOL
-Python
+TESTING/
+pc2/
+
 =======
-Topologias/clab-ISP-TDP-CLARO-IOL
->>>>>>> 04ac0b9cbb7932acb48da58587eaf87614a180c0
+__pycache__/
+>>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb

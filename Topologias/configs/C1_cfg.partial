@@ -48,9 +48,11 @@ interface Ethernet0/0
 !
 interface Ethernet0/1
  ip address 10.0.0.54 255.255.255.252
+ ip ospf network point-to-point
 !
 interface Ethernet0/2
  ip address 10.0.0.58 255.255.255.252
+ ip ospf network point-to-point
 !
 interface Ethernet0/3
  no ip address
@@ -71,10 +73,25 @@ interface Ethernet1/3
  no ip address
  shutdown
 !
+<<<<<<< HEAD
 router ospf 1
  router-id 172.16.2.1
  network 10.0.0.0 0.0.0.255 area 0
  network 172.16.2.0 0.0.0.255 area 0
+=======
+!router rip
+! version 2
+! network 10.0.0.0
+! network 172.16.0.0
+! no auto-summary
+!
+router ospf 1 
+ router-id 172.16.2.1
+ prefix-suppression
+ network 172.16.2.1 0.0.0.0 area 0
+ network 10.0.0.52 0.0.0.3 area 0
+ network 10.0.0.56 0.0.0.3 area 0
+>>>>>>> 054cfc389c0d2e8e52f5e914c43a3494e00df9ec
 !
 router bgp 200
  bgp router-id 172.16.2.1
@@ -94,11 +111,18 @@ router bgp 200
   redistribute static route-map to_EXTERNAL
   network 10.0.0.60 mask 255.255.255.252
   neighbor 172.16.2.2 activate
+  neighbor 172.16.2.2 next-hop-self
   neighbor 172.16.2.3 activate
+  neighbor 172.16.2.3 next-hop-self
   neighbor 172.16.2.4 activate
+  neighbor 172.16.2.4 next-hop-self
   neighbor 172.16.2.5 activate
+<<<<<<< HEAD
   neighbor 10.0.0.62 activate
   neighbor 10.0.0.62 default-originate
+=======
+  neighbor 172.16.2.5 next-hop-self
+>>>>>>> 054cfc389c0d2e8e52f5e914c43a3494e00df9ec
  exit-address-family
 !
 ip forward-protocol nd

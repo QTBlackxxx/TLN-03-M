@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 !
 ! Last configuration change at 18:45:01 UTC Sat Apr 25 2026 by admin
@@ -117,3 +118,22 @@ line vty 0 4
 !
 !
 end
+=======
+vtp mode transparent
+!
+vlan 10
+vlan 20
+!
+interface e0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allow vlan 10,20
+!
+interface e0/2
+switchport mode access
+switchport access vlan 20
+!
+interface e0/3
+switchport mode access
+switchport access vlan 20
+>>>>>>> 054cfc389c0d2e8e52f5e914c43a3494e00df9ec
