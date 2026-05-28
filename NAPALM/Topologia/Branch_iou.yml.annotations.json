@@ -1,0 +1,67 @@
+{
+  "freeTextAnnotations": [],
+  "freeShapeAnnotations": [],
+  "trafficRateAnnotations": [],
+  "groupStyleAnnotations": [],
+  "networkNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "INTERNET",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 460,
+        "y": 140
+      }
+    },
+    {
+      "id": "CISCO",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 340,
+        "y": 240
+      }
+    },
+    {
+      "id": "SW1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 460,
+        "y": 340
+      }
+    },
+    {
+      "id": "SW2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 460,
+        "y": 460
+      }
+    },
+    {
+      "id": "SW3",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 620,
+        "y": 460
+      }
+    },
+    {
+      "id": "SW4",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 800,
+        "y": 460
+      }
+    },
+    {
+      "id": "HUAWEI",
+      "position": {
+        "x": 600,
+        "y": 240
+      }
+    }
+  ],
+  "edgeAnnotations": [],
+  "aliasEndpointAnnotations": [],
+  "viewerSettings": {}
+}

@@ -1,0 +1,36 @@
+---
+CISCO:
+    username: admin
+    password: admin
+    platform: cisco_iol
+    hostname: 172.20.20.5
+INTERNET:
+    username: admin
+    password: admin
+    platform: cisco_iol
+    hostname: 172.20.20.6
+SW1:
+    username: admin
+    password: admin
+    platform: cisco_iol
+    hostname: 172.20.20.3
+SW2:
+    username: admin
+    password: admin
+    platform: cisco_iol
+    hostname: 172.20.20.4
+SW3:
+    username: admin
+    password: admin
+    platform: cisco_iol
+    hostname: 172.20.20.8
+SW4:
+    username: admin
+    password: admin
+    platform: cisco_iol
+    hostname: 172.20.20.7
+HUAWEI:
+    username: admin
+    password: admin
+    platform: huawei_vrp
+    hostname: 172.20.20.2

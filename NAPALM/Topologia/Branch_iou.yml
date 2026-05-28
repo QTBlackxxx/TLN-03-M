@@ -1,0 +1,53 @@
+name: Branch
+
+topology:
+  nodes:
+
+    INTERNET:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.1
+
+    CISCO:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.1
+
+    HUAWEI:
+      kind: huawei_vrp
+      image: vrnetlab/huawei_vrp:ne40e-V800R011C00SPC607B607
+
+    SW1:
+      kind: cisco_iol
+      type: l2
+      image: vrnetlab/cisco_iol:L2-17.12.1
+
+    SW2:
+      kind: cisco_iol
+      type: l2
+      image: vrnetlab/cisco_iol:L2-17.12.1
+
+    SW3:
+      kind: cisco_iol
+      type: l2
+      image: vrnetlab/cisco_iol:L2-17.12.1
+
+    SW4:
+      kind: cisco_iol
+      type: l2
+      image: vrnetlab/cisco_iol:L2-17.12.1
+
+  links:
+    # Router INTERNET CON CISCO Y HUAWEI
+    - endpoints: ["INTERNET:Ethernet0/1", "CISCO:Ethernet0/2"]
+    - endpoints: ["INTERNET:Ethernet0/2", "HUAWEI:eth2"]
+
+    # Router Cisco hacia el primer switch
+    - endpoints: ["CISCO:Ethernet0/1", "SW1:Ethernet0/1"]
+    # Router Huawei hacia el primer switch
+    - endpoints: ["HUAWEI:eth1", "SW1:Ethernet0/2"]
+
+    # Cascada de switches
+    - endpoints: ["SW1:Ethernet0/3", "SW2:Ethernet0/1"]
+
+    - endpoints: ["SW2:Ethernet0/2", "SW3:Ethernet0/1"]
+
+    - endpoints: ["SW3:Ethernet0/2", "SW4:Ethernet0/1"]
