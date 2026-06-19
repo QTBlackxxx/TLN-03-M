@@ -9,27 +9,27 @@ topology:
    
     PE1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
     
     PE2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
 
     P1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
 
     P2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
 
     RR1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
 
     RR2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
   
     #########################################
     #    SW DE ACCESO CONECTADO A PE1
@@ -37,7 +37,7 @@ topology:
     SW-1:
       kind: cisco_iol
       type: l2
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
 
     #########################################
     #    SW DE ACCESO CONECTADO A PE2
@@ -45,23 +45,23 @@ topology:
     SW-2:
       kind: cisco_iol
       type: l2
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
 
     #########################################
     #    Cliente A - Sede 1
     #########################################
     CPE-1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
     
     SW-LAN-1:
       kind: cisco_iol
       type: l2
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
 
     PC-LAN-1:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
         - ip add add 192.168.10.10/24 dev eth1
         - ip -6 add add 2001:192:168:10::10 dev eth1
@@ -73,16 +73,16 @@ topology:
     #########################################
     CPE-2:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
+      image: vrnetlab/cisco_iol:17.12.01
 
     SW-LAN-2:
       kind: cisco_iol
       type: l2
-      image: vrnetlab/cisco_iol:L2-17.12.1
+      image: vrnetlab/cisco_iol:l2-17.12.01
 
     PC-LAN-2:
       kind: linux
-      image: alpine:3.23
+      image: alpine:latest
       exec:
         - ip add add 192.168.20.10/24 dev eth1
         - ip -6 add add 2001:192:168:20::10 dev eth1

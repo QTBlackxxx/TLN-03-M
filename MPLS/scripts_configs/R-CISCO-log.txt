@@ -1,0 +1,97 @@
+
+
+
+RR2#
+RR2#terminal length 0
+RR2#terminal width 511
+RR2#
+RR2#config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+RR2(config)#
+RR2(config)#interface lo0
+RR2(config-if)#ip address 172.16.1.6 255.255.255.255
+RR2(config-if)#mpls ip
+% MPLS not supported on interface Loopback0
+RR2(config-if)#interface e0/1
+RR2(config-if)#description Conexion con RR1
+RR2(config-if)#ip address 10.0.0.14 255.255.255.252
+RR2(config-if)#ip ospf network point-to-point
+RR2(config-if)#mpls ip
+RR2(config-if)#no shutdown
+RR2(config-if)#interface e0/2
+RR2(config-if)#description Conexion con P1
+RR2(config-if)#ip address 10.0.0.26 255.255.255.252
+RR2(config-if)#ip ospf network point-to-point
+RR2(config-if)#mpls ip
+RR2(config-if)#no shutdown
+RR2(config-if)#interface e0/3
+RR2(config-if)#description Conexion con PE2
+RR2(config-if)#ip address 10.0.0.37 255.255.255.252
+RR2(config-if)#ip ospf network point-to-point
+RR2(config-if)#mpls ip
+RR2(config-if)#no shutdown
+RR2(config-if)#
+RR2(config-if)#end
+RR2#
+RR2#
+RR2#config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+RR2(config)#
+RR2(config)#router ospf 10
+RR2(config-router)#network 172.16.1.6 0.0.0.0 area 0
+RR2(config-router)#network 10.0.0.12 0.0.0.3 area 0
+RR2(config-router)#network 10.0.0.24 0.0.0.3 area 0
+RR2(config-router)#network 10.0.0.36 0.0.0.3 area 0
+RR2(config-router)#
+RR2(config-router)#end
+RR2#
+RR2#
+RR2#config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+RR2(config)#
+RR2(config)#router bgp 100
+RR2(config-router)#bgp router-id interface lo0
+RR2(config-router)#no bgp default ipv4-unicast
+RR2(config-router)#neighbor 172.16.1.5 remote-as 100
+RR2(config-router)#neighbor 172.16.1.5 update-source lo0
+RR2(config-router)#neighbor 172.16.1.1 remote-as 100
+RR2(config-router)#neighbor 172.16.1.1 update-source lo0
+RR2(config-router)#neighbor 172.16.1.2 remote-as 100
+RR2(config-router)#neighbor 172.16.1.2 update-source lo0
+RR2(config-router)#neighbor 172.16.1.3 remote-as 100
+RR2(config-router)#neighbor 172.16.1.3 update-source lo0
+RR2(config-router)#neighbor 172.16.1.4 remote-as 100
+RR2(config-router)#neighbor 172.16.1.4 update-source lo0
+RR2(config-router)#address-family ipv4 unicast
+RR2(config-router-af)#neighbor 172.16.1.5 activate
+RR2(config-router-af)#neighbor 172.16.1.1 activate
+RR2(config-router-af)#neighbor 172.16.1.1 route-reflector-client
+RR2(config-router-af)#neighbor 172.16.1.2 activate
+RR2(config-router-af)#neighbor 172.16.1.2 route-reflector-client
+RR2(config-router-af)#neighbor 172.16.1.3 activate
+RR2(config-router-af)#neighbor 172.16.1.3 route-reflector-client
+RR2(config-router-af)#neighbor 172.16.1.4 activate
+RR2(config-router-af)#neighbor 172.16.1.4 route-reflector-client
+RR2(config-router-af)#address-family vpnv4
+RR2(config-router-af)#neighbor 172.16.1.5 activate
+RR2(config-router-af)#neighbor 172.16.1.5 send-community both
+RR2(config-router-af)#neighbor 172.16.1.1 activate
+RR2(config-router-af)#neighbor 172.16.1.1 route-reflector-client
+RR2(config-router-af)#neighbor 172.16.1.1 send-community both
+RR2(config-router-af)#neighbor 172.16.1.2 activate
+RR2(config-router-af)#neighbor 172.16.1.2 route-reflector-client
+RR2(config-router-af)#neighbor 172.16.1.2 send-community both
+RR2(config-router-af)#address-family vpnv6
+RR2(config-router-af)#neighbor 172.16.1.5 activate
+RR2(config-router-af)#neighbor 172.16.1.5 send-community extended
+RR2(config-router-af)#neighbor 172.16.1.1 activate
+RR2(config-router-af)#neighbor 172.16.1.1 route-reflector-client
+RR2(config-router-af)#neighbor 172.16.1.1 send-community extended
+RR2(config-router-af)#neighbor 172.16.1.2 activate
+RR2(config-router-af)#neighbor 172.16.1.2 route-reflector-client
+RR2(config-router-af)#neighbor 172.16.1.2 send-community extended
+RR2(config-router-af)#
+RR2(config-router-af)#end
+RR2#
+RR2#
+RR2#exit

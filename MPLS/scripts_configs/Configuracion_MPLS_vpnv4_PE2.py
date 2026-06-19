@@ -35,11 +35,11 @@ for router in routers:
         'session_log': 'R-CISCO-log.txt',
     }
     print("#"*60)
-    print(f"Conectanddo con Router {router["hostname"]}")
+    print(f"Conectanddo con Router {router['hostname']}")
     print("#"*60)
     conexion = ConnectHandler(**device)
     print("#"*60)
-    print(f"Configurando {router["hostname"]}")
+    print(f"Configurando {router['hostname']}")
     print("#"*60)
     
     # Configuración de PE2 hacia CPE_2
@@ -69,11 +69,11 @@ for switch in switches:
         'session_log': 'R-SWITCH-log.txt',
     }
     print("#"*60)
-    print(f"Conectanddo con Switch {switch["hostname"]}")
+    print(f"Conectanddo con Switch {switch['hostname']}")
     print("#"*60)
     conexion = ConnectHandler(**device)
     print("#"*60)
-    print(f"Configurando {switch["hostname"]}")
+    print(f"Configurando {switch['hostname']}")
     print("#"*60)
     
     modulo = SW_2.config_interfaces

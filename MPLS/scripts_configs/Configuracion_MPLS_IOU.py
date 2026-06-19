@@ -46,11 +46,11 @@ for router in routers:
         'session_log': 'R-CISCO-log.txt',
     }
     print("#"*60)
-    print(f"Conectanddo con Router {router["hostname"]}")
+    print(f"Conectanddo con Router {router['hostname']}")
     print("#"*60)
     conexion = ConnectHandler(**device)
     print("#"*60)
-    print(f"Configurando {router["hostname"]}")
+    print(f"Configurando {router['hostname']}")
     print("#"*60)
     #print(conexion.send_command('show run int e0/0'))
     nombre_router = router["hostname"].split("-")[-1]
