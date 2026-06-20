@@ -8,5 +8,5 @@ Topologias/Topologia-ISP.yml.annotations.json
 Topologias/clab-ISP-TDP-CLARO-IOL
 venv/
 __pycache__/
-**/__pycache__/
-**/*.pyc
+
+__pycache__/
