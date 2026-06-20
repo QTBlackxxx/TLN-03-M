@@ -1,0 +1,107 @@
+# --- CONFIGURACIÓN DE INTERFACES
+interfaces:
+  - name: Loopback0
+    enabled: true
+    ipv4:
+      - address: 172.16.1.5
+        netmask: 255.255.255.255
+    mpls_enabled: true
+    ospf_network_type: ""
+
+  - name: Ethernet0/1
+    description: "Conexion con PE1"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.2
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+  - name: Ethernet0/2
+    description: "Conexion con P1"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.17
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+  - name: Ethernet0/3
+    description: "Conexion con RR2"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.13
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+# --- CONFIGURACIÓN DE IGP (OSPF) ---
+ospf:
+  process_id: 10
+  networks:
+    - address: 172.16.1.5
+      wildcard: 0.0.0.0
+      area: 0
+    - address: 10.0.0.0
+      wildcard: 0.0.0.3
+      area: 0
+    - address: 10.0.0.12
+      wildcard: 0.0.0.3
+      area: 0
+    - address: 10.0.0.16
+      wildcard: 0.0.0.3
+      area: 0
+
+# --- CONFIGURACIÓN DE BGP CON MÚLTIPLES ADDRESS FAMILIES ---
+bgp:
+  as_number: 100
+  router_id_interface: Loopback0
+  default_ipv4_unicast: false
+  neighbors:
+    # Peering de respaldo entre Reflectores de Rutas (RR)
+    - ip: 172.16.1.6
+      remote_as: 100
+      update_source: Loopback0
+      address_families:
+        - name: ipv4
+          activate: true
+        - name: vpnv4
+          activate: true
+          send_community: both
+        - name: vpnv6
+          activate: true
+          send_community: both
+
+    # Cliente PE1
+    - ip: 172.16.1.1
+      remote_as: 100
+      update_source: Loopback0
+      address_families:
+        - name: ipv4
+          activate: true
+          route_reflector_client: true
+        - name: vpnv4
+          activate: true
+          route_reflector_client: true
+          send_community: both
+        - name: vpnv6
+          activate: true
+          route_reflector_client: true
+          send_community: both
+
+    # Cliente PE2
+    - ip: 172.16.1.2
+      remote_as: 100
+      update_source: Loopback0
+      address_families:
+        - name: ipv4
+          activate: true
+          route_reflector_client: true
+        - name: vpnv4
+          activate: true
+          route_reflector_client: true
+          send_community: both
+        - name: vpnv6
+          activate: true
+          route_reflector_client: true
+          send_community: both

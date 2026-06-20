@@ -1,0 +1,33 @@
+- name: Playbook - Protocolo de Enrutamiento IGP (OSPF)
+  hosts: mpls_core
+  gather_facts: false
+  tasks:
+    # --- PASO 1: PROCESO GLOBAL Y DECLARACIÓN DE REDES ---
+    - name: Configurar Proceso OSPF Global y Declaracion de Redes
+      cisco.ios.ios_ospfv2:
+        config:
+          processes:
+            - process_id: "{{ ospf.process_id | int }}"
+              network:
+                - address: "{{ item.address }}"
+                  wildcard_bits: "{{ item.wildcard }}"
+                  area: "{{ item.area | string }}"
+        state: merged
+      loop: "{{ ospf.networks | default([]) }}"
+      when: ospf is defined
+
+    # --- PASO 2: OPTIMIZACIÓN DE ENLACES EN INTERFACES
+    - name: Habilitar tipo de red Point-to-Point en Interfaces
+      cisco.ios.ios_ospf_interfaces:
+        config:
+          - name: "{{ item.name }}"
+            address_family:
+              - afi: ipv4
+                network:
+                  point_to_point: true
+        state: merged
+      loop: "{{ interfaces | default([]) }}"
+      when:
+        - interfaces is defined
+        - item.ospf_network_type is defined
+        - item.ospf_network_type == 'point-to-point'

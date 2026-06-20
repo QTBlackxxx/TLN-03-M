@@ -1,0 +1,23 @@
+- name: Playbook - Configuracion de Switches de Acceso
+  hosts: switches
+  gather_facts: false
+  tasks:
+    - name: Declarar y Nombrar VLANs en la Base de Datos
+      cisco.ios.ios_vlans:
+        config:
+          - vlan_id: "{{ item.vlan_id }}"
+            name: "{{ item.name }}"
+        state: merged
+      loop: "{{ vlans }}"
+      when: vlans is defined
+
+    - name: Configurar Puertos de Capa 2 (Access / Trunk)
+      cisco.ios.ios_l2_interfaces:
+        config:
+          - name: "{{ item.name }}"
+            mode: "{{ item.mode }}"
+            access: "{{ {'vlan': item.access.vlan} if item.mode == 'access' else omit }}"
+            trunk: "{{ {'encapsulation': item.trunk.encapsulation, 'allowed_vlans': item.trunk.allowed_vlans} if item.mode == 'trunk' else omit }}"
+        state: merged
+      loop: "{{ interfaces }}"
+      when: interfaces is defined and item.mode is defined

@@ -1,0 +1,56 @@
+- name: Seleccion de parametros de Ping
+  hosts: localhost
+  gather_facts: false
+  vars_prompt:
+    - name: source_cpe
+      prompt: "Router CPE origen (host o grupo)"
+      private: false
+    - name: target_ipv4
+      prompt: "IP destino IPv4"
+      private: false
+    - name: target_ipv6
+      prompt: "IP destino IPv6"
+      private: false
+  tasks:
+    - name: Set dynamic group and pass vars
+      add_host:
+        name: "{{ item }}"
+        groups: target_group
+        ip_v4_dest: "{{ target_ipv4 }}"
+        ip_v6_dest: "{{ target_ipv6 }}"
+      loop: "{{ groups[source_cpe] | default([source_cpe]) }}"
+
+- name: Verificacion Ping IPv4 e IPv6
+  hosts: target_group
+  gather_facts: false
+  tasks:
+    - name: Execute Ping IPv4
+      cisco.ios.ios_command:
+        commands: "ping {{ ip_v4_dest }} source Ethernet0/2"
+      register: ping_v4
+
+    - name: Debug Ping IPv4
+      debug:
+        var: ping_v4.stdout_lines[0]
+
+    - name: Assert Ping IPv4
+      assert:
+        that: "'!' in ping_v4.stdout[0]"
+        success_msg: "Ping IPv4 OK"
+        fail_msg: "Ping IPv4 FAIL"
+
+    - name: Execute Ping IPv6
+      cisco.ios.ios_command:
+        commands: "ping ipv6 {{ ip_v6_dest }} source Ethernet0/2"
+      register: ping_v6
+
+    - name: Debug Ping IPv6
+      debug:
+        var: ping_v6.stdout_lines[0]
+
+    - name: Assert Ping IPv6
+      assert:
+        that: "'!' in ping_v6.stdout[0]"
+        success_msg: "Ping IPv6 OK"
+        fail_msg: "Ping IPv6 FAIL"
+

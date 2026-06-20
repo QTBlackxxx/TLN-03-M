@@ -1,0 +1,50 @@
+- name: Playbook - Protocolo de Enrutamiento BGP Base (Moderne e Idempotente)
+  hosts: mpls_core
+  gather_facts: false
+  tasks:
+    - name: Inicializar Parametros Globales de BGP
+      cisco.ios.ios_config:
+        parents:
+          - "router bgp {{ bgp.as_number }}"
+        lines:
+          - "bgp router-id interface {{ bgp.router_id_interface }}"
+          - "no bgp default ipv4-unicast"
+      when: bgp is defined
+
+    - name: Configurar Proceso BGP Global y Vecinos iBGP
+      cisco.ios.ios_bgp_global:
+        config:
+          as_number: "{{ bgp.as_number | int }}"
+          neighbors:
+            - neighbor_address: "{{ item.ip }}"
+              remote_as: "{{ item.remote_as | int }}"
+              update_source: "{{ item.update_source }}"
+        state: merged
+      loop: "{{ bgp.neighbors | default([]) }}"
+      when:
+        - bgp is defined
+        - bgp.neighbors is defined
+
+    - name: Configurar Address-Family IPv4 Unicast y Clientes RR
+      cisco.ios.ios_bgp_address_family:
+        config:
+          as_number: "{{ bgp.as_number | int }}"
+          address_family:
+            - afi: ipv4
+              safi: unicast
+              neighbors:
+                - neighbor_address: "{{ item.ip }}"
+                  activate: true
+                  route_reflector_client: >-
+                    {%- set ns = namespace(is_client=false) -%}
+                    {%- for af in item.address_families | default([]) -%}
+                      {%- if af.name == 'ipv4' and af.route_reflector_client | default(false) -%}
+                        {%- set ns.is_client = true -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                    {{ ns.is_client | bool }}
+        state: merged
+      loop: "{{ bgp.neighbors | default([]) }}"
+      when:
+        - bgp is defined
+        - bgp.neighbors is defined

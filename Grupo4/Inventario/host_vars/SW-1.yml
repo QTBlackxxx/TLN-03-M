@@ -1,0 +1,22 @@
+# --- CONFIGURACIÓN DE VLANS ---
+vlans:
+  - vlan_id: 10
+    name: "Cliente_A"
+
+# --- CONFIGURACIÓN DE INTERFACES (CAPA 2) ---
+interfaces:
+  - name: Ethernet0/1
+    description: "Conexion con PE1"
+    enabled: true
+    mode: trunk
+    trunk:
+      encapsulation: dot1q
+      allowed_vlans:
+        - 10
+
+  - name: Ethernet0/2
+    description: "Conexion con Cliente A"
+    enabled: true
+    mode: access
+    access:
+      vlan: 10

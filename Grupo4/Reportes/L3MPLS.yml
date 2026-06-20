@@ -1,0 +1,65 @@
+- name: Seleccion de inventario
+  hosts: localhost
+  gather_facts: false
+  vars_prompt:
+    - name: target
+      prompt: "Target host/group"
+      private: false
+  tasks:
+    - name: Set dynamic group
+      add_host:
+        name: "{{ item }}"
+        groups: target_group
+      loop: "{{ groups[target] | default([target]) }}"
+
+- name: Verificacion OSPF, LDP, BGP VPNv4
+  hosts: target_group
+  gather_facts: false
+  tasks:
+    - name: Get OSPF
+      cisco.ios.ios_command:
+        commands: "show ip ospf neighbor"
+      register: ospf
+
+    - name: Debug OSPF
+      debug:
+        var: ospf.stdout_lines[0]
+
+    - name: Assert OSPF
+      assert:
+        that: "'FULL' in ospf.stdout[0]"
+        success_msg: "OSPF OK"
+        fail_msg: "OSPF FAIL"
+
+    - name: Get LDP
+      cisco.ios.ios_command:
+        commands: "show mpls ldp neighbor"
+      register: ldp
+
+    - name: Debug LDP
+      debug:
+        var: ldp.stdout_lines[0]
+
+    - name: Assert LDP
+      assert:
+        that: "'Peer LDP Ident' in ldp.stdout[0]"
+        success_msg: "LDP OK"
+        fail_msg: "LDP FAIL"
+
+    - name: Get BGP VPNv4
+      cisco.ios.ios_command:
+        commands: "show bgp vpnv4 unicast all summary"
+      register: bgp
+
+    - name: Debug BGP
+      debug:
+        var: bgp.stdout_lines[0]
+
+    - name: Assert BGP
+      assert:
+        that:
+          - "'Idle' not in bgp.stdout[0]"
+          - "'Active' not in bgp.stdout[0]"
+          - "'No BGP neighbor' not in bgp.stdout[0]"
+        success_msg: "BGP VPNv4 OK"
+        fail_msg: "BGP VPNv4 FAIL"

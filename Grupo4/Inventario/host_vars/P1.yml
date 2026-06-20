@@ -1,0 +1,91 @@
+interfaces:
+  - name: Loopback0
+    enabled: true
+    ipv4:
+      - address: 172.16.1.4
+        netmask: 255.255.255.255
+    mpls_enabled: true
+    ospf_network_type: ""
+
+  - name: Ethernet0/1
+    description: "Conexion con PE1"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.6
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+  - name: Ethernet0/2
+    description: "Conexion con RR1"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.18
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+  - name: Ethernet0/3
+    description: "Conexion con P2"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.21
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+  - name: Ethernet1/0
+    description: "Conexion con RR2"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.25
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+  - name: Ethernet1/1
+    description: "Conexion con PE2"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.29
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+# --- CONFIGURACIÓN DE IGP (OSPF) ---
+ospf:
+  process_id: 10
+  networks:
+    - address: 172.16.1.4
+      wildcard: 0.0.0.0
+      area: 0
+    - address: 10.0.0.4
+      wildcard: 0.0.0.3
+      area: 0
+    - address: 10.0.0.16
+      wildcard: 0.0.0.3
+      area: 0
+    - address: 10.0.0.20
+      wildcard: 0.0.0.3
+      area: 0
+    - address: 10.0.0.24
+      wildcard: 0.0.0.3
+      area: 0
+    - address: 10.0.0.28
+      wildcard: 0.0.0.3
+      area: 0
+
+# --- CONFIGURACIÓN DE BGP ---
+bgp:
+  as_number: 100
+  router_id_interface: Loopback0
+  default_ipv4_unicast: false
+  neighbors:
+    - ip: 172.16.1.5
+      remote_as: 100
+      update_source: Loopback0
+      activate_ipv4_unicast: true
+    - ip: 172.16.1.6
+      remote_as: 100
+      update_source: Loopback0
+      activate_ipv4_unicast: true

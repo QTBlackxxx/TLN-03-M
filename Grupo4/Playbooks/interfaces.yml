@@ -1,0 +1,50 @@
+- name: Playbook - Configuracion de VRFs e Interfacess
+  hosts: mpls_core
+  gather_facts: false
+
+  tasks:
+    - name: Pre-configurar contenedores VRF globales con sus familias de direcciones
+      cisco.ios.ios_config:
+        lines:
+          - "vrf definition {{ item.name }}"
+          - " rd {{ item.rd }}"
+          - " route-target both {{ item.route_targets[0].rt }}"
+          - " address-family ipv4"
+          - "  exit-address-family"
+          - " address-family ipv6"
+          - "  exit-address-family"
+      loop: "{{ vrfs | default([]) }}"
+      when: vrfs is defined
+      tags: vrf_init
+
+    - name: Desplegar interfaces
+      cisco.ios.ios_config:
+        parents: "interface {{ item.name }}"
+        lines: "{{ query_lines.splitlines() | map('trim') | select('match', '.+') | list }}"
+      vars:
+        query_lines: |
+          {% if item.description is defined %}
+            description {{ item.description }}
+          {% endif %}
+          {% if item.encapsulation is defined and item.encapsulation.vlan is defined %}
+            encapsulation dot1Q {{ item.encapsulation.vlan }}
+          {% endif %}
+          {% if item.vrf is defined %}
+            vrf forwarding {{ item.vrf }}
+          {% endif %}
+          {% if item.ipv4 is defined %}
+            ip address {{ item.ipv4[0].address }} {{ item.ipv4[0].netmask }}
+          {% endif %}
+          {% if item.ipv6 is defined %}
+            ipv6 address {{ item.ipv6[0].address }}
+          {% endif %}
+          {% if item.enabled | default(true) %}
+            no shutdown
+          {% else %}
+            shutdown
+          {% endif %}
+      loop: "{{ interfaces }}"
+      when: interfaces is defined
+      loop_control:
+        label: "Configurando {{ item.name }} en {{ inventory_hostname }}"
+      tags: interfaces_deploy
