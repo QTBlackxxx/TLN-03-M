@@ -8,7 +8,8 @@ Topologias/Topologia-ISP.yml.annotations.json
 Topologias/clab-ISP-TDP-CLARO-IOL
 venv/
 __pycache__/
-**/__pycache__/
-**/*.pyc
-TESTING/
-pc2/
+
+__pycache__/
+mpls-1/
+Grupo02_PC3/mpls-1/
+Grupo02_PC3/clab-MPLS/
