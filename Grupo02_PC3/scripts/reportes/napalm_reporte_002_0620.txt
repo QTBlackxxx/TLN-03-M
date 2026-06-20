@@ -1,0 +1,134 @@
+================================================================
+REPORTE DE VALIDACION NAPALM - RED MPLS L3VPN
+Generado: 2026-06-20 23:33:38
+================================================================
+
+Router: PE1
+Hostname: clab-MPLS-PE1
+Rol: pe
+Interfaces activas: 7/10
+Vecinos BGP: 2
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 300.0s
+Direccionamiento IP: 6 IPv4 / 4 IPv6 en 6 interfaces
+  Loopback: 172.16.1.1
+Ruta hacia vrf A -> 192.168.20.0: NO ENCONTRADA
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 1%/0%; one minute: 1%; five minutes: 0%
+
+Router: PE2
+Hostname: clab-MPLS-PE2
+Rol: pe
+Interfaces activas: 7/10
+Vecinos BGP: 2
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Direccionamiento IP: 6 IPv4 / 4 IPv6 en 6 interfaces
+  Loopback: 172.16.1.2
+Ruta hacia vrf A -> 192.168.10.0: NO ENCONTRADA
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 2%/0%; one minute: 1%; five minutes: 0%
+
+Router: P1
+Hostname: clab-MPLS-P1
+Rol: p
+Interfaces activas: 7/9
+Vecinos BGP: 2
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Direccionamiento IP: 7 IPv4 / 2 IPv6 en 7 interfaces
+  Loopback: 172.16.1.4
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 2%/0%; one minute: 1%; five minutes: 0%
+
+Router: P2
+Hostname: clab-MPLS-P2
+Rol: p
+Interfaces activas: 5/5
+Vecinos BGP: 2
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Direccionamiento IP: 5 IPv4 / 2 IPv6 en 5 interfaces
+  Loopback: 172.16.1.3
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 1%/0%; one minute: 0%; five minutes: 0%
+
+Router: RR1
+Hostname: clab-MPLS-RR1
+Rol: rr
+Interfaces activas: 5/5
+Vecinos BGP: 5
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Direccionamiento IP: 5 IPv4 / 2 IPv6 en 5 interfaces
+  Loopback: 172.16.1.5
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 1%/0%; one minute: 0%; five minutes: 0%
+
+Router: RR2
+Hostname: clab-MPLS-RR2
+Rol: rr
+Interfaces activas: 5/5
+Vecinos BGP: 5
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Direccionamiento IP: 5 IPv4 / 2 IPv6 en 5 interfaces
+  Loopback: 172.16.1.6
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 0%/0%; one minute: 1%; five minutes: 0%
+
+Router: SW-1
+Hostname: clab-MPLS-SW-1
+Rol: switch
+Interfaces activas: 4/4
+Vecinos BGP: N/A (no corre BGP)
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX_L2-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 0%/0%; one minute: 0%; five minutes: 0%
+
+Router: SW-2
+Hostname: clab-MPLS-SW-2
+Rol: switch
+Interfaces activas: 4/4
+Vecinos BGP: N/A (no corre BGP)
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX_L2-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 0%/0%; one minute: 1%; five minutes: 0%
+
+Router: CPE-1
+Hostname: clab-MPLS-CPE-1
+Rol: cpe
+Interfaces activas: 3/4
+Vecinos BGP: N/A (no corre BGP)
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Direccionamiento IP: 3 IPv4 / 6 IPv6 en 3 interfaces
+Ruta hacia 192.168.20.0: ENCONTRADA
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 0%/0%; one minute: 0%; five minutes: 0%
+
+Router: CPE-2
+Hostname: clab-MPLS-CPE-2
+Rol: cpe
+Interfaces activas: 3/4
+Vecinos BGP: N/A (no corre BGP)
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Direccionamiento IP: 3 IPv4 / 6 IPv6 en 3 interfaces
+Ruta hacia 192.168.10.0: ENCONTRADA
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 0%/0%; one minute: 0%; five minutes: 0%
+
+Router: SW-LAN-1
+Hostname: clab-MPLS-SW-LAN-1
+Rol: switch
+Interfaces activas: 4/4
+Vecinos BGP: N/A (no corre BGP)
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX_L2-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 0%/0%; one minute: 1%; five minutes: 0%
+
+Router: SW-LAN-2
+Hostname: clab-MPLS-SW-LAN-2
+Rol: switch
+Interfaces activas: 4/4
+Vecinos BGP: N/A (no corre BGP)
+Modelo: Unknown | OS: Linux Software (X86_64BI_LINUX_L2-ADVENTERPRISEK9-M), Version 17.12.1, RELEASE SOFTWARE (fc5) | Uptime: 360.0s
+Estado: OK
+  i Entorno: CPU utilization for five seconds: 0%/0%; one minute: 0%; five minutes: 0%
+
+================================================================
+Resumen: 12 dispositivos | OK: 12 | WARN: 0 | FAIL: 0
+================================================================

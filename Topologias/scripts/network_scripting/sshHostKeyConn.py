@@ -4,7 +4,7 @@ import json
 from getpass import getpass
 from colorama import Fore, Style, init
 from configs.comandos import COMANDOS
-from configs.comandos_validacion import COMANDOS_SUP
+from configs.comandos_validacion_enrutamiento import COMANDOS_SUP
 
 class device(object):
     def __init__(self, hostname, username, password):
