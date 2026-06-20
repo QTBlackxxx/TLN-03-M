@@ -1,0 +1,55 @@
+- name: Playbook - Configuracion de VPN Multiprotocolo (VRF, Rutas y BGP VPN)
+  hosts: mpls_core
+  gather_facts: false
+  tasks:
+    - name: Inyectar Enrutamiento Estatico dentro de las Tablas VRF
+      cisco.ios.ios_config:
+        lines: "{{ query_routes.splitlines() | map('trim') | select('match', '.+') | list }}"
+      vars:
+        query_routes: |
+          {% for af in item.address_families | default([]) %}
+            {% for route in af.routes | default([]) %}
+              {% if af.family == 'ipv4' %}
+                ip route vrf {{ item.vrf }} {{ route.dest }} {{ route.mask }} {{ route.next_hop }}
+              {% elif af.family == 'ipv6' %}
+                ipv6 route vrf {{ item.vrf }} {{ route.dest }} {{ route.next_hop }}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+      loop: "{{ vrf_static_routes | default([]) }}"
+      when: vrf_static_routes is defined
+
+    - name: Configurar Redistribucion Estatica de Clientes en BGP VRF IPv4
+      cisco.ios.ios_config:
+        parents:
+          - "router bgp {{ bgp.as_number }}"
+          - "address-family ipv4 vrf {{ item.name }}"
+        lines:
+          - "redistribute static"
+      loop: "{{ vrfs | default([]) }}"
+      when: vrfs is defined
+
+    - name: Configurar Redistribucion Estatica de Clientes en BGP VRF IPv6
+      cisco.ios.ios_config:
+        parents:
+          - "router bgp {{ bgp.as_number }}"
+          - "address-family ipv6 vrf {{ item.name }}"
+        lines:
+          - "redistribute static"
+      loop: "{{ vrfs | default([]) }}"
+      when: vrfs is defined
+
+    - name: Levantar Address-Family Multiprotocolo (VPNv4 / VPNv6)
+      cisco.ios.ios_config:
+        parents:
+          - "router bgp {{ bgp.as_number }}"
+          - "address-family {{ item.1.name }}"
+        lines:
+          - "neighbor {{ item.0.ip }} activate"
+          - "{{ 'neighbor ' + item.0.ip + ' send-community ' + item.1.send_community if item.1.send_community is defined else omit }}"
+          - "{{ 'neighbor ' + item.0.ip + ' route-reflector-client' if item.1.route_reflector_client is defined and item.1.route_reflector_client == true else omit }}"
+      loop: "{{ bgp.neighbors | default([]) | subelements('address_families', skip_missing=true) }}"
+      when:
+        - bgp is defined
+        - bgp.neighbors is defined
+        - item.1.name in ['vpnv4', 'vpnv6']

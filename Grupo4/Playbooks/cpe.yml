@@ -1,0 +1,45 @@
+- name: Playbook - Automatizacion Completa para Dispositivos CPE
+  hosts: cpe
+  gather_facts: false
+  tasks:
+    - name: Configurar descripcion y estado de las interfaces (WAN y LAN)
+      cisco.ios.ios_interfaces:
+        config:
+          - name: "{{ item.name }}"
+            description: "{{ item.description | default(omit) }}"
+            enabled: "{{ item.enabled | default(true) }}"
+        state: merged
+      loop: "{{ interfaces | default([]) }}"
+      when: interfaces is defined
+
+    - name: Asignar Direccionamiento IPv4
+      cisco.ios.ios_config:
+        parents:
+          - "interface {{ item.name }}"
+        lines:
+          - "ip address {{ item.ipv4[0].address }} {{ item.ipv4[0].netmask }}"
+      loop: "{{ interfaces | default([]) }}"
+      when: interfaces is defined and item.ipv4 is defined and (item.ipv4 | length > 0)
+
+    - name: Asignar Direccionamiento IPv6
+      cisco.ios.ios_config:
+        parents:
+          - "interface {{ item.name }}"
+        lines:
+          - "ipv6 address {{ item.ipv6[0].address | lower }}"
+      loop: "{{ interfaces | default([]) }}"
+      when: interfaces is defined and item.ipv6 is defined and (item.ipv6 | length > 0)
+
+    - name: Configurar Enrutamiento Estatico (Rutas por defecto)
+      cisco.ios.ios_config:
+        lines: "{{ cpe_routes.splitlines() | map('trim') | select('match', '.+') | list }}"
+      vars:
+        cpe_routes: |
+          {% for route in static_routes | default([]) %}
+            {% if '.' in route.dest %}
+              ip route {{ route.dest }} {{ route.mask }} {{ route.next_hop }}
+            {% elif ':' in route.dest %}
+              ipv6 route {{ route.dest }} {{ route.next_hop }}
+            {% endif %}
+          {% endfor %}
+      when: static_routes is defined

@@ -1,0 +1,25 @@
+interfaces:
+  - name: Ethernet0/1
+    description: "Conexion con PE2"
+    enabled: true
+    ipv4:
+      - address: 10.0.2.2
+        netmask: 255.255.255.252
+    ipv6:
+      - address: "FC20::2/64"
+
+  - name: Ethernet0/2
+    description: "Conexion con LAN"
+    enabled: true
+    ipv4:
+      - address: 192.168.20.1
+        netmask: 255.255.255.0
+    ipv6:
+      - address: "2001:192:168:20::1/64"
+
+static_routes:
+  - dest: 192.168.10.0
+    mask: 255.255.255.0
+    next_hop: 10.0.2.1
+  - dest: "2001:192:168:10::/64"
+    next_hop: "FC20::1"

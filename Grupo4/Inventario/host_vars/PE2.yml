@@ -1,0 +1,128 @@
+# --- CONFIGURACIÓN GLOBAL DE MPLS ---
+global_mpls:
+  lsr_id: 172.16.1.2
+  ldp_enabled: true
+
+# --- CONFIGURACIÓN DE VRFS
+vrfs:
+  - name: A
+    rd: "10:10"
+    route_targets:
+      - rt: "10:10"
+        type: both
+    address_families:
+      - ipv4
+      - ipv6
+
+# --- CONFIGURACIÓN DE INTERFACES ---
+interfaces:
+  - name: Loopback0
+    enabled: true
+    ipv4:
+      - address: 172.16.1.2
+        netmask: 255.255.255.255
+    mpls_enabled: true
+    ospf_network_type: ""
+
+  - name: Ethernet0/1
+    description: "Conexion con P1"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.30
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+  - name: Ethernet0/2
+    description: "Conexion con P2"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.34
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+  - name: Ethernet0/3
+    description: "Conexion con RR2"
+    enabled: true
+    ipv4:
+      - address: 10.0.0.38
+        netmask: 255.255.255.252
+    mpls_enabled: true
+    ospf_network_type: point-to-point
+
+  # --- Interfaces de acceso hacia Clientes ---
+  - name: Ethernet1/0
+    description: "Conexion con SW Acceso 2"
+    enabled: true
+
+  - name: Ethernet1/0.10
+    description: "Conexion con Cliente A"
+    enabled: true
+    vrf: A
+    encapsulation:
+      vlan: 10
+    ipv4:
+      - address: 10.0.2.1
+        netmask: 255.255.255.252
+    ipv6:
+      - address: "FC20::1/64"
+
+# --- CONFIGURACIÓN DE IGP (OSPF) ---
+ospf:
+  process_id: 10
+  networks:
+    - address: 172.16.1.2
+      wildcard: 0.0.0.0
+      area: 0
+    - address: 10.0.0.28
+      wildcard: 0.0.0.3
+      area: 0
+    - address: 10.0.0.32
+      wildcard: 0.0.0.3
+      area: 0
+    - address: 10.0.0.36
+      wildcard: 0.0.0.3
+      area: 0
+
+# --- CONFIGURACIÓN DE RUTAS ESTÁTICAS DENTRO DE VRF ---
+vrf_static_routes:
+  - vrf: A
+    address_families:
+      - family: ipv4
+        routes:
+          - dest: 192.168.20.0
+            mask: 255.255.255.0
+            next_hop: 10.0.2.2
+      - family: ipv6
+        routes:
+          - dest: "2001:192:168:20::/64"
+            next_hop: "FC20::2"
+
+# --- CONFIGURACIÓN DE BGP EXPANSIBLE (Malla del Core) ---
+bgp:
+  as_number: 100
+  router_id_interface: Loopback0
+  default_ipv4_unicast: false
+  neighbors:
+    - ip: 172.16.1.5
+      remote_as: 100
+      update_source: Loopback0
+      address_families:
+        - name: ipv4
+          activate: true
+        - name: vpnv4
+          send_community: both
+        - name: vpnv6
+          send_community: both
+
+    - ip: 172.16.1.6
+      remote_as: 100
+      update_source: Loopback0
+      address_families:
+        - name: ipv4
+          activate: true
+        - name: vpnv4
+          send_community: both
+        - name: vpnv6
+          send_community: both
