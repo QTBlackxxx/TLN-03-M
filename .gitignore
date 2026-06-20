@@ -10,11 +10,5 @@ venv/
 __pycache__/
 **/__pycache__/
 **/*.pyc
-
-<<<<<<< HEAD
 TESTING/
 pc2/
-
-=======
-__pycache__/
->>>>>>> 84a9af3562a43cfd432900bfd7aa943153fa30bb
