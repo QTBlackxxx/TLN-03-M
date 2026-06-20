@@ -4,7 +4,7 @@ Automatización y validación de una red **MPLS L3VPN** (IPv4/IPv6) desplegada s
 
 ## Topología de red
 
-![Topologia](docs/Topologia%pc3.png)
+![Topologia](docs/Topologia%20pc3.png)
 
 La red está compuesta por los siguientes roles, todos desplegados como contenedores `clab-MPLS-*` mediante containerlab:
 
@@ -55,52 +55,6 @@ grupo3/
   pip install ansible
   ansible-galaxy collection install cisco.ios
   ```
-
-## Inventario Ansible
-
-El inventario (`inventory.ini`) organiza los dispositivos por rol funcional, con subgrupos reutilizables para los playbooks:
-
-```ini
-[MPLS_routers]
-clab-MPLS-PE1
-clab-MPLS-PE2
-clab-MPLS-P1
-clab-MPLS-P2
-clab-MPLS-RR1
-clab-MPLS-RR2
-
-[CPEs]
-clab-MPLS-CPE-1
-clab-MPLS-CPE-2
-
-[Switches]
-clab-MPLS-SW-1
-clab-MPLS-SW-2
-
-[PE_routers]
-clab-MPLS-PE1
-clab-MPLS-PE2
-
-[P_routers]
-clab-MPLS-P1
-clab-MPLS-P2
-
-[RR_routers]
-clab-MPLS-RR1
-clab-MPLS-RR2
-
-[MPLS_core:children]
-PE_routers
-P_routers
-RR_routers
-
-[all:vars]
-ansible_user=admin
-ansible_password=admin
-ansible_network_os=cisco.ios.ios
-ansible_connection=ansible.netcommon.network_cli
-ansible_paramiko_look_for_keys=False
-```
 
 El grupo `MPLS_core` agrupa PE, P y RR para poder apuntar playbooks de core (MPLS, OSPF) a todos ellos en un solo `hosts:`.
 
