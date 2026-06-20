@@ -3,32 +3,32 @@ CPE-1:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.11
+    hostname: 172.20.20.10
 CPE-2:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.3
+    hostname: 172.20.20.15
 P1:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.7
+    hostname: 172.20.20.8
 P2:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.14
+    hostname: 172.20.20.3
 PE1:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.8
+    hostname: 172.20.20.9
 PE2:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.12
+    hostname: 172.20.20.5
 RR1:
     username: admin
     password: admin
@@ -38,27 +38,27 @@ RR2:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.5
+    hostname: 172.20.20.12
 SW-1:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.9
+    hostname: 172.20.20.6
 SW-2:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.6
+    hostname: 172.20.20.7
 SW-LAN-1:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.10
+    hostname: 172.20.20.11
 SW-LAN-2:
     username: admin
     password: admin
     platform: cisco_iol
-    hostname: 172.20.20.2
+    hostname: 172.20.20.14
 PC-LAN-1:
     username: 
     password: 
@@ -68,4 +68,4 @@ PC-LAN-2:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.15
+    hostname: 172.20.20.2
