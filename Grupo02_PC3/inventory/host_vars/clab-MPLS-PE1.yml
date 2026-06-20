@@ -1,0 +1,26 @@
+---
+# host_vars/clab-MPLS-PE1.yml
+# Variables específicas de PE1 para el playbook vpn.yml
+# Fuente: from_PE1_to_CPEs.py — config_int_cpes y config_routing
+
+# Descripción de la interfaz e1/0 hacia el switch de acceso
+desc_sw: "SW Acceso 1"
+
+# IP de enlace punto a punto hacia CPE-1 (subinterfaz e1/0.10)
+# Red: 10.0.1.0/30
+ip_cpe: "10.0.1.1"
+
+# IPv6 de enlace hacia CPE-1
+ipv6_cpe: "FC10::1/64"
+
+# Ruta estática IPv4 hacia la LAN del Cliente A - Sede 1
+# Se redistribuye en BGP address-family ipv4 vrf A
+static_route_v4_network: "192.168.10.0"
+static_route_v4_mask: "255.255.255.0"
+static_route_v4_nexthop: "10.0.1.2"
+
+# Ruta estática IPv6 hacia la LAN del Cliente A - Sede 1
+# Se redistribuye en BGP address-family ipv6 vrf A
+static_route_v6_prefix: "2001:192:168:10::/64"
+static_route_v6_interface: "Ethernet1/0.10"
+static_route_v6_nexthop: "FC10::2"

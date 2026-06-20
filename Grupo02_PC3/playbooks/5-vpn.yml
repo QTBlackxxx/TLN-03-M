@@ -1,0 +1,103 @@
+---
+###############################################################
+# vpn.yml
+# Configura L3VPN (VRFv4/v6 + Subinterfaces + BGP) en PE1/PE2
+# Grupo: MPLS_PE1_PE2
+###############################################################
+
+- name: "Configurar L3VPN - VRF, Interfaces y BGP en PE1 y PE2"
+  hosts: MPLS_PE1_PE2
+  gather_facts: false
+
+  tasks:
+
+    # ==========================================================
+    # PARTE 1 — Definir VRF Cliente A
+    # Fuente: config_vrf en from_PE1_to_CPEs.py / from_PE2_to_CPEs.py
+    # ==========================================================
+
+    - name: "1. Crear VRF A con RD 10:10 y RT 10:10 (IPv4 + IPv6)"
+      cisco.ios.ios_config:
+        lines:
+          - rd 10:10
+          - route-target both 10:10
+          - address-family ipv4
+          - exit-address-family
+          - address-family ipv6
+          - exit-address-family
+        parents:
+          - vrf definition A
+
+    # ==========================================================
+    # PARTE 2 — Configurar interfaces hacia los CPEs
+    # Fuente: config_int_cpes en from_PE1_to_CPEs.py / from_PE2_to_CPEs.py
+    # Variables por host definidas en host_vars/
+    #   PE1: ip_cpe=10.0.1.1  ipv6_cpe=FC10::1/64  desc_sw="SW Acceso 1"
+    #   PE2: ip_cpe=10.0.2.1  ipv6_cpe=FC20::1/64  desc_sw="SW Acceso 2"
+    # ==========================================================
+
+    - name: "2a. Configurar e1/0 como trunk (sin IP) hacia SW de Acceso"
+      cisco.ios.ios_config:
+        lines:
+          - "description Conexion con {{ desc_sw }}"
+          - no ip address
+          - no shutdown
+        parents:
+          - interface e1/0
+
+    - name: "2b. Crear subinterfaz e1/0.10 — dot1q VLAN 10 — VRF A — IPs de enlace hacia CPE"
+      cisco.ios.ios_config:
+        lines:
+          - "description Conexion con Cliente A"
+          - vrf forwarding A
+          - encapsulation dot1q 10
+          - "ip address {{ ip_cpe }} 255.255.255.252"
+          - "ipv6 address {{ ipv6_cpe }}"
+          - no shutdown
+        parents:
+          - interface e1/0.10
+
+    # ==========================================================
+    # PARTE 3 — BGP: activar vecinos RR y redistribuir estáticas
+    # Fuente: config_routing en from_PE1_to_CPEs.py / from_PE2_to_CPEs.py
+    # RR1 loopback: 172.16.1.5
+    # RR2 loopback: 172.16.1.6
+    # ==========================================================
+
+    - name: "3a. BGP — address-family vpnv4 — activar RR1 y RR2 con send-community both"
+      cisco.ios.ios_config:
+        lines:
+          - neighbor 172.16.1.5 activate
+          - neighbor 172.16.1.5 send-community both
+          - neighbor 172.16.1.6 activate
+          - neighbor 172.16.1.6 send-community both
+        parents:
+          - router bgp 100
+          - address-family vpnv4
+
+    - name: "3b. BGP — address-family vpnv6 — activar RR1 y RR2 con send-community extended"
+      cisco.ios.ios_config:
+        lines:
+          - neighbor 172.16.1.5 activate
+          - neighbor 172.16.1.5 send-community extended
+          - neighbor 172.16.1.6 activate
+          - neighbor 172.16.1.6 send-community extended
+        parents:
+          - router bgp 100
+          - address-family vpnv6
+
+    - name: "3c. BGP — address-family ipv4 vrf A — redistribuir rutas estáticas"
+      cisco.ios.ios_config:
+        lines:
+          - redistribute static
+        parents:
+          - router bgp 100
+          - address-family ipv4 vrf A
+
+    - name: "3d. BGP — address-family ipv6 vrf A — redistribuir rutas estáticas"
+      cisco.ios.ios_config:
+        lines:
+          - redistribute static
+        parents:
+          - router bgp 100
+          - address-family ipv6 vrf A
