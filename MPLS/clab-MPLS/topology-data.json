@@ -6,7 +6,7 @@
       "prefix": "clab",
       "mgmt": {
         "network": "clab",
-        "bridge": "br-ff92d7ec9e11",
+        "bridge": "br-59486e58f41d",
         "ipv4-subnet": "172.20.20.0/24",
         "ipv4-gw": "172.20.20.1",
         "ipv6-subnet": "3fff:172:20:20::/64",
@@ -15,7 +15,7 @@
       }
     }
   },
-  "ssh-pub-keys": [],
+  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODQD3stsxgqgfZ3ImPxzR+NSsEPsOuWbzxPFtQza0Xl"],
   "nodes": {
     "CPE-1": {
       "index": "0",
@@ -23,26 +23,26 @@
       "longname": "clab-MPLS-CPE-1",
       "fqdn": "CPE-1.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/CPE-1",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/CPE-1",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.10",
+      "mgmt-ipv4-address": "172.20.20.7",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::a",
+      "mgmt-ipv6-address": "3fff:172:20:20::7",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/CPE-1",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/CPE-1",
         "clab-node-longname": "clab-MPLS-CPE-1",
         "clab-node-name": "CPE-1",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -54,26 +54,26 @@
       "longname": "clab-MPLS-CPE-2",
       "fqdn": "CPE-2.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/CPE-2",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/CPE-2",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.15",
+      "mgmt-ipv4-address": "172.20.20.4",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::f",
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/CPE-2",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/CPE-2",
         "clab-node-longname": "clab-MPLS-CPE-2",
         "clab-node-name": "CPE-2",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -85,26 +85,26 @@
       "longname": "clab-MPLS-P1",
       "fqdn": "P1.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/P1",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/P1",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.8",
+      "mgmt-ipv4-address": "172.20.20.14",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::8",
+      "mgmt-ipv6-address": "3fff:172:20:20::e",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/P1",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/P1",
         "clab-node-longname": "clab-MPLS-P1",
         "clab-node-name": "P1",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -116,26 +116,26 @@
       "longname": "clab-MPLS-P2",
       "fqdn": "P2.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/P2",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/P2",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-address": "172.20.20.13",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-address": "3fff:172:20:20::d",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/P2",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/P2",
         "clab-node-longname": "clab-MPLS-P2",
         "clab-node-name": "P2",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -147,26 +147,26 @@
       "longname": "clab-MPLS-PC-LAN-1",
       "fqdn": "PC-LAN-1.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/PC-LAN-1",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/PC-LAN-1",
       "kind": "linux",
       "image": "alpine:3.23",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-address": "172.20.20.15",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-address": "3fff:172:20:20::f",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "linux",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/PC-LAN-1",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/PC-LAN-1",
         "clab-node-longname": "clab-MPLS-PC-LAN-1",
         "clab-node-name": "PC-LAN-1",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -178,26 +178,26 @@
       "longname": "clab-MPLS-PC-LAN-2",
       "fqdn": "PC-LAN-2.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/PC-LAN-2",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/PC-LAN-2",
       "kind": "linux",
       "image": "alpine:3.23",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-address": "172.20.20.6",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-address": "3fff:172:20:20::6",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "linux",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/PC-LAN-2",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/PC-LAN-2",
         "clab-node-longname": "clab-MPLS-PC-LAN-2",
         "clab-node-name": "PC-LAN-2",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -209,26 +209,26 @@
       "longname": "clab-MPLS-PE1",
       "fqdn": "PE1.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/PE1",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/PE1",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.9",
+      "mgmt-ipv4-address": "172.20.20.11",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::9",
+      "mgmt-ipv6-address": "3fff:172:20:20::b",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/PE1",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/PE1",
         "clab-node-longname": "clab-MPLS-PE1",
         "clab-node-name": "PE1",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -240,26 +240,26 @@
       "longname": "clab-MPLS-PE2",
       "fqdn": "PE2.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/PE2",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/PE2",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.5",
+      "mgmt-ipv4-address": "172.20.20.8",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::5",
+      "mgmt-ipv6-address": "3fff:172:20:20::8",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/PE2",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/PE2",
         "clab-node-longname": "clab-MPLS-PE2",
         "clab-node-name": "PE2",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -271,26 +271,26 @@
       "longname": "clab-MPLS-RR1",
       "fqdn": "RR1.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/RR1",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/RR1",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.13",
+      "mgmt-ipv4-address": "172.20.20.5",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::d",
+      "mgmt-ipv6-address": "3fff:172:20:20::5",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/RR1",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/RR1",
         "clab-node-longname": "clab-MPLS-RR1",
         "clab-node-name": "RR1",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -302,26 +302,26 @@
       "longname": "clab-MPLS-RR2",
       "fqdn": "RR2.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/RR2",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/RR2",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.12",
+      "mgmt-ipv4-address": "172.20.20.2",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::c",
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/RR2",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/RR2",
         "clab-node-longname": "clab-MPLS-RR2",
         "clab-node-name": "RR2",
         "clab-node-type": "",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -333,26 +333,26 @@
       "longname": "clab-MPLS-SW-1",
       "fqdn": "SW-1.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/SW-1",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/SW-1",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:L2-17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.6",
+      "mgmt-ipv4-address": "172.20.20.9",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::6",
+      "mgmt-ipv6-address": "3fff:172:20:20::9",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/SW-1",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/SW-1",
         "clab-node-longname": "clab-MPLS-SW-1",
         "clab-node-name": "SW-1",
         "clab-node-type": "l2",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -364,26 +364,26 @@
       "longname": "clab-MPLS-SW-2",
       "fqdn": "SW-2.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/SW-2",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/SW-2",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:L2-17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.7",
+      "mgmt-ipv4-address": "172.20.20.10",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::7",
+      "mgmt-ipv6-address": "3fff:172:20:20::a",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/SW-2",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/SW-2",
         "clab-node-longname": "clab-MPLS-SW-2",
         "clab-node-name": "SW-2",
         "clab-node-type": "l2",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -395,26 +395,26 @@
       "longname": "clab-MPLS-SW-LAN-1",
       "fqdn": "SW-LAN-1.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/SW-LAN-1",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/SW-LAN-1",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:L2-17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.11",
+      "mgmt-ipv4-address": "172.20.20.3",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::b",
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/SW-LAN-1",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/SW-LAN-1",
         "clab-node-longname": "clab-MPLS-SW-LAN-1",
         "clab-node-name": "SW-LAN-1",
         "clab-node-type": "l2",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -426,26 +426,26 @@
       "longname": "clab-MPLS-SW-LAN-2",
       "fqdn": "SW-LAN-2.MPLS.io",
       "group": "",
-      "labdir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/SW-LAN-2",
+      "labdir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/SW-LAN-2",
       "kind": "cisco_iol",
       "image": "vrnetlab/cisco_iol:L2-17.12.1",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.14",
+      "mgmt-ipv4-address": "172.20.20.12",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::e",
+      "mgmt-ipv6-address": "3fff:172:20:20::c",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-ff92d7ec9e11",
+        "clab-mgmt-net-bridge": "br-59486e58f41d",
         "clab-node-group": "",
         "clab-node-kind": "cisco_iol",
-        "clab-node-lab-dir": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/clab-MPLS/SW-LAN-2",
+        "clab-node-lab-dir": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/clab-MPLS/SW-LAN-2",
         "clab-node-longname": "clab-MPLS-SW-LAN-2",
         "clab-node-name": "SW-LAN-2",
         "clab-node-type": "l2",
-        "clab-owner": "containerlab",
-        "clab-topo-file": "/home/containerlab/Documentos/Automatizacion/Practicas/TLN-03-M/MPLS/MPLS-IOU.yml",
+        "clab-owner": "marcelo",
+        "clab-topo-file": "/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/MPLS-IOU.yml",
         "containerlab": "MPLS"
       },
       "port-bindings": [
@@ -458,13 +458,13 @@
         "a": {
           "node": "PE1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:8f:84:f0",
+          "mac": "aa:c1:ab:86:91:0c",
           "peer": "z"
         },
         "z": {
           "node": "RR1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:1c:cc:6d",
+          "mac": "aa:c1:ab:04:9c:df",
           "peer": "a"
         }
       }
@@ -474,13 +474,13 @@
         "a": {
           "node": "PE1",
           "interface": "eth2",
-          "mac": "aa:c1:ab:be:30:d3",
+          "mac": "aa:c1:ab:38:12:08",
           "peer": "z"
         },
         "z": {
           "node": "P1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:7b:b6:35",
+          "mac": "aa:c1:ab:3c:c0:7a",
           "peer": "a"
         }
       }
@@ -490,13 +490,13 @@
         "a": {
           "node": "PE1",
           "interface": "eth3",
-          "mac": "aa:c1:ab:c3:23:e7",
+          "mac": "aa:c1:ab:dd:df:49",
           "peer": "z"
         },
         "z": {
           "node": "P2",
           "interface": "eth1",
-          "mac": "aa:c1:ab:ff:cd:f0",
+          "mac": "aa:c1:ab:5b:9d:b6",
           "peer": "a"
         }
       }
@@ -506,13 +506,13 @@
         "a": {
           "node": "RR1",
           "interface": "eth2",
-          "mac": "aa:c1:ab:47:b3:ea",
+          "mac": "aa:c1:ab:5e:65:c0",
           "peer": "z"
         },
         "z": {
           "node": "P1",
           "interface": "eth2",
-          "mac": "aa:c1:ab:ce:aa:aa",
+          "mac": "aa:c1:ab:47:9b:54",
           "peer": "a"
         }
       }
@@ -522,13 +522,13 @@
         "a": {
           "node": "RR1",
           "interface": "eth3",
-          "mac": "aa:c1:ab:39:85:c8",
+          "mac": "aa:c1:ab:81:24:de",
           "peer": "z"
         },
         "z": {
           "node": "RR2",
           "interface": "eth1",
-          "mac": "aa:c1:ab:d2:57:01",
+          "mac": "aa:c1:ab:91:c2:a4",
           "peer": "a"
         }
       }
@@ -538,13 +538,13 @@
         "a": {
           "node": "P1",
           "interface": "eth3",
-          "mac": "aa:c1:ab:ac:64:98",
+          "mac": "aa:c1:ab:32:77:89",
           "peer": "z"
         },
         "z": {
           "node": "P2",
           "interface": "eth2",
-          "mac": "aa:c1:ab:40:34:7e",
+          "mac": "aa:c1:ab:40:6e:f1",
           "peer": "a"
         }
       }
@@ -554,13 +554,13 @@
         "a": {
           "node": "P1",
           "interface": "eth4",
-          "mac": "aa:c1:ab:2b:c9:56",
+          "mac": "aa:c1:ab:df:02:ba",
           "peer": "z"
         },
         "z": {
           "node": "RR2",
           "interface": "eth2",
-          "mac": "aa:c1:ab:a0:18:48",
+          "mac": "aa:c1:ab:4b:0b:7f",
           "peer": "a"
         }
       }
@@ -570,13 +570,13 @@
         "a": {
           "node": "P1",
           "interface": "eth5",
-          "mac": "aa:c1:ab:ae:be:86",
+          "mac": "aa:c1:ab:c7:81:14",
           "peer": "z"
         },
         "z": {
           "node": "PE2",
           "interface": "eth1",
-          "mac": "aa:c1:ab:64:51:4c",
+          "mac": "aa:c1:ab:2a:12:a4",
           "peer": "a"
         }
       }
@@ -586,13 +586,13 @@
         "a": {
           "node": "P2",
           "interface": "eth3",
-          "mac": "aa:c1:ab:c0:37:c6",
+          "mac": "aa:c1:ab:56:7b:7c",
           "peer": "z"
         },
         "z": {
           "node": "PE2",
           "interface": "eth2",
-          "mac": "aa:c1:ab:05:4f:0e",
+          "mac": "aa:c1:ab:eb:8f:ee",
           "peer": "a"
         }
       }
@@ -602,13 +602,13 @@
         "a": {
           "node": "RR2",
           "interface": "eth3",
-          "mac": "aa:c1:ab:1b:87:7c",
+          "mac": "aa:c1:ab:a3:a7:89",
           "peer": "z"
         },
         "z": {
           "node": "PE2",
           "interface": "eth3",
-          "mac": "aa:c1:ab:22:90:c0",
+          "mac": "aa:c1:ab:08:2e:12",
           "peer": "a"
         }
       }
@@ -618,13 +618,13 @@
         "a": {
           "node": "PE1",
           "interface": "eth4",
-          "mac": "aa:c1:ab:5b:fa:f7",
+          "mac": "aa:c1:ab:33:59:79",
           "peer": "z"
         },
         "z": {
           "node": "SW-1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:53:22:d9",
+          "mac": "aa:c1:ab:df:a0:ac",
           "peer": "a"
         }
       }
@@ -634,13 +634,13 @@
         "a": {
           "node": "PE2",
           "interface": "eth4",
-          "mac": "aa:c1:ab:b1:e6:9b",
+          "mac": "aa:c1:ab:06:2e:fe",
           "peer": "z"
         },
         "z": {
           "node": "SW-2",
           "interface": "eth1",
-          "mac": "aa:c1:ab:68:dd:68",
+          "mac": "aa:c1:ab:ba:cb:1c",
           "peer": "a"
         }
       }
@@ -650,13 +650,13 @@
         "a": {
           "node": "SW-1",
           "interface": "eth2",
-          "mac": "aa:c1:ab:3e:a4:b0",
+          "mac": "aa:c1:ab:6f:23:2f",
           "peer": "z"
         },
         "z": {
           "node": "CPE-1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:f8:17:50",
+          "mac": "aa:c1:ab:06:41:67",
           "peer": "a"
         }
       }
@@ -666,13 +666,13 @@
         "a": {
           "node": "SW-2",
           "interface": "eth2",
-          "mac": "aa:c1:ab:ec:43:53",
+          "mac": "aa:c1:ab:90:2c:cc",
           "peer": "z"
         },
         "z": {
           "node": "CPE-2",
           "interface": "eth1",
-          "mac": "aa:c1:ab:d6:b3:bd",
+          "mac": "aa:c1:ab:be:e1:54",
           "peer": "a"
         }
       }
@@ -682,13 +682,13 @@
         "a": {
           "node": "CPE-1",
           "interface": "eth2",
-          "mac": "aa:c1:ab:4d:de:b0",
+          "mac": "aa:c1:ab:78:69:32",
           "peer": "z"
         },
         "z": {
           "node": "SW-LAN-1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:2f:1c:1c",
+          "mac": "aa:c1:ab:08:75:c4",
           "peer": "a"
         }
       }
@@ -698,13 +698,13 @@
         "a": {
           "node": "SW-LAN-1",
           "interface": "eth2",
-          "mac": "aa:c1:ab:22:1a:87",
+          "mac": "aa:c1:ab:f7:09:06",
           "peer": "z"
         },
         "z": {
           "node": "PC-LAN-1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:fe:4c:bd",
+          "mac": "aa:c1:ab:6f:dd:87",
           "peer": "a"
         }
       }
@@ -714,13 +714,13 @@
         "a": {
           "node": "CPE-2",
           "interface": "eth2",
-          "mac": "aa:c1:ab:12:b9:a7",
+          "mac": "aa:c1:ab:bf:bc:8c",
           "peer": "z"
         },
         "z": {
           "node": "SW-LAN-2",
           "interface": "eth1",
-          "mac": "aa:c1:ab:27:f4:6e",
+          "mac": "aa:c1:ab:04:f6:b6",
           "peer": "a"
         }
       }
@@ -730,13 +730,13 @@
         "a": {
           "node": "SW-LAN-2",
           "interface": "eth2",
-          "mac": "aa:c1:ab:66:0a:5f",
+          "mac": "aa:c1:ab:59:b0:95",
           "peer": "z"
         },
         "z": {
           "node": "PC-LAN-2",
           "interface": "eth1",
-          "mac": "aa:c1:ab:58:d1:cb",
+          "mac": "aa:c1:ab:13:9d:b8",
           "peer": "a"
         }
       }
