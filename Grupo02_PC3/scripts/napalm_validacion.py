@@ -50,7 +50,7 @@ VRF_REMOTA_PE = {
     "PE2": ("A", "192.168.10.0"),
 }
 
-NOMBRES_INVENTARIO_CANDIDATOS = ["inventory.ini"]
+NOMBRES_INVENTARIO_CANDIDATOS = ["inventory_update", "inventory.ini"]
 
 # Inventario
 def cargar_inventario(path: Path, grupo: str = "MPLS_update") -> list[str]:
@@ -82,8 +82,15 @@ def localizar_inventario(nombres_archivo: list[str] = NOMBRES_INVENTARIO_CANDIDA
     candidato = inicio
     for _ in range(max_niveles_arriba + 1):
         for root, _dirs, files in os.walk(candidato):
-            # Evita perderse en carpetas pesadas o irrelevantes
-            _dirs[:] = [d for d in _dirs if d not in (".git", "__pycache__", "node_modules")]
+            if "pyvenv.cfg" in files:
+                # 'root' es la raiz de un entorno virtual (venv/virtualenv).
+                # No bajar ahi: site-packages puede tener miles de archivos
+                # de paquetes instalados con nombres que coincidan por azar
+                # (ej. inventory.ini de ejemplo de alguna coleccion Ansible).
+                _dirs[:] = []
+            else:
+                # Evita perderse en otras carpetas pesadas o irrelevantes
+                _dirs[:] = [d for d in _dirs if d not in (".git", "__pycache__", "node_modules")]
             for nombre in nombres_archivo:
                 if nombre in files:
                     return Path(root) / nombre
@@ -311,7 +318,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--inventario", type=Path, default=None,
-        help="Ruta al inventory.ini. Si se omite, el script intenta "
+        help="Ruta al inventory_update. Si se omite, el script intenta "
              "ubicarlo automaticamente cerca de si mismo.",
     )
     parser.add_argument(

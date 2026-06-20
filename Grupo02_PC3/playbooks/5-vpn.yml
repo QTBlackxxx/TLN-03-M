@@ -56,7 +56,16 @@
           - no shutdown
         parents:
           - interface e1/0.10
+          
+    - name: "2c. Ruta estatica IPv4 en VRF A hacia la LAN del cliente"
+      cisco.ios.ios_config:
+        lines:
+          - "ip route vrf A {{ static_route_v4_network }} {{ static_route_v4_mask }} {{ static_route_v4_nexthop }}"
 
+    - name: "2d. Ruta estatica IPv6 en VRF A hacia la LAN del cliente"
+      cisco.ios.ios_config:
+        lines:
+          - "ipv6 route vrf A {{ static_route_v6_prefix }} {{ static_route_v6_interface }} {{ static_route_v6_nexthop }}"
     # ==========================================================
     # PARTE 3 — BGP: activar vecinos RR y redistribuir estáticas
     # Fuente: config_routing en from_PE1_to_CPEs.py / from_PE2_to_CPEs.py
