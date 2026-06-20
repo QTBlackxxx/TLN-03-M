@@ -1,4 +1,4 @@
-#!/home/dubuntu/Documents/TLN03-M-PRIVADO/MPLS/mpls-1/bin/python3
+#!/home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/mpls-1/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

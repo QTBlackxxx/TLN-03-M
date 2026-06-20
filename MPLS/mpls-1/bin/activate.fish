@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/dubuntu/Documents/TLN03-M-PRIVADO/MPLS/mpls-1
+set -gx VIRTUAL_ENV /home/marcelo/NetworkAutomation/PC1/Laboratorio/TLN-03-M/MPLS/mpls-1
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
