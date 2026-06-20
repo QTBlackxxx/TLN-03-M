@@ -33,3 +33,6 @@ config_routing:
           - dest: 2001:192:168:20::/64
             next_hops:
               - forward_router_address: FC10::1
+
+remote_lan_v4: 192.168.20.10
+remote_lan_v6: "2001:192:168:20::10"

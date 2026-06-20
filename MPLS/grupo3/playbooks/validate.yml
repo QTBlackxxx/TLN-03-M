@@ -1,0 +1,92 @@
+- name: Validar vecindades OSPF (deben estar FULL)
+  hosts: MPLS_core
+  gather_facts: false
+  tasks:
+    - name: Obtener vecinos OSPF
+      cisco.ios.ios_command:
+        commands:
+          - "show ip ospf neighbor"
+      register: ospf_out
+
+    - name: Mostrar salida cruda (debug)
+      debug:
+        var: ospf_out.stdout_lines[0]
+
+    - name: Verificar que no haya vecinos atascados (no FULL)
+      assert:
+        that:
+          - "'EXSTART' not in ospf_out.stdout[0]"
+          - "'EXCHANGE' not in ospf_out.stdout[0]"
+          - "'2WAY' not in ospf_out.stdout[0]"
+          - "'INIT' not in ospf_out.stdout[0]"
+          - "'DOWN' not in ospf_out.stdout[0]"
+        fail_msg: "Hay vecinos OSPF que NO llegaron a FULL en {{ inventory_hostname }}"
+        success_msg: "Todos los vecinos OSPF en {{ inventory_hostname }} estan FULL (o no hay vecinos configurados)"
+
+# --- 2. BGP: sesiones establecidas ---
+- name: Validar sesiones BGP (deben estar Established)
+  hosts: MPLS_core
+  gather_facts: false
+  tasks:
+    - name: Obtener resumen de todas las address-family de BGP
+      cisco.ios.ios_command:
+        commands:
+          - "show bgp all summary"
+      register: bgp_out
+
+    - name: Mostrar salida cruda (debug)
+      debug:
+        var: bgp_out.stdout_lines[0]
+
+    - name: Verificar que ninguna sesion este en Idle/Active/Connect (no establecida)
+      assert:
+        that:
+          - "'Idle' not in bgp_out.stdout[0]"
+          - "'Active' not in bgp_out.stdout[0]"
+          - "'Connect' not in bgp_out.stdout[0]"
+        fail_msg: "Hay sesiones BGP NO establecidas en {{ inventory_hostname }}"
+        success_msg: "Todas las sesiones BGP en {{ inventory_hostname }} estan Established"
+
+# --- 3. IPv4 VPN: conectividad extremo a extremo entre sitios de cliente ---
+- name: Validar conectividad IPv4 VPN entre sitios (CPE <-> CPE)
+  hosts: CPEs
+  gather_facts: false
+  tasks:
+    - name: Ping IPv4 hacia la LAN remota
+      cisco.ios.ios_command:
+        commands:
+          - "ping {{ remote_lan_v4 }} repeat 5"
+      register: ping_v4_out
+
+    - name: Mostrar resultado del ping IPv4 (debug)
+      debug:
+        var: ping_v4_out.stdout_lines[0]
+
+    - name: Verificar 100% de exito en el ping IPv4
+      assert:
+        that:
+          - "'Success rate is 100 percent' in ping_v4_out.stdout[0]"
+        fail_msg: "Conectividad IPv4 VPN FALLO desde {{ inventory_hostname }} hacia {{ remote_lan_v4 }}"
+        success_msg: "Conectividad IPv4 VPN OK desde {{ inventory_hostname }} hacia {{ remote_lan_v4 }}"
+
+# --- 4. IPv6 VPN: conectividad extremo a extremo entre sitios de cliente ---
+- name: Validar conectividad IPv6 VPN entre sitios (CPE <-> CPE)
+  hosts: CPEs
+  gather_facts: false
+  tasks:
+    - name: Ping IPv6 hacia la LAN remota
+      cisco.ios.ios_command:
+        commands:
+          - "ping ipv6 {{ remote_lan_v6 }} repeat 5"
+      register: ping_v6_out
+
+    - name: Mostrar resultado del ping IPv6 (debug)
+      debug:
+        var: ping_v6_out.stdout_lines[0]
+
+    - name: Verificar 100% de exito en el ping IPv6
+      assert:
+        that:
+          - "'Success rate is 100 percent' in ping_v6_out.stdout[0]"
+        fail_msg: "Conectividad IPv6 VPN FALLO desde {{ inventory_hostname }} hacia {{ remote_lan_v6 }}"
+        success_msg: "Conectividad IPv6 VPN OK desde {{ inventory_hostname }} hacia {{ remote_lan_v6 }}"
