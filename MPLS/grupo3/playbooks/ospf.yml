@@ -1,0 +1,18 @@
+---
+- name: Configurar IGP (OSPF) en routers MPLS
+  hosts: MPLS_core
+  gather_facts: false
+  tasks:
+    - name: Aplicar configuracion de OSPF
+      cisco.ios.ios_ospfv2:
+        config: "{{ config_ospf_data }}"       
+        state: merged
+
+- name: Configurar routing estatico en CPE1 y CPE2
+  hosts: CPEs
+  gather_facts: false
+  tasks:
+    - name: Aplicar rutas estaticas
+      cisco.ios.ios_static_routes:
+        config: "{{ config_routing }}"       
+        state: merged

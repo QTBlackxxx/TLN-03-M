@@ -1,0 +1,35 @@
+config_interfaces:
+  - name: e0/1
+    ipv4:
+      - address: 10.0.1.2/30
+    ipv6:
+      - address: FC10::2/64
+
+  - name: e0/2
+    ipv4:
+      - address: 192.168.10.1/24
+    ipv6:
+      - address: 2001:192:168:10::1/64
+
+config_descripcion:
+  - name: e0/1
+    description: Conexion con PE1
+    enabled: true
+
+  - name: e0/2
+    description: Conexion con LAN
+    enabled: true    
+
+config_routing:
+  - address_families:
+      - afi: ipv4
+        routes:
+          - dest: 192.168.20.0/24
+            next_hops:
+              - forward_router_address: 10.0.1.1
+
+      - afi: ipv6
+        routes:
+          - dest: 2001:192:168:20::/64
+            next_hops:
+              - forward_router_address: FC10::1

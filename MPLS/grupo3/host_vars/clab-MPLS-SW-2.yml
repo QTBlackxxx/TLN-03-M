@@ -1,0 +1,24 @@
+config_vlans:
+  - name: Cliente_A
+    vlan_id: 10
+
+config_interfaces:
+  - name: e0/1
+    mode: trunk
+    trunk:
+      allowed_vlans: 10
+      encapsulation: dot1q
+
+  - name: e0/2
+    mode: access
+    access:
+      vlan: 10
+
+config_descripcion:
+  - name: e0/1
+    description: Conexion con PE2
+    enabled: true
+
+  - name: e0/2
+    description: Conexion con Cliente A
+    enabled: true

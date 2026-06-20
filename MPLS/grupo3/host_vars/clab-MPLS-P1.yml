@@ -1,0 +1,99 @@
+config_interfaces:
+  - name: loopback0
+    ipv4:
+      - address: 172.16.1.4/32
+  - name: e0/1
+    ipv4:
+      - address: 10.0.0.6/30
+  - name: e0/2
+    ipv4:
+      - address: 10.0.0.18/30
+  - name: e0/3
+    ipv4:
+      - address: 10.0.0.21/30
+  - name: e1/0
+    ipv4:
+      - address: 10.0.0.25/30
+  - name: e1/1
+    ipv4:
+      - address: 10.0.0.29/30           
+
+config_descripcion:
+  - name: e0/1
+    description: Conexion con PE1    
+    enabled: true      
+  - name: e0/2
+    description: Conexion con RR1
+    enabled: true    
+  - name: e0/3
+    description: Conexion con P2 
+    enabled: true    
+  - name: e1/0
+    description: Conexion con RR2
+    enabled: true    
+  - name: e1/1
+    description: Conexion con PE2 
+    enabled: true
+           
+config_mpls_ospf:
+  - name: loopback0
+    commands:
+      - mpls ip
+  - name: e0/1
+    commands:
+      - mpls ip
+      - ip ospf network point-to-point
+  - name: e0/2
+    commands:
+      - mpls ip
+      - ip ospf network point-to-point
+  - name: e0/3
+    commands:
+      - mpls ip
+      - ip ospf network point-to-point
+  - name: e1/0
+    commands:
+      - mpls ip
+      - ip ospf network point-to-point
+  - name: e1/1
+    commands:
+      - mpls ip
+      - ip ospf network point-to-point
+
+
+config_ospf_data:
+  processes:
+    - process_id: 10
+      network:
+        - address: 172.16.1.4
+          wildcard_bits: 0.0.0.0
+          area: "0"
+        - address: 10.0.0.4
+          wildcard_bits: 0.0.0.3
+          area: "0"
+        - address: 10.0.0.16
+          wildcard_bits: 0.0.0.3
+          area: "0"
+        - address: 10.0.0.20
+          wildcard_bits: 0.0.0.3
+          area: "0"
+        - address: 10.0.0.24
+          wildcard_bits: 0.0.0.3
+          area: "0"
+        - address: 10.0.0.28
+          wildcard_bits: 0.0.0.3
+          area: "0"                                      
+
+config_bgp_base:
+  - "bgp router-id interface lo0"
+  - "no bgp default ipv4-unicast"
+  - "neighbor 172.16.1.5 remote-as 100"
+  - "neighbor 172.16.1.5 update-source lo0"
+  - "neighbor 172.16.1.6 remote-as 100"
+  - "neighbor 172.16.1.6 update-source lo0"
+
+config_bgp_af:
+  - af: "ipv4 unicast"
+    lines:
+      - "neighbor 172.16.1.5 activate"
+      - "neighbor 172.16.1.6 activate"

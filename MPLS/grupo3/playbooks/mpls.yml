@@ -1,0 +1,9 @@
+---
+- name: Configurar MPLS/LDP 
+  hosts: PE_routers
+  gather_facts: false
+  tasks:
+    - name: Aplicar configuracion de MPLS
+      cisco.ios.ios_config:
+        lines: "{{ config_mpls }}"
+        match: line
