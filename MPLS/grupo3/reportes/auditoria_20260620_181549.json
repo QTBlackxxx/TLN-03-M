@@ -1,0 +1,582 @@
+[
+  {
+    "device": "PE1",
+    "timestamp": "2026-06-20T18:15:50.791840",
+    "interfaces_loopback": {
+      "count": 1,
+      "matches": [
+        "interface Loopback0"
+      ]
+    },
+    "ospf_process": {
+      "count": 1,
+      "matches": [
+        "router ospf 10"
+      ]
+    },
+    "ospf_network": {
+      "count": 4,
+      "matches": [
+        " network 10.0.0.0 0.0.0.3 area 0",
+        " network 10.0.0.4 0.0.0.3 area 0",
+        " network 10.0.0.8 0.0.0.3 area 0",
+        " network 172.16.1.1 0.0.0.0 area 0"
+      ]
+    },
+    "mpls_ldp": {
+      "count": 4,
+      "matches": [
+        " mpls ip",
+        " mpls ip",
+        " mpls ip",
+        "mpls ldp router-id"
+      ]
+    },
+    "bgp_process": {
+      "count": 1,
+      "matches": [
+        "router bgp 100"
+      ]
+    },
+    "bgp_neighbor": {
+      "count": 2,
+      "matches": [
+        " neighbor 172.16.1.5 remote-as 100",
+        " neighbor 172.16.1.6 remote-as 100"
+      ]
+    },
+    "vrf_definition": {
+      "count": 2,
+      "matches": [
+        "vrf definition A",
+        "vrf definition clab-mgmt"
+      ]
+    },
+    "vpnv4_family": {
+      "count": 1,
+      "matches": [
+        "address-family vpnv4"
+      ]
+    },
+    "vpnv6_family": {
+      "count": 1,
+      "matches": [
+        "address-family vpnv6"
+      ]
+    },
+    "route_distinguisher": {
+      "count": 1,
+      "matches": [
+        "rd 10:10"
+      ]
+    },
+    "route_target": {
+      "count": 2,
+      "matches": [
+        "export",
+        "import"
+      ]
+    },
+    "total_interfaces": 10,
+    "total_vrfs": 2,
+    "mpls_enabled": true,
+    "ldp_enabled": true
+  },
+  {
+    "device": "PE2",
+    "timestamp": "2026-06-20T18:15:51.925518",
+    "interfaces_loopback": {
+      "count": 1,
+      "matches": [
+        "interface Loopback0"
+      ]
+    },
+    "ospf_process": {
+      "count": 1,
+      "matches": [
+        "router ospf 10"
+      ]
+    },
+    "ospf_network": {
+      "count": 4,
+      "matches": [
+        " network 10.0.0.28 0.0.0.3 area 0",
+        " network 10.0.0.32 0.0.0.3 area 0",
+        " network 10.0.0.36 0.0.0.3 area 0",
+        " network 172.16.1.2 0.0.0.0 area 0"
+      ]
+    },
+    "mpls_ldp": {
+      "count": 4,
+      "matches": [
+        " mpls ip",
+        " mpls ip",
+        " mpls ip",
+        "mpls ldp router-id"
+      ]
+    },
+    "bgp_process": {
+      "count": 1,
+      "matches": [
+        "router bgp 100"
+      ]
+    },
+    "bgp_neighbor": {
+      "count": 2,
+      "matches": [
+        " neighbor 172.16.1.5 remote-as 100",
+        " neighbor 172.16.1.6 remote-as 100"
+      ]
+    },
+    "vrf_definition": {
+      "count": 2,
+      "matches": [
+        "vrf definition A",
+        "vrf definition clab-mgmt"
+      ]
+    },
+    "vpnv4_family": {
+      "count": 1,
+      "matches": [
+        "address-family vpnv4"
+      ]
+    },
+    "vpnv6_family": {
+      "count": 1,
+      "matches": [
+        "address-family vpnv6"
+      ]
+    },
+    "route_distinguisher": {
+      "count": 1,
+      "matches": [
+        "rd 10:10"
+      ]
+    },
+    "route_target": {
+      "count": 2,
+      "matches": [
+        "export",
+        "import"
+      ]
+    },
+    "total_interfaces": 10,
+    "total_vrfs": 2,
+    "mpls_enabled": true,
+    "ldp_enabled": true
+  },
+  {
+    "device": "P1",
+    "timestamp": "2026-06-20T18:15:53.030876",
+    "interfaces_loopback": {
+      "count": 1,
+      "matches": [
+        "interface Loopback0"
+      ]
+    },
+    "ospf_process": {
+      "count": 1,
+      "matches": [
+        "router ospf 10"
+      ]
+    },
+    "ospf_network": {
+      "count": 6,
+      "matches": [
+        " network 10.0.0.4 0.0.0.3 area 0",
+        " network 10.0.0.16 0.0.0.3 area 0",
+        " network 10.0.0.20 0.0.0.3 area 0",
+        " network 10.0.0.24 0.0.0.3 area 0",
+        " network 10.0.0.28 0.0.0.3 area 0",
+        " network 172.16.1.4 0.0.0.0 area 0"
+      ]
+    },
+    "mpls_ldp": {
+      "count": 5,
+      "matches": [
+        " mpls ip",
+        " mpls ip",
+        " mpls ip",
+        " mpls ip",
+        " mpls ip"
+      ]
+    },
+    "bgp_process": {
+      "count": 1,
+      "matches": [
+        "router bgp 100"
+      ]
+    },
+    "bgp_neighbor": {
+      "count": 2,
+      "matches": [
+        " neighbor 172.16.1.5 remote-as 100",
+        " neighbor 172.16.1.6 remote-as 100"
+      ]
+    },
+    "vrf_definition": {
+      "count": 1,
+      "matches": [
+        "vrf definition clab-mgmt"
+      ]
+    },
+    "vpnv4_family": {
+      "count": 0,
+      "matches": []
+    },
+    "vpnv6_family": {
+      "count": 0,
+      "matches": []
+    },
+    "route_distinguisher": {
+      "count": 0,
+      "matches": []
+    },
+    "route_target": {
+      "count": 0,
+      "matches": []
+    },
+    "total_interfaces": 9,
+    "total_vrfs": 1,
+    "mpls_enabled": true,
+    "ldp_enabled": false
+  },
+  {
+    "device": "P2",
+    "timestamp": "2026-06-20T18:15:54.167061",
+    "interfaces_loopback": {
+      "count": 1,
+      "matches": [
+        "interface Loopback0"
+      ]
+    },
+    "ospf_process": {
+      "count": 1,
+      "matches": [
+        "router ospf 10"
+      ]
+    },
+    "ospf_network": {
+      "count": 4,
+      "matches": [
+        " network 10.0.0.8 0.0.0.3 area 0",
+        " network 10.0.0.20 0.0.0.3 area 0",
+        " network 10.0.0.32 0.0.0.3 area 0",
+        " network 172.16.1.3 0.0.0.0 area 0"
+      ]
+    },
+    "mpls_ldp": {
+      "count": 3,
+      "matches": [
+        " mpls ip",
+        " mpls ip",
+        " mpls ip"
+      ]
+    },
+    "bgp_process": {
+      "count": 1,
+      "matches": [
+        "router bgp 100"
+      ]
+    },
+    "bgp_neighbor": {
+      "count": 2,
+      "matches": [
+        " neighbor 172.16.1.5 remote-as 100",
+        " neighbor 172.16.1.6 remote-as 100"
+      ]
+    },
+    "vrf_definition": {
+      "count": 1,
+      "matches": [
+        "vrf definition clab-mgmt"
+      ]
+    },
+    "vpnv4_family": {
+      "count": 0,
+      "matches": []
+    },
+    "vpnv6_family": {
+      "count": 0,
+      "matches": []
+    },
+    "route_distinguisher": {
+      "count": 0,
+      "matches": []
+    },
+    "route_target": {
+      "count": 0,
+      "matches": []
+    },
+    "total_interfaces": 5,
+    "total_vrfs": 1,
+    "mpls_enabled": true,
+    "ldp_enabled": false
+  },
+  {
+    "device": "RR1",
+    "timestamp": "2026-06-20T18:15:55.295455",
+    "interfaces_loopback": {
+      "count": 1,
+      "matches": [
+        "interface Loopback0"
+      ]
+    },
+    "ospf_process": {
+      "count": 1,
+      "matches": [
+        "router ospf 10"
+      ]
+    },
+    "ospf_network": {
+      "count": 4,
+      "matches": [
+        " network 10.0.0.0 0.0.0.3 area 0",
+        " network 10.0.0.12 0.0.0.3 area 0",
+        " network 10.0.0.16 0.0.0.3 area 0",
+        " network 172.16.1.5 0.0.0.0 area 0"
+      ]
+    },
+    "mpls_ldp": {
+      "count": 3,
+      "matches": [
+        " mpls ip",
+        " mpls ip",
+        " mpls ip"
+      ]
+    },
+    "bgp_process": {
+      "count": 1,
+      "matches": [
+        "router bgp 100"
+      ]
+    },
+    "bgp_neighbor": {
+      "count": 5,
+      "matches": [
+        " neighbor 172.16.1.1 remote-as 100",
+        " neighbor 172.16.1.2 remote-as 100",
+        " neighbor 172.16.1.3 remote-as 100",
+        " neighbor 172.16.1.4 remote-as 100",
+        " neighbor 172.16.1.6 remote-as 100"
+      ]
+    },
+    "vrf_definition": {
+      "count": 1,
+      "matches": [
+        "vrf definition clab-mgmt"
+      ]
+    },
+    "vpnv4_family": {
+      "count": 1,
+      "matches": [
+        "address-family vpnv4"
+      ]
+    },
+    "vpnv6_family": {
+      "count": 1,
+      "matches": [
+        "address-family vpnv6"
+      ]
+    },
+    "route_distinguisher": {
+      "count": 0,
+      "matches": []
+    },
+    "route_target": {
+      "count": 0,
+      "matches": []
+    },
+    "total_interfaces": 5,
+    "total_vrfs": 1,
+    "mpls_enabled": true,
+    "ldp_enabled": false
+  },
+  {
+    "device": "RR2",
+    "timestamp": "2026-06-20T18:15:56.364160",
+    "interfaces_loopback": {
+      "count": 1,
+      "matches": [
+        "interface Loopback0"
+      ]
+    },
+    "ospf_process": {
+      "count": 1,
+      "matches": [
+        "router ospf 10"
+      ]
+    },
+    "ospf_network": {
+      "count": 4,
+      "matches": [
+        " network 10.0.0.12 0.0.0.3 area 0",
+        " network 10.0.0.24 0.0.0.3 area 0",
+        " network 10.0.0.36 0.0.0.3 area 0",
+        " network 172.16.1.6 0.0.0.0 area 0"
+      ]
+    },
+    "mpls_ldp": {
+      "count": 3,
+      "matches": [
+        " mpls ip",
+        " mpls ip",
+        " mpls ip"
+      ]
+    },
+    "bgp_process": {
+      "count": 1,
+      "matches": [
+        "router bgp 100"
+      ]
+    },
+    "bgp_neighbor": {
+      "count": 5,
+      "matches": [
+        " neighbor 172.16.1.1 remote-as 100",
+        " neighbor 172.16.1.2 remote-as 100",
+        " neighbor 172.16.1.3 remote-as 100",
+        " neighbor 172.16.1.4 remote-as 100",
+        " neighbor 172.16.1.5 remote-as 100"
+      ]
+    },
+    "vrf_definition": {
+      "count": 1,
+      "matches": [
+        "vrf definition clab-mgmt"
+      ]
+    },
+    "vpnv4_family": {
+      "count": 1,
+      "matches": [
+        "address-family vpnv4"
+      ]
+    },
+    "vpnv6_family": {
+      "count": 1,
+      "matches": [
+        "address-family vpnv6"
+      ]
+    },
+    "route_distinguisher": {
+      "count": 0,
+      "matches": []
+    },
+    "route_target": {
+      "count": 0,
+      "matches": []
+    },
+    "total_interfaces": 5,
+    "total_vrfs": 1,
+    "mpls_enabled": true,
+    "ldp_enabled": false
+  },
+  {
+    "device": "CPE1",
+    "timestamp": "2026-06-20T18:15:57.547926",
+    "interfaces_loopback": {
+      "count": 0,
+      "matches": []
+    },
+    "ospf_process": {
+      "count": 0,
+      "matches": []
+    },
+    "ospf_network": {
+      "count": 0,
+      "matches": []
+    },
+    "mpls_ldp": {
+      "count": 0,
+      "matches": []
+    },
+    "bgp_process": {
+      "count": 0,
+      "matches": []
+    },
+    "bgp_neighbor": {
+      "count": 0,
+      "matches": []
+    },
+    "vrf_definition": {
+      "count": 1,
+      "matches": [
+        "vrf definition clab-mgmt"
+      ]
+    },
+    "vpnv4_family": {
+      "count": 0,
+      "matches": []
+    },
+    "vpnv6_family": {
+      "count": 0,
+      "matches": []
+    },
+    "route_distinguisher": {
+      "count": 0,
+      "matches": []
+    },
+    "route_target": {
+      "count": 0,
+      "matches": []
+    },
+    "total_interfaces": 4,
+    "total_vrfs": 1,
+    "mpls_enabled": false,
+    "ldp_enabled": false
+  },
+  {
+    "device": "CPE2",
+    "timestamp": "2026-06-20T18:15:58.746121",
+    "interfaces_loopback": {
+      "count": 0,
+      "matches": []
+    },
+    "ospf_process": {
+      "count": 0,
+      "matches": []
+    },
+    "ospf_network": {
+      "count": 0,
+      "matches": []
+    },
+    "mpls_ldp": {
+      "count": 0,
+      "matches": []
+    },
+    "bgp_process": {
+      "count": 0,
+      "matches": []
+    },
+    "bgp_neighbor": {
+      "count": 0,
+      "matches": []
+    },
+    "vrf_definition": {
+      "count": 1,
+      "matches": [
+        "vrf definition clab-mgmt"
+      ]
+    },
+    "vpnv4_family": {
+      "count": 0,
+      "matches": []
+    },
+    "vpnv6_family": {
+      "count": 0,
+      "matches": []
+    },
+    "route_distinguisher": {
+      "count": 0,
+      "matches": []
+    },
+    "route_target": {
+      "count": 0,
+      "matches": []
+    },
+    "total_interfaces": 4,
+    "total_vrfs": 1,
+    "mpls_enabled": false,
+    "ldp_enabled": false
+  }
+]

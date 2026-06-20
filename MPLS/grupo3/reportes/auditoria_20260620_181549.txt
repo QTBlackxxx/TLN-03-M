@@ -1,0 +1,221 @@
+======================================================================
+   REPORTE DE AUDITORIA - RED MPLS L3VPN
+   Generado: 2026-06-20 18:15:58
+======================================================================
+
+────────────────────────────────────────────────────────────
+Router : PE1
+Rol     : PE (Provider Edge)
+Fecha   : 2026-06-20T18:15:50.791840
+────────────────────────────────────────────────────────────
+  Interfaces totales   : 10
+  Loopbacks            : 1
+  VRFs configurados    : 2
+  MPLS habilitado      : Si
+  LDP habilitado       : Si
+  Proceso OSPF         : Si
+  Redes OSPF           : 4
+  Proceso BGP          : Si
+  Vecinos BGP          : 2
+  Familia VPNv4        : Si
+  Familia VPNv6        : Si
+  Route Distinguishers : 1
+  Route Targets        : 2
+
+  VRFs encontrados:
+    - vrf definition A
+    - vrf definition clab-mgmt
+
+  Vecinos BGP encontrados:
+    - neighbor 172.16.1.5 remote-as 100
+    - neighbor 172.16.1.6 remote-as 100
+
+────────────────────────────────────────────────────────────
+Router : PE2
+Rol     : PE (Provider Edge)
+Fecha   : 2026-06-20T18:15:51.925518
+────────────────────────────────────────────────────────────
+  Interfaces totales   : 10
+  Loopbacks            : 1
+  VRFs configurados    : 2
+  MPLS habilitado      : Si
+  LDP habilitado       : Si
+  Proceso OSPF         : Si
+  Redes OSPF           : 4
+  Proceso BGP          : Si
+  Vecinos BGP          : 2
+  Familia VPNv4        : Si
+  Familia VPNv6        : Si
+  Route Distinguishers : 1
+  Route Targets        : 2
+
+  VRFs encontrados:
+    - vrf definition A
+    - vrf definition clab-mgmt
+
+  Vecinos BGP encontrados:
+    - neighbor 172.16.1.5 remote-as 100
+    - neighbor 172.16.1.6 remote-as 100
+
+────────────────────────────────────────────────────────────
+Router : P1
+Rol     : Desconocido
+Fecha   : 2026-06-20T18:15:53.030876
+────────────────────────────────────────────────────────────
+  Interfaces totales   : 9
+  Loopbacks            : 1
+  VRFs configurados    : 1
+  MPLS habilitado      : Si
+  LDP habilitado       : No
+  Proceso OSPF         : Si
+  Redes OSPF           : 6
+  Proceso BGP          : Si
+  Vecinos BGP          : 2
+  Familia VPNv4        : No
+  Familia VPNv6        : No
+  Route Distinguishers : 0
+  Route Targets        : 0
+
+  VRFs encontrados:
+    - vrf definition clab-mgmt
+
+  Vecinos BGP encontrados:
+    - neighbor 172.16.1.5 remote-as 100
+    - neighbor 172.16.1.6 remote-as 100
+
+────────────────────────────────────────────────────────────
+Router : P2
+Rol     : Desconocido
+Fecha   : 2026-06-20T18:15:54.167061
+────────────────────────────────────────────────────────────
+  Interfaces totales   : 5
+  Loopbacks            : 1
+  VRFs configurados    : 1
+  MPLS habilitado      : Si
+  LDP habilitado       : No
+  Proceso OSPF         : Si
+  Redes OSPF           : 4
+  Proceso BGP          : Si
+  Vecinos BGP          : 2
+  Familia VPNv4        : No
+  Familia VPNv6        : No
+  Route Distinguishers : 0
+  Route Targets        : 0
+
+  VRFs encontrados:
+    - vrf definition clab-mgmt
+
+  Vecinos BGP encontrados:
+    - neighbor 172.16.1.5 remote-as 100
+    - neighbor 172.16.1.6 remote-as 100
+
+────────────────────────────────────────────────────────────
+Router : RR1
+Rol     : PE (Provider Edge)
+Fecha   : 2026-06-20T18:15:55.295455
+────────────────────────────────────────────────────────────
+  Interfaces totales   : 5
+  Loopbacks            : 1
+  VRFs configurados    : 1
+  MPLS habilitado      : Si
+  LDP habilitado       : No
+  Proceso OSPF         : Si
+  Redes OSPF           : 4
+  Proceso BGP          : Si
+  Vecinos BGP          : 5
+  Familia VPNv4        : Si
+  Familia VPNv6        : Si
+  Route Distinguishers : 0
+  Route Targets        : 0
+
+  VRFs encontrados:
+    - vrf definition clab-mgmt
+
+  Vecinos BGP encontrados:
+    - neighbor 172.16.1.1 remote-as 100
+    - neighbor 172.16.1.2 remote-as 100
+    - neighbor 172.16.1.3 remote-as 100
+    - neighbor 172.16.1.4 remote-as 100
+    - neighbor 172.16.1.6 remote-as 100
+
+────────────────────────────────────────────────────────────
+Router : RR2
+Rol     : PE (Provider Edge)
+Fecha   : 2026-06-20T18:15:56.364160
+────────────────────────────────────────────────────────────
+  Interfaces totales   : 5
+  Loopbacks            : 1
+  VRFs configurados    : 1
+  MPLS habilitado      : Si
+  LDP habilitado       : No
+  Proceso OSPF         : Si
+  Redes OSPF           : 4
+  Proceso BGP          : Si
+  Vecinos BGP          : 5
+  Familia VPNv4        : Si
+  Familia VPNv6        : Si
+  Route Distinguishers : 0
+  Route Targets        : 0
+
+  VRFs encontrados:
+    - vrf definition clab-mgmt
+
+  Vecinos BGP encontrados:
+    - neighbor 172.16.1.1 remote-as 100
+    - neighbor 172.16.1.2 remote-as 100
+    - neighbor 172.16.1.3 remote-as 100
+    - neighbor 172.16.1.4 remote-as 100
+    - neighbor 172.16.1.5 remote-as 100
+
+────────────────────────────────────────────────────────────
+Router : CPE1
+Rol     : Desconocido
+Fecha   : 2026-06-20T18:15:57.547926
+────────────────────────────────────────────────────────────
+  Interfaces totales   : 4
+  Loopbacks            : 0
+  VRFs configurados    : 1
+  MPLS habilitado      : No
+  LDP habilitado       : No
+  Proceso OSPF         : No
+  Redes OSPF           : 0
+  Proceso BGP          : No
+  Vecinos BGP          : 0
+  Familia VPNv4        : No
+  Familia VPNv6        : No
+  Route Distinguishers : 0
+  Route Targets        : 0
+
+  VRFs encontrados:
+    - vrf definition clab-mgmt
+
+────────────────────────────────────────────────────────────
+Router : CPE2
+Rol     : Desconocido
+Fecha   : 2026-06-20T18:15:58.746121
+────────────────────────────────────────────────────────────
+  Interfaces totales   : 4
+  Loopbacks            : 0
+  VRFs configurados    : 1
+  MPLS habilitado      : No
+  LDP habilitado       : No
+  Proceso OSPF         : No
+  Redes OSPF           : 0
+  Proceso BGP          : No
+  Vecinos BGP          : 0
+  Familia VPNv4        : No
+  Familia VPNv6        : No
+  Route Distinguishers : 0
+  Route Targets        : 0
+
+  VRFs encontrados:
+    - vrf definition clab-mgmt
+
+======================================================================
+RESUMEN GLOBAL
+======================================================================
+  Dispositivos auditados : 8
+  Exitosos               : 8
+  Con error              : 0
+  Total VRFs en la red   : 10
+  Total vecinos BGP      : 18
