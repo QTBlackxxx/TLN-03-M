@@ -20,7 +20,7 @@ FLUJO DEL SCRIPT:
 
 SALIDA:
   - master_report.txt (en /Escritorio/.../reportes) - Reporte integrado completo
-  - inventory_automatic.ini (en /Escritorio/.../inventory) - Inventario para Ansible
+  - inventory.ini (en /Escritorio/.../inventory) - Inventario para Ansible
 
 Uso:
     python network_automation_suite.py
@@ -159,7 +159,7 @@ REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 MASTER_REPORT_FILE = REPORTS_DIR / "master_report.txt"
 
 # Archivo de inventario automático
-INVENTORY_AUTOMATIC_FILE = INVENTORY_DIR / "inventory_automatic.ini"
+INVENTORY_AUTOMATIC_FILE = INVENTORY_DIR / "inventory.ini"
 
 # Configurar logging
 logging.basicConfig(
@@ -454,10 +454,10 @@ class ReportGenerator:
 
 def generate_inventory_automatic(devices: List[Dict]) -> bool:
     """
-    Genera archivo inventory_automatic.ini en formato Ansible
+    Genera archivo inventory.ini en formato Ansible
     """
     try:
-        with open(INVENTORY_FILE, "w") as inv:
+        with open(INVENTORY_AUTOMATIC_FILE, "w") as inv:
             inv.write("[network_devices]\n")
             
             for device in devices:
@@ -470,7 +470,7 @@ def generate_inventory_automatic(devices: List[Dict]) -> bool:
             inv.write("ansible_connection=ansible.netcommon.network_cli\n")
             inv.write("ansible_paramiko_look_for_keys=False\n")
         
-        logger.info(f"✓ Inventario automático generado: {INVENTORY_FILE}")
+        logger.info(f"✓ Inventario automático generado: {INVENTORY_AUTOMATIC_FILE}")
         print_success(f"Inventario automático generado")
         return True
     except Exception as e:
@@ -839,9 +839,11 @@ def option_d_generate_integrated_report(devices: List[Dict],
     summary.append("")
     summary.append("ARCHIVOS GENERADOS:")
     summary.append(f"  1. {MASTER_REPORT_FILE.name}")
+    summary.append(f"     Ubicación: {MASTER_REPORT_FILE}")
     summary.append(f"     Contenido: Reporte integrado completo (Inventario + Comparaciones + Búsquedas)")
     summary.append("")
     summary.append(f"  2. {INVENTORY_AUTOMATIC_FILE.name}")
+    summary.append(f"     Ubicación: {INVENTORY_AUTOMATIC_FILE}")
     summary.append(f"     Contenido: Inventario automático en formato Ansible .ini")
     summary.append("")
     summary.append("PRÓXIMOS PASOS:")
@@ -877,6 +879,7 @@ def main():
     
     # ========== PASO 0: Cargar topología ==========
     print_step(0, "Cargando topología YAML")
+    print(f"{Colors.BLUE}  Ruta: {TOPOLOGY_FILE}{Colors.RESET}\n")
     
     topology_manager = TopologyManager(str(TOPOLOGY_FILE))
     if not topology_manager.load_topology():
@@ -915,6 +918,12 @@ def main():
     print(f"  {Colors.BRIGHT_CYAN}• bgp.yml{Colors.RESET}")
     print(f"  {Colors.BRIGHT_CYAN}• vpn.yml{Colors.RESET}")
     
+    print(f"\n{Colors.BLUE}Puede usar el inventario generado en:{Colors.RESET}")
+    print(f"  {Colors.BRIGHT_CYAN}{INVENTORY_AUTOMATIC_FILE}{Colors.RESET}")
+    
+    print(f"\n{Colors.BLUE}Ejemplo:{Colors.RESET}")
+    print(f"  {Colors.BRIGHT_CYAN}ansible-playbook -i {INVENTORY_AUTOMATIC_FILE} playbooks/interfaces.yml{Colors.RESET}")
+    
     input(f"\n{Colors.BRIGHT_YELLOW}➤ Presione ENTER una vez que haya ejecutado TODOS los playbooks...{Colors.RESET}")
     print()
     
@@ -942,14 +951,18 @@ def main():
     print(f"{Colors.BOLD}{Colors.BRIGHT_GREEN}ARCHIVOS GENERADOS:{Colors.RESET}\n")
     
     print(f"{Colors.BRIGHT_CYAN}📄 REPORTE INTEGRADO:{Colors.RESET}")
+    print(f"   {Colors.BLUE}Ubicación:{Colors.RESET} {MASTER_REPORT_FILE}")
     print(f"   {Colors.BLUE}Contenido:{Colors.RESET} Inventario + Comparación PRE/POST + Búsqueda de comandos\n")
     
     print(f"{Colors.BRIGHT_CYAN}📋 INVENTARIO AUTOMÁTICO:{Colors.RESET}")
+    print(f"   {Colors.BLUE}Ubicación:{Colors.RESET} {INVENTORY_AUTOMATIC_FILE}")
     print(f"   {Colors.BLUE}Formato:{Colors.RESET} .ini (compatible con Ansible)\n")
     
     print(f"{Colors.BRIGHT_YELLOW}📊 PRÓXIMOS PASOS:{Colors.RESET}")
+    print(f"   {Colors.CYAN}• Revisar el reporte: {MASTER_REPORT_FILE}{Colors.RESET}")
     print(f"   {Colors.CYAN}• Usar inventario para ejecutar nuevos playbooks{Colors.RESET}")
     print(f"   {Colors.CYAN}• Validar con NAPALM{Colors.RESET}")
+    print(f"   {Colors.CYAN}• Incluir en la presentación{Colors.RESET}")
     print(f"\n{Colors.RESET}")
 
 
