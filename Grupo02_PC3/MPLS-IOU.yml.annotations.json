@@ -1,0 +1,122 @@
+{
+  "freeTextAnnotations": [],
+  "freeShapeAnnotations": [],
+  "trafficRateAnnotations": [],
+  "groupStyleAnnotations": [],
+  "networkNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "PE1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 220,
+        "y": 200
+      }
+    },
+    {
+      "id": "PE2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 260,
+        "y": 120
+      }
+    },
+    {
+      "id": "P1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 340,
+        "y": 240
+      }
+    },
+    {
+      "id": "P2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 380,
+        "y": 80
+      }
+    },
+    {
+      "id": "RR1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 260,
+        "y": 340
+      }
+    },
+    {
+      "id": "RR2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 420,
+        "y": 160
+      }
+    },
+    {
+      "id": "SW-1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 440,
+        "y": 260
+      }
+    },
+    {
+      "id": "SW-2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 360,
+        "y": 340
+      }
+    },
+    {
+      "id": "CPE-1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 640,
+        "y": 300
+      }
+    },
+    {
+      "id": "SW-LAN-1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 820,
+        "y": 340
+      }
+    },
+    {
+      "id": "CPE-2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 360,
+        "y": 540
+      }
+    },
+    {
+      "id": "SW-LAN-2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 400,
+        "y": 700
+      }
+    },
+    {
+      "id": "PC-LAN-1",
+      "position": {
+        "x": 880,
+        "y": 500
+      }
+    },
+    {
+      "id": "PC-LAN-2",
+      "position": {
+        "x": 520,
+        "y": 800
+      }
+    }
+  ],
+  "edgeAnnotations": [],
+  "aliasEndpointAnnotations": [],
+  "viewerSettings": {}
+}
