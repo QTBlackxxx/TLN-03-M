@@ -1,0 +1,65 @@
+================================================================
+VALIDACION DE SERVICIOS MPLS L3VPN
+Generado: 2026-06-20 23:12:18
+================================================================
+
+--- BGP: Sesiones establecidas ---
+P1: 2/2 sesiones UP -> OK
+    172.16.1.5 (AS100) UP, 172.16.1.6 (AS100) UP
+P2: 2/2 sesiones UP -> OK
+    172.16.1.5 (AS100) UP, 172.16.1.6 (AS100) UP
+PE1: 2/2 sesiones UP -> OK
+    172.16.1.5 (AS100) UP, 172.16.1.6 (AS100) UP
+PE2: 2/2 sesiones UP -> OK
+    172.16.1.5 (AS100) UP, 172.16.1.6 (AS100) UP
+RR1: 5/5 sesiones UP -> OK
+    172.16.1.1 (AS100) UP, 172.16.1.2 (AS100) UP, 172.16.1.3 (AS100) UP, 172.16.1.4 (AS100) UP, 172.16.1.6 (AS100) UP
+RR2: 5/5 sesiones UP -> OK
+    172.16.1.1 (AS100) UP, 172.16.1.2 (AS100) UP, 172.16.1.3 (AS100) UP, 172.16.1.4 (AS100) UP, 172.16.1.5 (AS100) UP
+Resultado BGP: OK
+
+--- BGP VPNv4: Intercambio de rutas del cliente ---
+PE1: 2 vecinos VPNv4 -> OK
+    172.16.1.5 (Established, 0 pfx), 172.16.1.6 (Established, 0 pfx)
+PE2: 2 vecinos VPNv4 -> OK
+    172.16.1.5 (Established, 0 pfx), 172.16.1.6 (Established, 0 pfx)
+RR1: 3 vecinos VPNv4 -> OK
+    172.16.1.1 (Established, 0 pfx), 172.16.1.2 (Established, 0 pfx), 172.16.1.6 (Established, 0 pfx)
+RR2: 3 vecinos VPNv4 -> OK
+    172.16.1.1 (Established, 0 pfx), 172.16.1.2 (Established, 0 pfx), 172.16.1.5 (Established, 0 pfx)
+Resultado BGP VPNv4: OK
+
+--- OSPF: Vecindades FULL ---
+P1: 5/5 vecinos FULL -> OK
+    172.16.1.2:FULL/, 172.16.1.6:FULL/, 172.16.1.3:FULL/, 172.16.1.5:FULL/, 172.16.1.1:FULL/
+P2: 2/2 vecinos FULL -> OK
+    172.16.1.2:FULL/, 172.16.1.4:FULL/
+PE1: 2/2 vecinos FULL -> OK
+    172.16.1.4:FULL/, 172.16.1.5:FULL/
+PE2: 3/3 vecinos FULL -> OK
+    172.16.1.6:FULL/, 172.16.1.3:FULL/, 172.16.1.4:FULL/
+RR1: 3/3 vecinos FULL -> OK
+    172.16.1.4:FULL/, 172.16.1.6:FULL/, 172.16.1.1:FULL/
+RR2: 3/3 vecinos FULL -> OK
+    172.16.1.2:FULL/, 172.16.1.4:FULL/, 172.16.1.5:FULL/
+Resultado OSPF: OK
+
+--- IPv4 VPN: Conectividad entre sedes ---
+CPE-1 (origen 192.168.10.1) -> 192.168.20.1 (interfaz del CPE remoto, red L3VPN pura): ping 0% -> FALLA
+CPE-1 (origen 192.168.10.1) -> 192.168.20.10 (host cliente, depende de PC-LAN): ping 0% | ruta presente -> FALLA
+CPE-2 (origen 192.168.20.1) -> 192.168.10.1 (interfaz del CPE remoto, red L3VPN pura): ping 0% -> FALLA
+CPE-2 (origen 192.168.20.1) -> 192.168.10.10 (host cliente, depende de PC-LAN): ping 0% | ruta presente -> FALLA
+Resultado IPv4 VPN (red L3VPN): REVISAR
+Resultado IPv4 host cliente (PC-LAN): REVISAR
+
+--- IPv6 VPN: Conectividad entre sedes ---
+CPE-1 (origen 2001:192:168:10::1) -> 2001:192:168:20::1 (interfaz del CPE remoto): ping 0% -> FALLA
+CPE-1 (origen 2001:192:168:10::1) -> 2001:192:168:20::10 (host cliente): ping 0% -> FALLA
+CPE-2 (origen 2001:192:168:20::1) -> 2001:192:168:10::1 (interfaz del CPE remoto): ping 0% -> FALLA
+CPE-2 (origen 2001:192:168:20::1) -> 2001:192:168:10::10 (host cliente): ping 0% -> FALLA
+Resultado IPv6 VPN (red L3VPN): REVISAR
+Resultado IPv6 host cliente (PC-LAN): REVISAR
+
+================================================================
+RESUMEN PARTE 4: BGP OK | BGP VPNv4 OK | OSPF OK | IPv4 L3VPN REVISAR | IPv4 PC-LAN REVISAR | IPv6 L3VPN REVISAR | IPv6 PC-LAN REVISAR
+================================================================
