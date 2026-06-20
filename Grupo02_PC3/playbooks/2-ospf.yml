@@ -1,0 +1,79 @@
+---
+- name: Playbook 2 - Configuracion de IGP (OSPF) y Rutas Estaticas
+  hosts: MPLS_update
+  gather_facts: false
+  tasks:
+    - name: Configurar OSPF en PE1
+      cisco.ios.ios_config:
+        lines:
+          - router ospf 10
+          - network 172.16.1.1 0.0.0.0 area 0
+          - network 10.0.0.0 0.0.0.3 area 0
+          - network 10.0.0.4 0.0.0.3 area 0
+      when: inventory_hostname == "clab-MPLS-PE1"
+
+    - name: Configurar OSPF en PE2
+      cisco.ios.ios_config:
+        lines:
+          - router ospf 10
+          - network 172.16.1.2 0.0.0.0 area 0
+          - network 10.0.0.28 0.0.0.3 area 0
+          - network 10.0.0.32 0.0.0.3 area 0
+          - network 10.0.0.36 0.0.0.3 area 0
+      when: inventory_hostname == "clab-MPLS-PE2"
+
+    - name: Configurar OSPF en P1
+      cisco.ios.ios_config:
+        lines:
+          - router ospf 10
+          - network 172.16.1.4 0.0.0.0 area 0
+          - network 10.0.0.4 0.0.0.3 area 0
+          - network 10.0.0.16 0.0.0.3 area 0
+          - network 10.0.0.20 0.0.0.3 area 0
+          - network 10.0.0.24 0.0.0.3 area 0
+          - network 10.0.0.28 0.0.0.3 area 0
+      when: inventory_hostname == "clab-MPLS-P1"
+
+    - name: Configurar OSPF en P2
+      cisco.ios.ios_config:
+        lines:
+          - router ospf 10
+          - network 172.16.1.3 0.0.0.0 area 0
+          - network 10.0.0.8 0.0.0.3 area 0
+          - network 10.0.0.20 0.0.0.3 area 0
+          - network 10.0.0.32 0.0.0.3 area 0
+      when: inventory_hostname == "clab-MPLS-P2"
+
+    - name: Configurar OSPF en RR1
+      cisco.ios.ios_config:
+        lines:
+          - router ospf 10
+          - network 172.16.1.5 0.0.0.0 area 0
+          - network 10.0.0.0 0.0.0.3 area 0
+          - network 10.0.0.12 0.0.0.3 area 0
+          - network 10.0.0.16 0.0.0.3 area 0
+      when: inventory_hostname == "clab-MPLS-RR1"
+
+    - name: Configurar OSPF en RR2
+      cisco.ios.ios_config:
+        lines:
+          - router ospf 10
+          - network 172.16.1.6 0.0.0.0 area 0
+          - network 10.0.0.12 0.0.0.3 area 0
+          - network 10.0.0.24 0.0.0.3 area 0
+          - network 10.0.0.36 0.0.0.3 area 0
+      when: inventory_hostname == "clab-MPLS-RR2"
+
+    - name: Configurar Enrutamiento Estatico en CPE_1
+      cisco.ios.ios_config:
+        lines:
+          - ip route 192.168.20.0 255.255.255.0 10.0.1.1
+          - ipv6 route 2001:192:168:20::/64 FC10::1
+      when: inventory_hostname == "clab-MPLS-CPE-1"
+
+    - name: Configurar Enrutamiento Estatico en CPE_2
+      cisco.ios.ios_config:
+        lines:
+          - ip route 192.168.10.0 255.255.255.0 10.0.2.1
+          - ipv6 route 2001:192:168:10::/64 FC20::1
+      when: inventory_hostname == "clab-MPLS-CPE-2"
