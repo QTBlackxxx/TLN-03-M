@@ -1,0 +1,64 @@
+
+
+
+PE2#
+PE2#terminal width 511
+PE2#terminal length 0
+PE2#
+PE2#
+PE2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+PE2(config)#
+PE2(config)#vrf definition A
+PE2(config-vrf)#rd 10:10
+PE2(config-vrf)#route-target both 10:10
+PE2(config-vrf)#address-family ipv4
+PE2(config-vrf-af)#exit-address-family
+PE2(config-vrf)#address-family ipv6
+PE2(config-vrf-af)#exit-address-family
+PE2(config-vrf)#
+PE2(config-vrf)#end
+PE2#
+PE2#
+PE2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+PE2(config)#
+PE2(config)#interface e1/0
+PE2(config-if)#description Conexion con SW Acceso 2
+PE2(config-if)#no ip address
+PE2(config-if)#no shutdown
+PE2(config-if)#interface e1/0.10
+PE2(config-subif)#description Conexion con Cliente A
+PE2(config-subif)#vrf forwarding A
+PE2(config-subif)#encapsulation dot1q 10
+PE2(config-subif)#ip address 10.0.2.1 255.255.255.252
+PE2(config-subif)#ipv6 address FC20::1/64
+PE2(config-subif)#no shutdown
+PE2(config-subif)#
+PE2(config-subif)#end
+PE2#
+PE2#
+PE2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+PE2(config)#
+PE2(config)#ip route vrf A 192.168.20.0 255.255.255.0 10.0.2.2
+PE2(config)#ipv6 route vrf A 2001:192:168:20::/64 Ethernet1/0.10 FC20::2
+PE2(config)#router bgp 100
+PE2(config-router)#address-family vpnv4
+PE2(config-router-af)#neighbor 172.16.1.5 activate
+PE2(config-router-af)#neighbor 172.16.1.5 send-community both
+PE2(config-router-af)#neighbor 172.16.1.6 activate
+PE2(config-router-af)#neighbor 172.16.1.6 send-community both
+PE2(config-router-af)#address-family vpnv6
+PE2(config-router-af)#neighbor 172.16.1.5 activate
+PE2(config-router-af)#neighbor 172.16.1.5 send-community extended
+PE2(config-router-af)#neighbor 172.16.1.6 activate
+PE2(config-router-af)#neighbor 172.16.1.6 send-community extended
+PE2(config-router-af)#address-family ipv4 vrf A
+PE2(config-router-af)#redistribute static
+PE2(config-router-af)#address-family ipv6 vrf A
+PE2(config-router-af)#redistribute static
+PE2(config-router-af)#
+PE2(config-router-af)#end
+PE2#
+PE2#
