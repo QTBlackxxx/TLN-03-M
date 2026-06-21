@@ -1,0 +1,19 @@
+---
+- name: Configurar MP-BGP en routers MPLS (PE, P, RR)
+  hosts: MPLS_core
+  gather_facts: false
+  tasks:
+    - name: Configurar proceso BGP 100 y vecinos
+      cisco.ios.ios_config:
+        lines: "{{ config_bgp_base }}"
+        parents: "router bgp 100"
+        match: line
+
+    - name: Configurar address-families BGP
+      cisco.ios.ios_config:
+        lines: "{{ item.lines }}"
+        parents:
+          - "router bgp 100"
+          - "address-family {{ item.af }}"
+        match: line
+      loop: "{{ config_bgp_af }}"

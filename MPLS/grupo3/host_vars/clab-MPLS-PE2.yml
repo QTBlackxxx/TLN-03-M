@@ -1,0 +1,134 @@
+config_interfaces:
+  - name: loopback0
+    ipv4:
+      - address: 172.16.1.2/32
+  - name: e0/1
+    ipv4:
+      - address: 10.0.0.30/30
+  - name: e0/2
+    ipv4:
+      - address: 10.0.0.34/30
+  - name: e0/3
+    ipv4:
+      - address: 10.0.0.38/30
+
+config_descripcion:
+  - name: e0/1
+    description: Conexion con P1
+    enabled: true
+  - name: e0/2
+    description: Conexion con P2
+    enabled: true
+  - name: e0/3
+    description: Conexion con RR2
+    enabled: true
+    
+config_mpls_ospf:
+  - name: loopback0
+    commands:
+      - mpls ip
+  - name: e0/1
+    commands:
+      - mpls ip
+      - ip ospf network point-to-point
+  - name: e0/2
+    commands:
+      - mpls ip
+      - ip ospf network point-to-point
+  - name: e0/3
+    commands:
+      - mpls ip
+      - ip ospf network point-to-point
+
+config_ospf_data:
+  processes:
+    - process_id: 10
+      network:
+        - address: 172.16.1.2
+          wildcard_bits: 0.0.0.0
+          area: "0"
+        - address: 10.0.0.28
+          wildcard_bits: 0.0.0.3
+          area: "0"
+        - address: 10.0.0.32
+          wildcard_bits: 0.0.0.3
+          area: "0"
+        - address: 10.0.0.36
+          wildcard_bits: 0.0.0.3
+          area: "0"
+
+config_mpls:
+  - "mpls ldp router-id Loopback0"
+  - "mpls ip"
+
+config_bgp_base:
+  - "bgp router-id interface lo0"
+  - "no bgp default ipv4-unicast"
+  - "neighbor 172.16.1.5 remote-as 100"
+  - "neighbor 172.16.1.5 update-source Lo0"
+  - "neighbor 172.16.1.6 remote-as 100"
+  - "neighbor 172.16.1.6 update-source Lo0"
+
+config_bgp_af:
+  - af: "ipv4 unicast"
+    lines:
+      - "neighbor 172.16.1.5 activate"
+      - "neighbor 172.16.1.6 activate"
+
+config_vrf:
+  - name: A
+    lines:
+      - "rd 10:10"
+      - "route-target both 10:10"
+    address_families:
+      - ipv4
+      - ipv6
+
+config_routing_static:
+  - "ip route vrf A 192.168.20.0 255.255.255.0 10.0.2.2"
+  - "ipv6 route vrf A 2001:192:168:20::/64 Ethernet1/0.10 FC20::2"
+
+config_routing_bgp_af:
+  - af: vpnv4
+    lines:
+      - "neighbor 172.16.1.5 activate"
+      - "neighbor 172.16.1.5 send-community both"
+      - "neighbor 172.16.1.6 activate"
+      - "neighbor 172.16.1.6 send-community both"
+  - af: vpnv6
+    lines:
+      - "neighbor 172.16.1.5 activate"
+      - "neighbor 172.16.1.5 send-community extended"
+      - "neighbor 172.16.1.6 activate"
+      - "neighbor 172.16.1.6 send-community extended"
+  - af: "ipv4 vrf A"
+    lines:
+      - "redistribute static"
+  - af: "ipv6 vrf A"
+    lines:
+      - "redistribute static"
+
+config_interfaces_cpe:
+  - name: e1/0.10
+    ipv4:
+      - address: 10.0.2.1/30
+    ipv6:
+      - address: FC20::1/64    
+
+config_vrf_cpe:
+  - name: e1/0.10
+    vrf_name: A
+
+config_descripcion_cpe:
+  - name: e1/0
+    description: Conexion con SW Acceso 2
+    enabled: true    
+  - name: e1/0.10
+    description: Conexion con Cliente A
+    enabled: true
+
+config_encapsulation_cpe:
+  - name: e1/0.10
+    commands:
+      - encapsulation dot1q 10
+

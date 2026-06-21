@@ -1,0 +1,73 @@
+---
+# gather_facts.yml
+# Playbook que recolecta inventario de hardware/software de cada dispositivo
+# IOS usando el modulo cisco.ios.ios_facts, y vuelca el resultado a un JSON
+# individual por host en /tmp/ansible_facts_output (luego leido por el
+# script Python generar_inventario.py).
+
+- name: Recolectar facts de dispositivos IOS (hardware/software)
+  hosts: all
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+
+  tasks:
+
+    - name: Crear carpeta de salida en el control node
+      ansible.builtin.file:
+        path: "{{ output_dir | default('/tmp/ansible_facts_output') }}"
+        state: directory
+        mode: '0755'
+      delegate_to: localhost
+      connection: local
+      run_once: true
+
+    - name: Intentar obtener facts y guardarlos; si falla, registrar el error
+      block:
+
+        - name: Obtener facts del dispositivo (hardware + software)
+          cisco.ios.ios_facts:
+            gather_subset:
+              - hardware
+              - default
+          register: facts_result
+
+        - name: Construir diccionario resumido por host
+          ansible.builtin.set_fact:
+            inventario_host:
+              hostname: "{{ ansible_net_hostname | default(inventory_hostname) }}"
+              modelo: "{{ ansible_net_image | default('N/A') }}"
+              tipo_ios: "{{ ansible_net_iostype | default('N/A') }}"
+              version_ios: "{{ ansible_net_version | default('N/A') }}"
+              serial: "{{ ansible_net_serialnum | default('N/A') }}"
+              uptime: "{{ ansible_net_uptime | default('N/A') }}"
+              memoria_total_mb: "{{ ansible_net_memtotal_mb | default('N/A') }}"
+              memoria_libre_mb: "{{ ansible_net_memfree_mb | default('N/A') }}"
+              grupos: "{{ group_names }}"
+              host_conexion: "{{ inventory_hostname }}"
+              estado: "OK"
+
+      rescue:
+
+        - name: Construir diccionario de error para el host (no se pudo conectar/recolectar)
+          ansible.builtin.set_fact:
+            inventario_host:
+              hostname: "{{ inventory_hostname }}"
+              modelo: "N/A"
+              tipo_ios: "N/A"
+              version_ios: "N/A"
+              serial: "N/A"
+              uptime: "N/A"
+              memoria_total_mb: "N/A"
+              memoria_libre_mb: "N/A"
+              grupos: "{{ group_names }}"
+              host_conexion: "{{ inventory_hostname }}"
+              estado: "INALCANZABLE"
+
+      always:
+
+        - name: Guardar el inventario del host en un archivo JSON
+          ansible.builtin.copy:
+            content: "{{ inventario_host | to_nice_json }}"
+            dest: "{{ (output_dir | default('/tmp/ansible_facts_output')) ~ '/' ~ inventory_hostname ~ '.json' }}"
+          delegate_to: localhost
+          connection: local

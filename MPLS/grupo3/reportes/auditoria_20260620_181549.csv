@@ -1,0 +1,9 @@
+device,rol,timestamp,total_interfaces,loopbacks,total_vrfs,mpls_enabled,ldp_enabled,ospf_process,ospf_networks,bgp_process,bgp_neighbors,vpnv4,vpnv6,route_distinguishers,route_targets,estado
+PE1,PE (Provider Edge),2026-06-20T18:15:50.791840,10,1,2,True,True,True,4,True,2,True,True,1,2,OK
+PE2,PE (Provider Edge),2026-06-20T18:15:51.925518,10,1,2,True,True,True,4,True,2,True,True,1,2,OK
+P1,Desconocido,2026-06-20T18:15:53.030876,9,1,1,True,False,True,6,True,2,False,False,0,0,OK
+P2,Desconocido,2026-06-20T18:15:54.167061,5,1,1,True,False,True,4,True,2,False,False,0,0,OK
+RR1,PE (Provider Edge),2026-06-20T18:15:55.295455,5,1,1,True,False,True,4,True,5,True,True,0,0,OK
+RR2,PE (Provider Edge),2026-06-20T18:15:56.364160,5,1,1,True,False,True,4,True,5,True,True,0,0,OK
+CPE1,Desconocido,2026-06-20T18:15:57.547926,4,0,1,False,False,False,0,False,0,False,False,0,0,OK
+CPE2,Desconocido,2026-06-20T18:15:58.746121,4,0,1,False,False,False,0,False,0,False,False,0,0,OK

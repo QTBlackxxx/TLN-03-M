@@ -1,0 +1,55 @@
+---
+- name: Configurar VPNv4 y VPNv6 en PE routers
+  hosts: PE_routers
+  gather_facts: false
+  tasks:
+    - name: Crear definicion de VRF
+      cisco.ios.ios_config:
+        lines: "{{ item.lines }}"
+        parents: "vrf definition {{ item.name }}"
+        match: line
+      loop: "{{ config_vrf }}"
+
+    - name: Configurar address-families en VRF
+      cisco.ios.ios_config:
+        lines:
+          - "exit-address-family"
+        parents:
+          - "vrf definition {{ item.0.name }}"
+          - "address-family {{ item.1 }}"
+        match: line
+      loop: "{{ config_vrf | subelements('address_families') }}"
+
+    - name: Asignar VRF a subinterfaces CPE
+      cisco.ios.ios_config:
+        lines:
+          - "vrf forwarding {{ item.vrf_name }}"
+        parents: "interface {{ item.name }}"
+        match: line
+      loop: "{{ config_vrf_cpe }}"
+
+    - name: Configurar encapsulacion en subinterfaces CPE
+      cisco.ios.ios_config:
+        lines: "{{ item.commands }}"
+        parents: "interface {{ item.name }}"
+        match: line
+      loop: "{{ config_encapsulation_cpe }}"
+
+    - name: Configurar direccionamiento IPv4/IPv6 en subinterfaces CPE
+      cisco.ios.ios_l3_interfaces:
+        config: "{{ config_interfaces_cpe }}"
+        state: merged
+
+    - name: Configurar rutas estaticas en VRF
+      cisco.ios.ios_config:
+        lines: "{{ config_routing_static }}"
+        match: line
+
+    - name: Configurar address-families VPN en BGP (vpnv4, vpnv6, vrf)
+      cisco.ios.ios_config:
+        lines: "{{ item.lines }}"
+        parents:
+          - "router bgp 100"
+          - "address-family {{ item.af }}"
+        match: line
+      loop: "{{ config_routing_bgp_af }}"

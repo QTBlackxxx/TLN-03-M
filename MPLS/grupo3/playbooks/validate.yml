@@ -1,0 +1,98 @@
+---
+
+# --- 1. OSPF: vecindades deben estar FULL ---
+- name: Validar vecindades OSPF (deben estar FULL)
+  hosts: MPLS_core
+  gather_facts: false
+  tasks:
+    - name: Obtener vecinos OSPF
+      cisco.ios.ios_command:
+        commands:
+          - "show ip ospf neighbor"
+      register: ospf_out
+
+    - name: Mostrar salida cruda (debug)
+      debug:
+        var: ospf_out.stdout_lines[0]
+
+    - name: Verificar que no haya vecinos atascados (no FULL)
+      assert:
+        that:
+          - "'EXSTART' not in ospf_out.stdout[0]"
+          - "'EXCHANGE' not in ospf_out.stdout[0]"
+          - "'2WAY' not in ospf_out.stdout[0]"
+          - "'INIT' not in ospf_out.stdout[0]"
+          - "'DOWN' not in ospf_out.stdout[0]"
+        fail_msg: "Hay vecinos OSPF que NO llegaron a FULL en {{ inventory_hostname }}"
+        success_msg: "Todos los vecinos OSPF en {{ inventory_hostname }} estan FULL (o no hay vecinos configurados)"
+
+
+# --- 2. BGP: sesiones establecidas ---
+- name: Validar sesiones BGP (deben estar Established)
+  hosts: MPLS_core
+  gather_facts: false
+  tasks:
+    - name: Obtener resumen de todas las address-family de BGP
+      cisco.ios.ios_command:
+        commands:
+          - "show bgp all summary"
+      register: bgp_out
+
+    - name: Mostrar salida cruda (debug)
+      debug:
+        var: bgp_out.stdout_lines[0]
+
+    - name: Verificar que ninguna sesion este en Idle/Active/Connect (no establecida)
+      assert:
+        that:
+          - "'Idle' not in bgp_out.stdout[0]"
+          - "'Active' not in bgp_out.stdout[0]"
+          - "'Connect' not in bgp_out.stdout[0]"
+        fail_msg: "Hay sesiones BGP NO establecidas en {{ inventory_hostname }}"
+        success_msg: "Todas las sesiones BGP en {{ inventory_hostname }} estan Established"
+
+
+- name: Validar conectividad IPv4/IPv6 VPN entre sitios (PC-LAN <-> PC-LAN)
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    pc_cpe1: clab-MPLS-PC-LAN-1
+    pc_cpe2: clab-MPLS-PC-LAN-2
+
+  tasks:
+    - name: "Ping IPv4: PC-CPE1 -> PC-CPE2 (192.168.20.10)"
+      ansible.builtin.command: "docker exec {{ pc_cpe1 }} ping -c 5 192.168.20.10"
+      register: ping_v4_1_to_2
+      changed_when: false
+      failed_when: false
+
+    - debug:
+        var: ping_v4_1_to_2.stdout_lines
+
+    - name: "Ping IPv4: PC-CPE2 -> PC-CPE1 (192.168.10.10)"
+      ansible.builtin.command: "docker exec {{ pc_cpe2 }} ping -c 5 192.168.10.10"
+      register: ping_v4_2_to_1
+      changed_when: false
+      failed_when: false
+
+    - debug:
+        var: ping_v4_2_to_1.stdout_lines
+
+    - name: "Ping IPv6: PC-CPE1 -> PC-CPE2 (2001:192:168:20::10)"
+      ansible.builtin.command: "docker exec {{ pc_cpe1 }} ping -6 -c 5 2001:192:168:20::10"
+      register: ping_v6_1_to_2
+      changed_when: false
+      failed_when: false
+
+    - debug:
+        var: ping_v6_1_to_2.stdout_lines
+
+    - name: "Ping IPv6: PC-CPE2 -> PC-CPE1 (2001:192:168:10::10)"
+      ansible.builtin.command: "docker exec {{ pc_cpe2 }} ping -6 -c 5 2001:192:168:10::10"
+      register: ping_v6_2_to_1
+      changed_when: false
+      failed_when: false
+
+    - debug:
+        var: ping_v6_2_to_1.stdout_lines

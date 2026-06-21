@@ -1,0 +1,77 @@
+---
+- name: Configurar interfaces en routers MPLS (PE, P, RR)
+  hosts: MPLS_core
+  gather_facts: false
+  tasks:
+    - name: Configurar interfaces hacia el Core
+      cisco.ios.ios_l3_interfaces:
+        config: "{{ config_interfaces }}"          
+        state: merged
+
+    - name: Configurar descripcion de interfaces
+      cisco.ios.ios_interfaces:
+        config: "{{ config_descripcion }}"       
+        state: merged
+
+    - name: Configurar mpls,ospf
+      cisco.ios.ios_config:
+        lines: "{{ item.commands }}"
+        parents: "interface {{ item.name }}"
+        match: line
+      loop: "{{ config_mpls_ospf }}"
+
+    - name: Configurar interfaces hacia los CPEs
+      cisco.ios.ios_l3_interfaces:
+        config: "{{ config_interfaces_cpe }}"          
+        state: merged
+      when: config_interfaces_cpe is defined  
+
+    - name: Configurar descripcion de interfaces
+      cisco.ios.ios_interfaces:
+        config: "{{ config_descripcion_cpe }}"       
+        state: merged
+      when: config_descripcion_cpe is defined  
+
+    - name: Configurar encapsulation
+      cisco.ios.ios_config:
+        lines: "{{ item.commands }}"
+        parents: "interface {{ item.name }}"
+        match: line
+      loop: "{{ config_encapsulation_cpe }}"
+      when: config_encapsulation_cpe is defined
+
+
+- name: Configurar switchs de acceso
+  hosts: Switches
+  gather_facts: false
+  tasks:
+    - name: Configurar VLANs 
+      cisco.ios.ios_vlans:
+        config: "{{ config_vlans }}"
+        state : merged
+
+    - name: Configurar interfaces
+      cisco.ios.ios_l2_interfaces:
+        config: "{{ config_interfaces }}"          
+        state: merged
+
+    - name: Configurar descripcion de interfaces
+      cisco.ios.ios_interfaces:
+        config: "{{ config_descripcion }}"       
+        state: merged
+
+
+- name: Configurar interfaces en CPEs
+  hosts: CPEs
+  gather_facts: false
+  tasks:
+    - name: Configurar interfaces 
+      cisco.ios.ios_l3_interfaces:
+        config: "{{ config_interfaces }}"          
+        state: merged
+
+    - name: Configurar descripcion de interfaces
+      cisco.ios.ios_interfaces:
+        config: "{{ config_descripcion }}"       
+        state: merged
+

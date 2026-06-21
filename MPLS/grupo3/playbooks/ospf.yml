@@ -1,0 +1,32 @@
+---
+- name: Configurar IGP (OSPF) en routers MPLS
+  hosts: MPLS_core
+  gather_facts: false
+  tasks:
+    - name: Aplicar configuracion de OSPF
+      cisco.ios.ios_ospfv2:
+        config: "{{ config_ospf_data }}"       
+        state: merged
+
+- name: Configurar routing estatico en CPE1 y CPE2
+  hosts: CPEs
+  gather_facts: false
+  tasks:
+    - name: Aplicar rutas estaticas
+      cisco.ios.ios_static_routes:
+        config: "{{ config_routing }}"       
+        state: merged
+
+- name: Agregar gateway IPv6 a host LAN 1
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: PC LAN 1
+      ansible.builtin.command: >
+        docker exec clab-MPLS-PC-LAN-1
+        ip -6 route replace default via 2001:192:168:10::1 dev eth1
+
+    - name: PC LAN 2
+      ansible.builtin.command: >
+        docker exec clab-MPLS-PC-LAN-2
+        ip -6 route replace default via 2001:192:168:20::1 dev eth1
