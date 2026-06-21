@@ -20,7 +20,7 @@ FLUJO DEL SCRIPT:
 
 SALIDA:
   - master_report.txt (en /Escritorio/.../reportes) - Reporte integrado completo
-  - inventory.ini (en /Escritorio/.../inventory) - Inventario para Ansible
+  - inventory_automatic.ini (en /Escritorio/.../inventory) - Inventario para Ansible
 
 Uso:
     python network_automation_suite.py
@@ -159,7 +159,7 @@ REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 MASTER_REPORT_FILE = REPORTS_DIR / "master_report.txt"
 
 # Archivo de inventario automático
-INVENTORY_AUTOMATIC_FILE = INVENTORY_DIR / "inventory.ini"
+INVENTORY_AUTOMATIC_FILE = INVENTORY_DIR / "inventory_automatic.ini"
 
 # Configurar logging
 logging.basicConfig(
@@ -454,7 +454,7 @@ class ReportGenerator:
 
 def generate_inventory_automatic(devices: List[Dict]) -> bool:
     """
-    Genera archivo inventory.ini en formato Ansible
+    Genera archivo inventory_automatic.ini en formato Ansible
     """
     try:
         with open(INVENTORY_AUTOMATIC_FILE, "w") as inv:
@@ -960,7 +960,7 @@ def main():
     
     print(f"{Colors.BRIGHT_YELLOW}📊 PRÓXIMOS PASOS:{Colors.RESET}")
     print(f"   {Colors.CYAN}• Revisar el reporte: {MASTER_REPORT_FILE}{Colors.RESET}")
-    print(f"   {Colors.CYAN}• Usar inventario para ejecutar nuevos playbooks{Colors.RESET}")
+    print(f"   {Colors.CYAN}• Usar inventario para ejecutar playbooks{Colors.RESET}")
     print(f"   {Colors.CYAN}• Validar con NAPALM{Colors.RESET}")
     print(f"   {Colors.CYAN}• Incluir en la presentación{Colors.RESET}")
     print(f"\n{Colors.RESET}")
