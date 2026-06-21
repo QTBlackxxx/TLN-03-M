@@ -1,0 +1,133 @@
+---
+- name: Playbook 3 - Configuracion de MPLS Core (LDP)
+  hosts: MPLS_update
+  gather_facts: false
+  tasks:
+
+    # ──────────────────────────────────────────────
+    # PE1 - Comandos globales
+    # ──────────────────────────────────────────────
+    - name: MPLS global PE1
+      cisco.ios.ios_config:
+        lines:
+          - mpls ldp router-id Loopback0 force
+          - mpls ldp logging neighbor-changes
+      when: inventory_hostname == "clab-MPLS-PE1"
+
+    - name: MPLS por interfaz PE1
+      cisco.ios.ios_config:
+        parents: "{{ item }}"
+        lines:
+          - mpls ip
+      loop:
+        - interface Ethernet0/1
+        - interface Ethernet0/2
+        - interface Ethernet0/3
+      when: inventory_hostname == "clab-MPLS-PE1"
+
+    # ──────────────────────────────────────────────
+    # PE2 - Comandos globales
+    # ──────────────────────────────────────────────
+    - name: MPLS global PE2
+      cisco.ios.ios_config:
+        lines:
+          - mpls ldp router-id Loopback0 force
+          - mpls ldp logging neighbor-changes
+      when: inventory_hostname == "clab-MPLS-PE2"
+
+    - name: MPLS por interfaz PE2
+      cisco.ios.ios_config:
+        parents: "{{ item }}"
+        lines:
+          - mpls ip
+      loop:
+        - interface Ethernet0/1
+        - interface Ethernet0/2
+        - interface Ethernet0/3
+      when: inventory_hostname == "clab-MPLS-PE2"
+
+    # ──────────────────────────────────────────────
+    # P1
+    # ──────────────────────────────────────────────
+    - name: MPLS global P1
+      cisco.ios.ios_config:
+        lines:
+          - mpls ldp router-id Loopback0 force
+          - mpls ldp logging neighbor-changes
+      when: inventory_hostname == "clab-MPLS-P1"
+
+    - name: MPLS por interfaz P1
+      cisco.ios.ios_config:
+        parents: "{{ item }}"
+        lines:
+          - mpls ip
+      loop:
+        - interface Ethernet0/1
+        - interface Ethernet0/2
+        - interface Ethernet0/3
+        - interface Ethernet1/0
+        - interface Ethernet1/1
+      when: inventory_hostname == "clab-MPLS-P1"
+
+    # ──────────────────────────────────────────────
+    # P2
+    # ──────────────────────────────────────────────
+    - name: MPLS global P2
+      cisco.ios.ios_config:
+        lines:
+          - mpls ldp router-id Loopback0 force
+          - mpls ldp logging neighbor-changes
+      when: inventory_hostname == "clab-MPLS-P2"
+
+    - name: MPLS por interfaz P2
+      cisco.ios.ios_config:
+        parents: "{{ item }}"
+        lines:
+          - mpls ip
+      loop:
+        - interface Ethernet0/1
+        - interface Ethernet0/2
+        - interface Ethernet0/3
+      when: inventory_hostname == "clab-MPLS-P2"
+
+    # ──────────────────────────────────────────────
+    # RR1
+    # ──────────────────────────────────────────────
+    - name: MPLS global RR1
+      cisco.ios.ios_config:
+        lines:
+          - mpls ldp router-id Loopback0 force
+          - mpls ldp logging neighbor-changes
+      when: inventory_hostname == "clab-MPLS-RR1"
+
+    - name: MPLS por interfaz RR1
+      cisco.ios.ios_config:
+        parents: "{{ item }}"
+        lines:
+          - mpls ip
+      loop:
+        - interface Ethernet0/1
+        - interface Ethernet0/2
+        - interface Ethernet0/3
+      when: inventory_hostname == "clab-MPLS-RR1"
+
+    # ──────────────────────────────────────────────
+    # RR2
+    # ──────────────────────────────────────────────
+    - name: MPLS global RR2
+      cisco.ios.ios_config:
+        lines:
+          - mpls ldp router-id Loopback0 force
+          - mpls ldp logging neighbor-changes
+      when: inventory_hostname == "clab-MPLS-RR2"
+
+    - name: MPLS por interfaz RR2
+      cisco.ios.ios_config:
+        parents: "{{ item }}"
+        lines:
+          - mpls ip
+      loop:
+        - interface Ethernet0/1
+        - interface Ethernet0/2
+        - interface Ethernet0/3
+      when: inventory_hostname == "clab-MPLS-RR2"
