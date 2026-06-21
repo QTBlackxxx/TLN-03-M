@@ -1,0 +1,34 @@
+interface Loopback0
+ description DNS-SIMULADO-GOOGLE
+ ip address 8.8.8.8 255.255.255.255
+!
+interface Ethernet0/1
+ description EBGP-MOVISTAR-AS100
+ ip address 10.0.0.74 255.255.255.252
+ no shutdown
+!
+interface Ethernet0/2
+ description EBGP-CLARO-AS200
+ ip address 10.0.0.78 255.255.255.252
+ no shutdown
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+router bgp 300
+ bgp router-id 8.8.8.8
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 10.0.0.73 remote-as 100
+ neighbor 10.0.0.77 remote-as 200
+ !
+ address-family ipv4
+  network 8.8.8.8 mask 255.255.255.255
+  neighbor 10.0.0.73 activate
+  neighbor 10.0.0.77 activate
+ exit-address-family
+!
+ip forward-protocol nd
+ip http server
+ip http secure-server

@@ -1,0 +1,63 @@
+all:
+  vars:
+    # The generated inventory is assumed to be used from the clab host.
+    # Hence no http proxy should be used. Therefore we make sure the http
+    # module does not attempt using any global http proxy.
+    ansible_httpapi_use_proxy: false
+  children:
+    cisco_iol:
+      vars:
+        # ansible_connection: set ansible_connection variable if required
+        ansible_user: admin
+        ansible_password: admin
+      hosts:
+        clab-ISP-TDP-CLARO-IOL-C1:
+          ansible_host: 172.20.20.8
+        clab-ISP-TDP-CLARO-IOL-C2:
+          ansible_host: 172.20.20.17
+        clab-ISP-TDP-CLARO-IOL-C3:
+          ansible_host: 172.20.20.9
+        clab-ISP-TDP-CLARO-IOL-C4:
+          ansible_host: 172.20.20.15
+        clab-ISP-TDP-CLARO-IOL-C5:
+          ansible_host: 172.20.20.3
+        clab-ISP-TDP-CLARO-IOL-CPE-BRANCH:
+          ansible_host: 172.20.20.4
+        clab-ISP-TDP-CLARO-IOL-CPE-HQ:
+          ansible_host: 172.20.20.22
+        clab-ISP-TDP-CLARO-IOL-INTERNET:
+          ansible_host: 172.20.20.20
+        clab-ISP-TDP-CLARO-IOL-M1:
+          ansible_host: 172.20.20.2
+        clab-ISP-TDP-CLARO-IOL-M2:
+          ansible_host: 172.20.20.18
+        clab-ISP-TDP-CLARO-IOL-M3:
+          ansible_host: 172.20.20.21
+        clab-ISP-TDP-CLARO-IOL-M4:
+          ansible_host: 172.20.20.13
+        clab-ISP-TDP-CLARO-IOL-SW-PISO1:
+          ansible_host: 172.20.20.14
+        clab-ISP-TDP-CLARO-IOL-SW-PISO2:
+          ansible_host: 172.20.20.16
+        clab-ISP-TDP-CLARO-IOL-SW-R-PISO1:
+          ansible_host: 172.20.20.7
+        clab-ISP-TDP-CLARO-IOL-SW-R-PISO2:
+          ansible_host: 172.20.20.11
+    linux:
+      hosts:
+        clab-ISP-TDP-CLARO-IOL-PC1-R-VLAN5:
+          ansible_host: 172.20.20.19
+        clab-ISP-TDP-CLARO-IOL-PC1-VLAN10:
+          ansible_host: 172.20.20.5
+        clab-ISP-TDP-CLARO-IOL-PC2-R-VLAN5:
+          ansible_host: 172.20.20.10
+        clab-ISP-TDP-CLARO-IOL-PC2-VLAN10:
+          ansible_host: 172.20.20.24
+        clab-ISP-TDP-CLARO-IOL-PC3-R-VLAN15:
+          ansible_host: 172.20.20.12
+        clab-ISP-TDP-CLARO-IOL-PC3-VLAN20:
+          ansible_host: 172.20.20.23
+        clab-ISP-TDP-CLARO-IOL-PC4-R-VLAN15:
+          ansible_host: 172.20.20.25
+        clab-ISP-TDP-CLARO-IOL-PC4-VLAN20:
+          ansible_host: 172.20.20.6

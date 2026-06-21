@@ -1,0 +1,100 @@
+interface Loopback0
+ ip address 190.0.0.1 255.255.255.255
+!
+interface Ethernet0/1
+ description WAN-CLARO-RESPALDO
+ ip address 10.0.0.62 255.255.255.252
+ no shutdown
+!
+interface Ethernet0/2
+ description TRUNK-BRANCH-VLAN5-VLAN15
+ no ip address
+ no shutdown
+!
+interface Ethernet0/2.5
+ encapsulation dot1Q 5
+ ip address 192.168.5.1 255.255.255.0
+!
+interface Ethernet0/2.15
+ encapsulation dot1Q 15
+ ip address 192.168.15.1 255.255.255.0
+!
+interface Ethernet0/3
+ description WAN-MOVISTAR-PRINCIPAL
+ ip address 10.0.0.70 255.255.255.252
+ crypto map CMAP-BRANCH
+ no shutdown
+!
+ip forward-protocol nd
+ip http server
+ip http secure-server
+!
+ip access-list extended VPN-BRANCH-HQ
+ permit ip 192.168.5.0 0.0.0.255 192.168.10.0 0.0.0.255
+ permit ip 192.168.5.0 0.0.0.255 192.168.20.0 0.0.0.255
+ permit ip 192.168.15.0 0.0.0.255 192.168.10.0 0.0.0.255
+ permit ip 192.168.15.0 0.0.0.255 192.168.20.0 0.0.0.255
+!
+crypto isakmp policy 10
+ encr aes 256
+ hash sha256
+ authentication pre-share
+ group 14
+ lifetime 86400
+!
+crypto isakmp key UNI2026 address 10.0.0.2
+!
+crypto ipsec transform-set TS-AES256-SHA esp-aes 256 esp-sha-hmac
+ mode tunnel
+!
+crypto map CMAP-BRANCH 10 ipsec-isakmp
+ set peer 10.0.0.2
+ set transform-set TS-AES256-SHA
+ match address VPN-BRANCH-HQ
+!
+router bgp 65002
+ bgp router-id 190.0.0.1
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 10.0.0.61 remote-as 200
+ neighbor 10.0.0.69 remote-as 100
+ !
+ address-family ipv4
+  network 192.168.5.0 mask 255.255.255.0
+  network 192.168.15.0 mask 255.255.255.0
+  network 190.0.0.1 mask 255.255.255.255
+ network 10.0.0.60 mask 255.255.255.252
+ network 10.0.0.68 mask 255.255.255.252
+  neighbor 10.0.0.61 activate
+  neighbor 10.0.0.61 route-map BACKUP-CLARO in
+  neighbor 10.0.0.69 activate
+  neighbor 10.0.0.69 route-map PREFER-MOVISTAR in
+ exit-address-family
+!
+route-map PREFER-MOVISTAR permit 10
+ set local-preference 200
+!
+route-map BACKUP-CLARO permit 10
+ set local-preference 100
+!
+! GRE + IPsec hacia CPE-HQ
+!
+crypto ipsec transform-set TS-GRE-IPSEC esp-aes 256 esp-sha-hmac
+ mode transport
+!
+crypto ipsec profile GRE-IPSEC-PROFILE
+ set transform-set TS-GRE-IPSEC
+!
+interface Tunnel0
+ ip address 172.30.30.2 255.255.255.252
+ tunnel source Ethernet0/3
+ tunnel destination 10.0.0.2
+ tunnel mode gre ip
+ tunnel protection ipsec profile GRE-IPSEC-PROFILE
+ no keepalive
+ no shutdown
+!
+ip route 10.0.0.2 255.255.255.255 10.0.0.69
+ip route 192.168.10.0 255.255.255.0 Tunnel0
+ip route 192.168.20.0 255.255.255.0 Tunnel0
+!

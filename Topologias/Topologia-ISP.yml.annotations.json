@@ -1,0 +1,603 @@
+{
+  "freeTextAnnotations": [],
+  "freeShapeAnnotations": [
+    {
+      "id": "freeShape_1778201116513",
+      "shapeType": "rectangle",
+      "position": {
+        "x": 484.44882237142724,
+        "y": 408.6506899437494
+      },
+      "width": 356,
+      "height": 421,
+      "fillColor": "#7f7f7f",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    },
+    {
+      "id": "freeShape_1778201186268",
+      "shapeType": "rectangle",
+      "position": {
+        "x": -424.40153319595174,
+        "y": 406.7529454710001
+      },
+      "width": 345,
+      "height": 427,
+      "fillColor": "rgba(127, 127, 127, 0.16)",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    },
+    {
+      "id": "freeShape_1778201238782",
+      "shapeType": "circle",
+      "position": {
+        "x": -74.02950409509528,
+        "y": 399.967289604802
+      },
+      "width": 266,
+      "height": 266,
+      "fillColor": "#7f7f7f",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    },
+    {
+      "id": "freeShape_1778201317006",
+      "shapeType": "circle",
+      "position": {
+        "x": 152.68864113273474,
+        "y": 384.3312959715279
+      },
+      "width": 300,
+      "height": 300,
+      "fillColor": "rgba(127, 127, 127, 0.16)",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    },
+    {
+      "id": "freeShape_1778201346489",
+      "shapeType": "rectangle",
+      "position": {
+        "x": 353.06585340568085,
+        "y": 109.79381000103481
+      },
+      "width": 100,
+      "height": 273,
+      "fillColor": "rgba(127, 127, 127, 0.16)",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    },
+    {
+      "id": "freeShape_1778201375967",
+      "shapeType": "rectangle",
+      "position": {
+        "x": -48.663549089403915,
+        "y": 106.3868293188639
+      },
+      "width": 100,
+      "height": 275,
+      "fillColor": "rgba(127, 127, 127, 0.16)",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    },
+    {
+      "id": "freeShape_1778201394527",
+      "shapeType": "rectangle",
+      "position": {
+        "x": 72.60237204961726,
+        "y": 104.79381000103476
+      },
+      "width": 100,
+      "height": 278,
+      "fillColor": "rgba(127, 127, 127, 0.16)",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    },
+    {
+      "id": "freeShape_1778201410833",
+      "shapeType": "rectangle",
+      "position": {
+        "x": 231.01402909768228,
+        "y": 110.51241386460066
+      },
+      "width": 100,
+      "height": 268,
+      "fillColor": "rgba(127, 127, 127, 0.16)",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    },
+    {
+      "id": "freeShape_1778201441586",
+      "shapeType": "circle",
+      "position": {
+        "x": 143.1766859038699,
+        "y": -32.82403704599547
+      },
+      "width": 119,
+      "height": 119,
+      "fillColor": "rgba(127, 127, 127, 0.16)",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    },
+    {
+      "id": "freeShape_1778203152892",
+      "shapeType": "rectangle",
+      "position": {
+        "x": 67.67415138007229,
+        "y": 687.5516348182265
+      },
+      "width": 267,
+      "height": 284,
+      "fillColor": "rgba(127, 127, 127, 0.16)",
+      "fillOpacity": 0.2,
+      "borderColor": "#bbbebf",
+      "borderWidth": 1,
+      "borderStyle": "solid",
+      "rotation": 0,
+      "zIndex": -1
+    }
+  ],
+  "trafficRateAnnotations": [],
+  "groupStyleAnnotations": [],
+  "networkNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "CPE-BRANCH2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 100,
+        "y": 700
+      }
+    },
+    {
+      "id": "CPE-BRANCH2-BK",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 260,
+        "y": 700
+      }
+    },
+    {
+      "id": "PC1-R2-VLAN25",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 100,
+        "y": 900
+      },
+      "icon": "client"
+    },
+    {
+      "id": "CORE2-HQ",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 260,
+        "y": 780
+      }
+    },
+    {
+      "id": "AGG1-HQ",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 140,
+        "y": 880
+      }
+    },
+    {
+      "id": "AGG2-HQ",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 260,
+        "y": 880
+      }
+    },
+    {
+      "id": "SW-PISO1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -260,
+        "y": 620
+      },
+      "icon": "switch"
+    },
+    {
+      "id": "SW-PISO2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -260,
+        "y": 500
+      },
+      "icon": "switch"
+    },
+    {
+      "id": "M1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -40,
+        "y": 520
+      }
+    },
+    {
+      "id": "M2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 40,
+        "y": 420
+      }
+    },
+    {
+      "id": "M3",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 40,
+        "y": 600
+      }
+    },
+    {
+      "id": "M4",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 120,
+        "y": 520
+      }
+    },
+    {
+      "id": "CPE-BRANCH",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 520,
+        "y": 520
+      }
+    },
+    {
+      "id": "SW-R-PISO1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 640,
+        "y": 640
+      },
+      "icon": "switch"
+    },
+    {
+      "id": "SW-R-PISO2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 640,
+        "y": 520
+      },
+      "icon": "switch"
+    },
+    {
+      "id": "C1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 400,
+        "y": 520
+      }
+    },
+    {
+      "id": "C2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 320,
+        "y": 420
+      }
+    },
+    {
+      "id": "C3",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 200,
+        "y": 420
+      }
+    },
+    {
+      "id": "C4",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 200,
+        "y": 600
+      }
+    },
+    {
+      "id": "C5",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 320,
+        "y": 600
+      }
+    },
+    {
+      "id": "CARR-1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 40,
+        "y": 320
+      }
+    },
+    {
+      "id": "CARR-2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 200,
+        "y": 320
+      }
+    },
+    {
+      "id": "CARR-CORE",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 120,
+        "y": 240
+      }
+    },
+    {
+      "id": "SW-R2-PISO1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 180,
+        "y": 800
+      },
+      "icon": "switch"
+    },
+    {
+      "id": "SW-CORE2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 200,
+        "y": 160
+      }
+    },
+    {
+      "id": "PC1-VLAN10",
+      "position": {
+        "x": -360,
+        "y": 760
+      },
+      "icon": "client"
+    },
+    {
+      "id": "PC2-VLAN10",
+      "position": {
+        "x": -260,
+        "y": 760
+      },
+      "icon": "client"
+    },
+    {
+      "id": "PC3-VLAN20",
+      "position": {
+        "x": -380,
+        "y": 420
+      },
+      "icon": "client"
+    },
+    {
+      "id": "PC4-VLAN20",
+      "position": {
+        "x": -380,
+        "y": 500
+      },
+      "icon": "client"
+    },
+    {
+      "id": "PC1-R-VLAN5",
+      "position": {
+        "x": 760,
+        "y": 560
+      },
+      "icon": "client"
+    },
+    {
+      "id": "PC2-R-VLAN5",
+      "position": {
+        "x": 760,
+        "y": 640
+      },
+      "icon": "client"
+    },
+    {
+      "id": "PC3-R-VLAN15",
+      "position": {
+        "x": 640,
+        "y": 420
+      },
+      "icon": "client"
+    },
+    {
+      "id": "PC4-R-VLAN15",
+      "position": {
+        "x": 740,
+        "y": 420
+      },
+      "icon": "client"
+    },
+    {
+      "id": "WEB-SERVER",
+      "position": {
+        "x": -40,
+        "y": 140
+      }
+    },
+    {
+      "id": "DNS-SERVER",
+      "position": {
+        "x": 360,
+        "y": 140
+      }
+    },
+    {
+      "id": "CPE-HQ",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -160,
+        "y": 520
+      }
+    },
+    {
+      "id": "CPE-HQ-BK",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -160,
+        "y": 720
+      }
+    },
+    {
+      "id": "CPE-BRANCH-BK",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 520,
+        "y": 720
+      }
+    },
+    {
+      "id": "T1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -20,
+        "y": 320
+      }
+    },
+    {
+      "id": "T2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -20,
+        "y": 220
+      }
+    },
+    {
+      "id": "T3",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": -20,
+        "y": 120
+      }
+    },
+    {
+      "id": "ATT1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 100,
+        "y": 320
+      }
+    },
+    {
+      "id": "ATT2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 100,
+        "y": 220
+      }
+    },
+    {
+      "id": "ATT3",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 100,
+        "y": 120
+      }
+    },
+    {
+      "id": "OR1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 260,
+        "y": 320
+      }
+    },
+    {
+      "id": "OR2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 260,
+        "y": 220
+      }
+    },
+    {
+      "id": "OR3",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 260,
+        "y": 120
+      }
+    },
+    {
+      "id": "LU1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 380,
+        "y": 320
+      }
+    },
+    {
+      "id": "LU2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 380,
+        "y": 220
+      }
+    },
+    {
+      "id": "LU3",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 380,
+        "y": 120
+      }
+    },
+    {
+      "id": "GOOGLE",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 180,
+        "y": 0
+      }
+    },
+    {
+      "id": "PC2-R2-VLAN30",
+      "position": {
+        "x": 260,
+        "y": 900
+      },
+      "icon": "client"
+    }
+  ],
+  "edgeAnnotations": [],
+  "aliasEndpointAnnotations": [],
+  "viewerSettings": {}
+}

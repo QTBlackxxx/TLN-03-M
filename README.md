@@ -1,125 +1,94 @@
-# MPLS L3VPN - Automatización de Red
-
-Automatización y validación de una red **MPLS L3VPN** (IPv4/IPv6) desplegada sobre **containerlab**, usando **Ansible** para la configuración de los dispositivos y **Python** para tareas de operación complementarias.
-
-## Topología de red
-
-![Topologia](docs/Topologia%20pc3.png)
-
-La red está compuesta por los siguientes roles, todos desplegados como contenedores `clab-MPLS-*` mediante containerlab:
-
-| Grupo Ansible | Dispositivos | Rol |
-|---|---|---|
-| `PE_routers` | PE1, PE2 | Provider Edge - frontera con clientes, MP-BGP VPNv4/VPNv6 |
-| `P_routers` | P1, P2 | Provider - core MPLS, conmutación de etiquetas |
-| `RR_routers` | RR1, RR2 | Route Reflectors - distribución de rutas MP-BGP |
-| `CPEs` | CPE-1, CPE-2 | Customer Premises Equipment - equipos de cliente |
-| `Switches` | SW-1, SW-2 | Conectividad de acceso |
-
-## Estructura del proyecto
-
-```
-grupo3/
-├── ansible.cfg              # Configuración de Ansible (interpreter, host key checking, etc.)
-├── inventory.ini            # Inventario de dispositivos y grupos
-├── generar_inventario.py    # Script Python - genera inventario CSV/TXT vía Ansible
-│
-├── host_vars/                  # Variables específicas por dispositivo
-│   ├── clab-MPLS-CPE-1.yml
-│   ├── clab-MPLS-CPE-2.yml
-│   ├── clab-MPLS-P1.yml
-│   ├── clab-MPLS-P2.yml
-│   ├── clab-MPLS-PE1.yml
-│   ├── clab-MPLS-PE2.yml
-│   ├── clab-MPLS-RR1.yml
-│   ├── clab-MPLS-RR2.yml
-│   ├── clab-MPLS-SW-1.yml
-│   └── clab-MPLS-SW-2.yml
-│
-├── playbooks/                  # Playbooks de configuración y validación
-│   ├── interfaces.yml          # Configuración de interfaces
-│   ├── ospf.yml                # Configuración IGP (OSPF)
-│   ├── mpls.yml                # Configuración MPLS
-│   ├── validate.yml            # Validación del estado de la red
-│   └── gather_facts.yml        # Recolección de inventario (cisco.ios.ios_facts)
-│
-└── reportes/                # Salida de generar_inventario.py (CSV/TXT)
-```
-
-## Requisitos previos
-
-- [containerlab](https://containerlab.dev/) con el laboratorio MPLS desplegado y los contenedores `clab-MPLS-*` corriendo.
-- Python 3.10+
-- Ansible:
-  ```bash
-  pip install ansible
-  ansible-galaxy collection install cisco.ios
-  ```
-
-El grupo `MPLS_core` agrupa PE, P y RR para poder apuntar playbooks de core (MPLS, OSPF) a todos ellos en un solo `hosts:`.
-
-## Automatización con Ansible
-
-Los playbooks viven en `playbooks/` y se ejecutan con `ansible-playbook -i inventory.ini playbooks/<playbook>.yml`.
-
-| Playbook | Función |
-|---|---|
-| `interfaces.yml` | Configuración de interfaces de los dispositivos |
-| `ospf.yml` | Configuración del IGP (OSPF) |
-| `mpls.yml` | Configuración MPLS (label switching) |
-| `validate.yml` | Validación del estado operativo posterior a la configuración |
-| `gather_facts.yml` | Recolecta hardware/software de cada dispositivo con `cisco.ios.ios_facts` (usado por `generar_inventario.py`) |
-
-Ejemplo de ejecución:
-
+# 🎓 UNIVERSIDAD NACIONAL DE INGENIERÍA
+## CURSO TLN03 — Automatización y Programabilidad de Redes
+ 
+---
+ 
+## 📋 Descripción
+ 
+Repositorio base para el curso electivo **TLN03** de la Universidad Nacional de Ingeniería.  
+Incluye topologías de red desplegadas con **Containerlab**, scripts de automatización en **Python** y una imagen **Docker** lista para ejecutar.
+ 
+---
+ 
+## 🗺️ Topología Base
+ 
+![Topologia](docs/Topologia%20Base-2.png)
+ 
+---
+ 
+## 🌐 Topología ISP — Branch2
+ 
+Esta rama (`pc2-jhoveran`) extiende la topología base agregando la red **Branch2**,  
+interconectada a través de **ISP-Movistar** e **ISP-Claro**.
+ 
+![Topologia nueva](docs/topologia.png)
+ 
+---
+ 
+## 🔒 Túneles DMVPN
+ 
+![Tuneles DMVPN](docs/tuneles.png)
+ 
+---
+ 
+## 📡 Direccionamiento Branch2
+ 
+![Direccionamiento Branch2](docs/branch2.png)
+ 
+---
+ 
+## 🐳 Automatización con Docker
+ 
+Los scripts de configuración están empaquetados en una imagen Docker lista para usar.  
+No necesitas instalar Python ni dependencias manualmente.
+ 
+### Descargar la imagen
+ 
 ```bash
-ansible-playbook -i inventory.ini playbooks/interfaces.yml
-ansible-playbook -i inventory.ini playbooks/ospf.yml
-ansible-playbook -i inventory.ini playbooks/mpls.yml
-ansible-playbook -i inventory.ini playbooks/validate.yml
+docker pull jhoveranc/script-automatizacion
 ```
-
-> Los playbooks de BGP y VPNv4/VPNv6, así como la validación con NAPALM, están planificados para una siguiente iteración del proyecto.
-
-## Script Python adicional
-
-**`generar_inventario.py`** — Genera automáticamente un inventario de hardware/software de todos los dispositivos de la red, ejecutando `playbooks/gather_facts.yml` (que usa `cisco.ios.ios_facts`) y exportando el resultado a **CSV** o **TXT**.
-
-### Uso
-
+ 
+### Ejecutar el deploy (configuración completa)
+ 
 ```bash
-# Inventario completo en CSV (reportes/inventario_<timestamp>.csv)
-python3 generar_inventario.py
-
-# En formato TXT
-python3 generar_inventario.py --formato txt
-
-# Ambos formatos a la vez
-python3 generar_inventario.py --formato ambos
-
-# Limitar a un grupo específico (ej: solo los PE)
-python3 generar_inventario.py --grupo PE_routers
-
-# Ruta de salida personalizada
-python3 generar_inventario.py --salida reportes/inventario_pre_cambio.csv
-
-# Ver el detalle de la ejecución de Ansible (debug)
-python3 generar_inventario.py -v
+docker run --rm --network host jhoveranc/script-automatizacion
 ```
-
-### Datos que recolecta
-
-| Campo | Descripción |
+ 
+### Ejecutar la verificación
+ 
+```bash
+docker run --rm --network host jhoveranc/script-automatizacion python verify.py
+```
+ 
+> **Nota:** `--network host` es necesario para que el contenedor pueda alcanzar los nodos de Containerlab.
+ 
+---
+ 
+## 📁 Estructura de Scripts
+ 
+| Archivo | Descripción |
 |---|---|
-| `hostname` | Hostname configurado en el dispositivo |
-| `grupos` | Grupos de Ansible a los que pertenece |
-| `host_conexion` | Nombre usado en el inventario para conectarse |
-| `modelo` | Imagen/plataforma del dispositivo (`ansible_net_image`) |
-| `tipo_ios` | Tipo de IOS (`ansible_net_iostype`) |
-| `version_ios` | Versión de IOS |
-| `serial` | Número de serie |
-| `uptime` | Tiempo de actividad |
-| `memoria_total_mb` / `memoria_libre_mb` | Memoria del dispositivo |
-| `estado` | `OK` si se pudo conectar y recolectar datos, `INALCANZABLE` si no |
-
-Si un dispositivo no responde, el playbook lo registra igualmente con estado `INALCANZABLE` en vez de detener la ejecución completa (manejo de errores con `block/rescue`).
+| `deploy.py` | Script principal — configura todos los dispositivos vía SSH |
+| `verify.py` | Script de verificación — comprueba el estado de la topología |
+| `commands_hq.py` | Comandos para dispositivos HQ (hub DMVPN) |
+| `commands_branch2.py` | Comandos para dispositivos Branch2 |
+ 
+---
+ 
+## 🛠️ Tecnologías
+ 
+- 🐧 Linux
+- 🐳 Docker
+- 🔬 Containerlab
+- 🖥️ Cisco IOL
+- 🐍 Python (`paramiko`, `python-dotenv`)
+- 📦 Ansible *(en desarrollo)*
+---
+ 
+## ⚙️ Configuraciones Base
+ 
+Por desarrollar.
+ 
+---
+ 
+*Universidad Nacional de Ingeniería — Curso TLN03*

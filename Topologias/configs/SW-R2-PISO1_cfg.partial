@@ -1,0 +1,22 @@
+vtp mode transparent
+!
+vlan 25
+vlan 30
+!
+int e0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed 25,30
+!
+int e0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed 25,30
+!
+int e0/3
+ switcport mode access
+ switchport access vlan 25
+!
+int e1/0
+ switchport mode access
+ switchport access vlan 30
