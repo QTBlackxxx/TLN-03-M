@@ -1,0 +1,48 @@
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - clab_net
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - snmp-exporter
+    networks:
+      - clab_net
+
+  snmp-exporter:
+    image: prom/snmp-exporter
+    container_name: snmp-exporter
+    ports:
+      - "9116:9116"
+    networks:
+      - clab_net
+
+  telegraf:
+    image: telegraf:latest
+    container_name: telegraf
+    ports:
+      - "9273:9273" # Puerto donde Prometheus raspará las métricas de Telegraf
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    networks:
+      - clab_net
+
+volumes:
+  grafana-data:
+
+networks:
+  clab_net:
+    external: true
+    name: clab # <--- Reemplaza por el nombre real de la red Docker de Containerlab

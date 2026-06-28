@@ -1,0 +1,21 @@
+targets:
+  - host: "172.20.20.2"
+    username: "admin" # Cambia por tus credenciales de Containerlab
+    password: "admin"
+  - host: "172.20.20.3"
+    username: "admin"
+    password: "admin"
+
+# Definición de las consultas XML (RPCs) que el exportador pedirá al router
+metrics:
+  - name: cisco_interface_rx_packets
+    help: "Paquetes recibidos en la interfaz"
+    type: counter
+    rpc: |
+      <get>
+        <filter type="xpath" select="/interfaces-state/interface/statistics/in-unicast-pkts"/>
+      </get>
+    # Mapeo del árbol XML a etiquetas de Prometheus
+    labels:
+      - name: interface_name
+        path: "/interfaces-state/interface/name"

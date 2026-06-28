@@ -1,0 +1,28 @@
+{
+  "freeTextAnnotations": [],
+  "freeShapeAnnotations": [],
+  "trafficRateAnnotations": [],
+  "groupStyleAnnotations": [],
+  "networkNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "PE1",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 420,
+        "y": 340
+      }
+    },
+    {
+      "id": "PE2",
+      "interfacePattern": "e0/{n}",
+      "position": {
+        "x": 620,
+        "y": 340
+      }
+    }
+  ],
+  "edgeAnnotations": [],
+  "aliasEndpointAnnotations": [],
+  "viewerSettings": {}
+}

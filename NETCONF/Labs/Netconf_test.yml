@@ -1,0 +1,22 @@
+name: NETCONF
+
+topology:
+  nodes:
+
+    #########################################
+    #    LABORATORIO
+    #########################################
+   
+    PE1:
+      kind: cisco_csr1000v
+      image: vrnetlab/cisco_csr1000v:17.03.06
+    
+    PE2:
+      kind: cisco_csr1000v
+      image: vrnetlab/cisco_csr1000v:17.03.06
+
+  links:
+    #########################################
+    # Enlaces
+    #########################################
+    - endpoints: [ "PE1:eth1", "PE2:eth1" ]

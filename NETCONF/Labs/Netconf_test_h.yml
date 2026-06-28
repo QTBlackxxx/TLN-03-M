@@ -1,0 +1,22 @@
+name: NETCONF-HUAWEI
+
+topology:
+  nodes:
+
+    #########################################
+    #    LABORATORIO
+    #########################################
+   
+    H1:
+      kind: huawei_vrp
+      image: vrnetlab/huawei_vrp:ne40e-V800R011C00SPC607B607 
+    
+    H2:
+      kind: huawei_vrp
+      image: vrnetlab/huawei_vrp:ne40e-V800R011C00SPC607B607 
+
+  links:
+    #########################################
+    # Enlaces
+    #########################################
+    - endpoints: [ "H1:eth1", "H2:eth1" ]
