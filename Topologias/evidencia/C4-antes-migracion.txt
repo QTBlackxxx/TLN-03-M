@@ -1,0 +1,31 @@
+(admin@clab-isp-tdp-claro-iol-c4) Password: 
+
+
+C4#show run | section router
+router rip
+ version 2
+ network 10.0.0.0
+ network 172.16.0.0
+ no auto-summary
+router bgp 200
+ bgp router-id 172.16.2.4
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 10.0.0.29 remote-as 100
+ neighbor 172.16.2.1 remote-as 200
+ neighbor 172.16.2.1 update-source Loopback0
+ neighbor 172.16.2.2 remote-as 200
+ neighbor 172.16.2.2 update-source Loopback0
+ neighbor 172.16.2.3 remote-as 200
+ neighbor 172.16.2.3 update-source Loopback0
+ neighbor 172.16.2.5 remote-as 200
+ neighbor 172.16.2.5 update-source Loopback0
+ !
+ address-family ipv4
+  neighbor 10.0.0.29 activate
+  neighbor 172.16.2.1 activate
+  neighbor 172.16.2.2 activate
+  neighbor 172.16.2.3 activate
+  neighbor 172.16.2.5 activate
+ exit-address-family
+C4#

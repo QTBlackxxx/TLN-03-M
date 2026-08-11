@@ -1,7 +1,125 @@
+
+!
+version 17.12
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname M2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition clab-mgmt
+ description clab-mgmt
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name lab
+ip cef
+login on-success log
+ipv6 unicast-routing
+ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+crypto pki trustpoint TP-self-signed-20
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-20
+ revocation-check none
+ rsakeypair TP-self-signed-20
+ hash sha256
+!
+!
+crypto pki certificate chain TP-self-signed-20
+ certificate self-signed 01
+  30820320 30820208 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  29312730 25060355 04030C1E 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 3230301E 170D3236 30353131 30323235 33315A17 0D333630 
+  35313030 32323533 315A3029 31273025 06035504 030C1E49 4F532D53 656C662D 
+  5369676E 65642D43 65727469 66696361 74652D32 30308201 22300D06 092A8648 
+  86F70D01 01010500 0382010F 00308201 0A028201 0100A836 3E4874CD F5294E18 
+  3BAB0F21 0678694D 9FFAB652 5C724D89 3D5B6BE0 CDB75540 1C2F76A2 20EFDFD9 
+  3B01ACEF FBE61E7F 00FFF52C 5C0DC5E6 0FB4E7DB CB55D26D A495EC4C E0C2DB29 
+  D5D4801C 0508754B 53A0DD5A DADD7548 23258EB5 36567E61 4123F523 FB96DEFA 
+  E2C44574 D9A26FAF EFA7B624 187016B0 FA623CD6 D6B4CE08 633E7FD9 98427749 
+  395BC03C 550F3999 DF6B5E50 610ECE54 7AD7251B 8DE236F1 C37BFD4B A86CF3FC 
+  FEA8AA92 DD3C69CE AB3BD085 E8324D11 365E3D9E 46CD2179 350575A2 69A63F69 
+  74FD114E 2F23B484 D1B15B2A 10409239 F57EA345 B115F0BC 48F10C28 90C5FD75 
+  E8B3185B 5464CCBE 355524AC D3F76986 953D5076 361F0203 010001A3 53305130 
+  1D060355 1D0E0416 04140C2B E9F54D93 0EE64E3F B812A0C9 F43C70C9 5990301F 
+  0603551D 23041830 1680140C 2BE9F54D 930EE64E 3FB812A0 C9F43C70 C9599030 
+  0F060355 1D130101 FF040530 030101FF 300D0609 2A864886 F70D0101 0B050003 
+  82010100 84EB8796 910D75A3 8BAE99B1 F6F37F44 E869D99A 141995A8 FA8CC526 
+  5FF037F9 ED52D1BB 610729A6 32DC3EB0 2FDCDCC4 0A3F3536 34AEE9B9 8ED27719 
+  C58CE5A1 D535CD7C 7DC87AE6 5F5610B0 CF2B6A9C 35CBD3EE BF118D7F 848CD53B 
+  A9D4B689 64F808A4 B60EFAD8 A26499C6 8BC5CD1C 86CAB834 069C0E88 43805EB2 
+  69A5AF6D FB56788B 61D16367 3AE919EA 3FE05A1C E9741670 029B38B7 3780B938 
+  92853F37 5ABA31BE 3AD74DAC 5D774F41 B2965A1D DEA80757 C1128F16 4CD9B720 
+  AE6D42BB 18416FD1 F7EA8D66 6143A33E 0CB05F68 73ABAF56 C2E809A9 F161D5F6 
+  396629A2 80AACA29 ACA34F06 1F685BB1 8F953782 A0F438C4 87EBCB65 4ED696DB 42BB934D
+  	quit
+!
+!
+memory free low-watermark processor 55011
+!
+!
+spanning-tree mode rapid-pvst
+!
+!
+username admin privilege 15 secret 9 $9$wJvpO3sooWkGz.$tm33ZSw.uSxOBPRNfijP9n60ved9BXbitd6K63pc/.g
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
 !
 interface Loopback0
  ip address 172.16.1.2 255.255.255.255
 !
+
 interface Ethernet0/1
  ip address 10.0.0.6 255.255.255.252
  ip ospf network point-to-point
@@ -13,8 +131,21 @@ interface Ethernet0/2
 interface Ethernet0/3
  ip address 10.0.1.2 255.255.255.252
 !
+interface Ethernet1/0
+ no ip address
+ shutdown
+!
 interface Ethernet1/1
- ip address 10.0.2.2 255.255.255.252
+ no ip address
+ shutdown
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
 !
 router ospf 10
  router-id 172.16.1.2
@@ -27,44 +158,71 @@ router bgp 100
  bgp router-id 172.16.1.2
  bgp log-neighbor-changes
  no bgp default ipv4-unicast
+ neighbor 10.0.1.1 remote-as 300
+ neighbor 10.0.2.1 remote-as 400
  neighbor 172.16.1.1 remote-as 100
  neighbor 172.16.1.1 update-source Loopback0
  neighbor 172.16.1.3 remote-as 100
  neighbor 172.16.1.3 update-source Loopback0
  neighbor 172.16.1.4 remote-as 100
  neighbor 172.16.1.4 update-source Loopback0
- neighbor 10.0.1.1 remote-as 300
- neighbor 10.0.2.1 remote-as 400
- 
  !
  address-family ipv4
+  neighbor 10.0.1.1 activate
+  neighbor 10.0.1.1 route-map RM-EXTERNOS in
+  neighbor 10.0.1.1 route-map RM-PUB-MOVISTAR out
+  neighbor 10.0.2.1 activate
+  neighbor 10.0.2.1 route-map RM-EXTERNOS in
+  neighbor 10.0.2.1 route-map RM-PUB-MOVISTAR out
   neighbor 172.16.1.1 activate
   neighbor 172.16.1.1 next-hop-self
   neighbor 172.16.1.3 activate
   neighbor 172.16.1.3 next-hop-self
   neighbor 172.16.1.4 activate
   neighbor 172.16.1.4 next-hop-self
-  neighbor 10.0.1.1 activate
-  neighbor 10.0.1.1 route-map RM-PUB-MOVISTAR out
-  neighbor 10.0.1.1 route-map RM-EXTERNOS in
-  neighbor 10.0.2.1 activate
-  neighbor 10.0.2.1 route-map RM-PUB-MOVISTAR out
-  neighbor 10.0.2.1 route-map RM-EXTERNOS in
  exit-address-family
-!
-ip prefix-list PL-EXTERNOS seq 5 deny 200.0.0.0/29
-ip prefix-list PL-EXTERNOS seq 10 deny 200.0.1.0/29
-ip prefix-list PL-EXTERNOS seq 15 permit 0.0.0.0/0 le 32
-ip prefix-list PL-PUB-MOVISTAR seq 5 permit 200.0.0.0/29
-ip prefix-list PL-PUB-MOVISTAR seq 10 permit 200.0.1.0/29
-!
-route-map RM-PUB-MOVISTAR permit 10 
- match ip address prefix-list PL-PUB-MOVISTAR
-route-map RM-EXTERNOS permit 10 
- match ip address prefix-list PL-EXTERNOS
 !
 ip forward-protocol nd
 !
 !
 ip ftp username dubuntu
 ip ftp password 123456
+ip http server
+ip http secure-server
+ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
+ip ssh bulk-mode 131072
+!
+!
+ip prefix-list PL-EXTERNOS seq 5 deny 200.0.0.0/29
+ip prefix-list PL-EXTERNOS seq 10 deny 200.0.1.0/29
+ip prefix-list PL-EXTERNOS seq 15 permit 0.0.0.0/0 le 32
+!
+ip prefix-list PL-PUB-MOVISTAR seq 5 permit 200.0.0.0/29
+ip prefix-list PL-PUB-MOVISTAR seq 10 permit 200.0.1.0/29
+ip prefix-list PL-PUB-MOVISTAR seq 15 permit 200.0.2.0/29
+ipv6 route vrf clab-mgmt ::/0 Ethernet0/0 3FFF:172:20:20::1
+!
+route-map RM-PUB-MOVISTAR permit 10 
+ match ip address prefix-list PL-PUB-MOVISTAR
+!
+route-map RM-EXTERNOS permit 10 
+ match ip address prefix-list PL-EXTERNOS
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+!
+end

@@ -1,3 +1,122 @@
+
+!
+! Last configuration change at 04:47:13 UTC Mon May 18 2026
+!
+version 17.12
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname M3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition clab-mgmt
+ description clab-mgmt
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name lab
+ip cef
+login on-success log
+ipv6 unicast-routing
+ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+crypto pki trustpoint TP-self-signed-21
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-21
+ revocation-check none
+ rsakeypair TP-self-signed-21
+ hash sha256
+!
+!
+crypto pki certificate chain TP-self-signed-21
+ certificate self-signed 01
+  30820320 30820208 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  29312730 25060355 04030C1E 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 3231301E 170D3236 30353131 30323234 34355A17 0D333630 
+  35313030 32323434 355A3029 31273025 06035504 030C1E49 4F532D53 656C662D 
+  5369676E 65642D43 65727469 66696361 74652D32 31308201 22300D06 092A8648 
+  86F70D01 01010500 0382010F 00308201 0A028201 0100B237 D5F5FB77 E608D10A 
+  687F9A75 9C5EDE34 9043DAEC 025DACDD 6628233A AD2D43AE CB106E47 AFEAA67A 
+  4E6C130E 43933551 3EA04D7F 77FBBE95 A997E3E9 E4277487 8FCA9722 619C891E 
+  512B41C3 BA85A3E0 C18A077D A678A8E1 0F7C7868 CCD2F89B 86531015 094760A7 
+  CCEF1DF6 9D6B21C3 1A58752D D61A249F A62D9077 B34F75A8 ECB8AB31 17494C15 
+  A68D15A0 346D5C97 D0F62296 A922D083 6A8B6FB6 807FE775 E809F855 F34CCCB9 
+  26A5511E 238AC176 499960B4 A72E6B36 D8C60AE2 94935A4B 9AA0D106 F4173614 
+  A1F031E2 AB862733 BBAD7C31 3274577E EE7038BA 5A3E204B DF15513F 2D96DEED 
+  57984375 2AFE25E0 DBB4CB34 2ECD7C97 B6C31226 989B0203 010001A3 53305130 
+  1D060355 1D0E0416 0414D389 5701136E 5AABB431 B2593662 2CBA9AA5 FA04301F 
+  0603551D 23041830 168014D3 89570113 6E5AABB4 31B25936 622CBA9A A5FA0430 
+  0F060355 1D130101 FF040530 030101FF 300D0609 2A864886 F70D0101 0B050003 
+  82010100 99A72716 57354607 A44AD8B9 1F529731 8F60E122 C2287908 15230449 
+  0DAA8154 0DD6393B F074D60B BA2BDE13 47DE401F BB89972F 1429E3CB 2A247149 
+  6BADAA76 9665E3D8 3F9761F9 20780115 0794ECD8 BED3106B 29B828CB 2C8DD43E 
+  4749D8CD 8332BAC2 C30F30A9 CBDF7E3E D46E1D66 75C2DC6F 0E65FA6C E7E9E33B 
+  F5EA1078 1D4ECC1B F8BAF86D 0772C953 714A0030 60D76557 EE40C519 5CE9E4FB 
+  490B0EF0 860A88CC C6C387F2 7608B3A6 FE5B88A8 65C6174B AE5E0243 3490739D 
+  1DA2C515 61009FA9 6415012C 263A51F3 5DE9183F 41DD0DD8 E9867130 D546F276 
+  EE22D529 CB9E7BB2 FB0C9122 8B08FFF7 AC841ECD 67AD311C 5222F6FB ED0D430A 53A10FB1
+  	quit
+!
+!
+memory free low-watermark processor 55011
+!
+!
+spanning-tree mode rapid-pvst
+!
+!
+username admin privilege 15 secret 9 $9$nxSZWug6NEYBik$h/A/EpJwIpxOFUtcggkPVr/pQSFAMHBZr5X7sR2GtkI
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
 !
 interface Loopback0
  ip address 172.16.1.3 255.255.255.255
@@ -12,6 +131,21 @@ interface Ethernet0/2
 !
 interface Ethernet0/3
  ip address 10.0.0.69 255.255.255.252
+!
+interface Ethernet1/0
+ ip address 10.0.0.73 255.255.255.252
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
 !
 router ospf 10
  router-id 3.3.3.3
@@ -43,7 +177,33 @@ router bgp 100
 !
 ip forward-protocol nd
 !
-ip route 200.0.1.0 255.255.255.248 10.0.0.70
 !
 ip ftp username dubuntu
 ip ftp password 123456
+ip http server
+ip http secure-server
+ip route 200.0.1.0 255.255.255.248 10.0.0.70
+ip route 200.0.2.0 255.255.255.248 10.0.0.74
+ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
+ip ssh bulk-mode 131072
+!
+ipv6 route vrf clab-mgmt ::/0 Ethernet0/0 3FFF:172:20:20::1
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+!
+end

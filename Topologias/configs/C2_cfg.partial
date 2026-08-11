@@ -1,3 +1,122 @@
+
+!
+! Last configuration change at 04:48:00 UTC Mon May 18 2026
+!
+version 17.12
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname C2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition clab-mgmt
+ description clab-mgmt
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name lab
+ip cef
+login on-success log
+ipv6 unicast-routing
+ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+crypto pki trustpoint TP-self-signed-5
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-5
+ revocation-check none
+ rsakeypair TP-self-signed-5
+ hash sha256
+!
+!
+crypto pki certificate chain TP-self-signed-5
+ certificate self-signed 01
+  3082031E 30820206 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  28312630 24060355 04030C1D 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 35301E17 0D323630 35313130 32323435 385A170D 33363035 
+  31303032 32343538 5A302831 26302406 03550403 0C1D494F 532D5365 6C662D53 
+  69676E65 642D4365 72746966 69636174 652D3530 82012230 0D06092A 864886F7 
+  0D010101 05000382 010F0030 82010A02 82010100 CDD04CBC 25C3E62F 87A5D2A3 
+  2FB83D95 365533DC 794CD3B3 C4F8A653 E9E848C4 06044BF3 F9A66C10 9E62AB2C 
+  17DFCE1C B4A77464 9CE930BD 1F4337A7 78B1BFE5 3B18CAA0 B037B8E3 E6121F80 
+  932A9C17 36325AEC 65C172DD 3F8FDE43 847D462F 6B3EAE43 849A917C EAB74460 
+  A129902B B0FDFA6A 01A134E9 438C0B3A 07E4ABF3 AC881DDE 392E16C6 243E5178 
+  002486DA 69F44DF9 B592BEC9 F6F92A0B 66155271 CFA89238 36AAE01B 20579DC2 
+  E55B4BE8 67719A4A 9F5AF5B0 D0F471C7 1E6D6E1B 9128E77F 37B7282C A1C59A47 
+  64BF0841 9A923DEA 3151EF8A FDA05C85 C42F5B74 8707657A 5F67FE91 AD720418 
+  D6676452 C09D6D5A 7883F474 3E8F5C04 31B99959 02030100 01A35330 51301D06 
+  03551D0E 04160414 CEBC69DB 922421E2 655BDA5A EDE22885 4100CD55 301F0603 
+  551D2304 18301680 14CEBC69 DB922421 E2655BDA 5AEDE228 854100CD 55300F06 
+  03551D13 0101FF04 05300301 01FF300D 06092A86 4886F70D 01010B05 00038201 
+  01009DA2 5E2F3CB9 CCCB284E 7965F667 ECDEB3F6 F566859F C4662830 3401F053 
+  80ADCDFF CC194323 2C7EC21B 8B83898E 48CD4C33 963884B4 B752C353 453EE9BF 
+  8AE83017 7436F595 157150E2 A4C6C867 D7CD11C5 6568A4D3 6318BC41 EE47D3D4 
+  9E84EB9E 909C40A3 5806759E 9483D2E9 7EE69224 8E0BCD98 38ED8632 59BBF807 
+  02E5A791 025DEE34 E35E95FC 2F512EDE 1AAFD05A 8754BF14 03099336 855A8D17 
+  1749802A C297DD8B E86587A0 D6773CEC D4743E99 13AEA6BB 4D141639 F02D4638 
+  122DFF50 3C1163C6 42FE8A21 C9119C2B 05DD4512 7CE0C109 539E439B BC99C4A0 
+  798FBF23 FFC2BBF3 9476D4DB 5CF08648 BB4AF8D2 FDF0AF0E 4AA48171 F1E8B009 74B2
+  	quit
+!
+!
+memory free low-watermark processor 55011
+!
+!
+spanning-tree mode rapid-pvst
+!
+!
+username admin privilege 15 secret 9 $9$Zy.T8rnYJxiQdk$PnsrZEy5rEohO8DMWMbsDly2G3KfTEjq/x0s4miTKvg
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
 !
 interface Loopback0
  ip address 172.16.2.2 255.255.255.255
@@ -19,34 +138,30 @@ interface Ethernet1/0
  ip ospf network point-to-point
 !
 interface Ethernet1/1
- ip add 10.0.4.2 255.255.255.252
+ ip address 10.0.4.2 255.255.255.252
 !
 interface Ethernet1/2
  no ip address
  shutdown
 !
 interface Ethernet1/3
- ip add 10.0.3.2 255.255.255.252
+ ip address 10.0.3.2 255.255.255.252
 !
-!router rip
-! version 2
-! network 10.0.0.0
-! network 172.16.0.0
-! no auto-summary
-!
-router ospf 1 
+router ospf 1
  router-id 172.16.2.2
  prefix-suppression
- network 172.16.2.2 0.0.0.0 area 0
  network 10.0.0.32 0.0.0.3 area 0
  network 10.0.0.44 0.0.0.3 area 0
  network 10.0.0.48 0.0.0.3 area 0
  network 10.0.0.52 0.0.0.3 area 0
+ network 172.16.2.2 0.0.0.0 area 0
 !
 router bgp 200
  bgp router-id 172.16.2.2
  bgp log-neighbor-changes
  no bgp default ipv4-unicast
+ neighbor 10.0.3.1 remote-as 500
+ neighbor 10.0.4.1 remote-as 600
  neighbor 172.16.2.1 remote-as 200
  neighbor 172.16.2.1 update-source Loopback0
  neighbor 172.16.2.3 remote-as 200
@@ -55,10 +170,14 @@ router bgp 200
  neighbor 172.16.2.4 update-source Loopback0
  neighbor 172.16.2.5 remote-as 200
  neighbor 172.16.2.5 update-source Loopback0
- neighbor 10.0.4.1 remote-as 600
- neighbor 10.0.3.1 remote-as 500
  !
  address-family ipv4
+  neighbor 10.0.3.1 activate
+  neighbor 10.0.3.1 route-map RM-EXTERNOS in
+  neighbor 10.0.3.1 route-map RM-PUB-CLARO out
+  neighbor 10.0.4.1 activate
+  neighbor 10.0.4.1 route-map RM-EXTERNOS in
+  neighbor 10.0.4.1 route-map RM-PUB-CLARO out
   neighbor 172.16.2.1 activate
   neighbor 172.16.2.1 next-hop-self
   neighbor 172.16.2.3 activate
@@ -67,27 +186,49 @@ router bgp 200
   neighbor 172.16.2.4 next-hop-self
   neighbor 172.16.2.5 activate
   neighbor 172.16.2.5 next-hop-self
-  neighbor 10.0.4.1 activate
-  neighbor 10.0.4.1 route-map RM-PUB-CLARO out
-  neighbor 10.0.4.1 route-map RM-EXTERNOS in
-  neighbor 10.0.3.1 activate
-  neighbor 10.0.3.1 route-map RM-PUB-CLARO out
-  neighbor 10.0.3.1 route-map RM-EXTERNOS in
  exit-address-family
-!
-ip prefix-list PL-EXTERNOS seq 5 deny 190.0.0.0/29
-ip prefix-list PL-EXTERNOS seq 10 deny 190.0.1.0/29
-ip prefix-list PL-EXTERNOS seq 15 permit 0.0.0.0/0 le 32
-ip prefix-list PL-PUB-CLARO seq 5 permit 190.0.0.0/29
-ip prefix-list PL-PUB-CLARO seq 10 permit 190.0.1.0/29
-!
-route-map RM-PUB-CLARO permit 10 
- match ip address prefix-list PL-PUB-CLARO
-route-map RM-EXTERNOS permit 10 
- match ip address prefix-list PL-EXTERNOS
 !
 ip forward-protocol nd
 !
 !
 ip ftp username dubuntu
 ip ftp password 123456
+ip http server
+ip http secure-server
+ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
+ip ssh bulk-mode 131072
+!
+!
+ip prefix-list PL-EXTERNOS seq 5 deny 190.0.0.0/29
+ip prefix-list PL-EXTERNOS seq 10 deny 190.0.1.0/29
+ip prefix-list PL-EXTERNOS seq 15 permit 0.0.0.0/0 le 32
+!
+ip prefix-list PL-PUB-CLARO seq 5 permit 190.0.0.0/29
+ip prefix-list PL-PUB-CLARO seq 10 permit 190.0.1.0/29
+ip prefix-list PL-PUB-CLARO seq 15 permit 190.0.2.0/29
+ipv6 route vrf clab-mgmt ::/0 Ethernet0/0 3FFF:172:20:20::1
+!
+route-map RM-PUB-CLARO permit 10 
+ match ip address prefix-list PL-PUB-CLARO
+!
+route-map RM-EXTERNOS permit 10 
+ match ip address prefix-list PL-EXTERNOS
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+!
+end

@@ -1,6 +1,127 @@
+
+!
+! Last configuration change at 04:48:43 UTC Mon May 18 2026
+!
+version 17.12
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname C1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition clab-mgmt
+ description clab-mgmt
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name lab
+ip cef
+login on-success log
+ipv6 unicast-routing
+ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+crypto pki trustpoint TP-self-signed-4
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-4
+ revocation-check none
+ rsakeypair TP-self-signed-4
+ hash sha256
+!
+!
+crypto pki certificate chain TP-self-signed-4
+ certificate self-signed 01
+  3082031E 30820206 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  28312630 24060355 04030C1D 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 34301E17 0D323630 35313830 34343835 395A170D 33363035 
+  31373034 34383539 5A302831 26302406 03550403 0C1D494F 532D5365 6C662D53 
+  69676E65 642D4365 72746966 69636174 652D3430 82012230 0D06092A 864886F7 
+  0D010101 05000382 010F0030 82010A02 82010100 C1E8132B 779DE78A 4564ECC4 
+  41D710A0 63BB7077 323BEEE0 57DAC985 C7E2CB7D 5784FF6D B49C58FD 740DEB0F 
+  3E96087E 7B0A02FB 7ED15DAD 589130E6 09DE5AC5 B425CAA5 30287B83 66C3BE0A 
+  15273284 2603F1E2 0BE89918 BA83372D 8F287635 8A24BCF6 14F56A75 0638B7EF 
+  08A6EF3A 097DD5BB CAD4FF40 0DDB4396 FA20C3C5 59DE6516 6888C7A7 5BB0216D 
+  84138F06 3FB3875E B573263C 28D48F5D B698818E C31BCCB6 81E961B2 4FDCAD7F 
+  AB7DC2C7 F91755B4 0446411B 8FAEF2C9 C8A52293 AA54C736 E0BCD972 CAABB634 
+  4A3EFD19 3A7DBEFE E338888B D117151E 958CB49C D069C89F CB242827 AD218FA8 
+  22D75311 FC535FF2 4FADBA08 6C84E9DD 5C4E404D 02030100 01A35330 51301D06 
+  03551D0E 04160414 00349AEE 35A546A2 D0D732BE 07DC596C EE05613E 301F0603 
+  551D2304 18301680 1400349A EE35A546 A2D0D732 BE07DC59 6CEE0561 3E300F06 
+  03551D13 0101FF04 05300301 01FF300D 06092A86 4886F70D 01010B05 00038201 
+  010036C2 ED38754B 0A5E3A6F 01A40CE5 95FCF9B7 0A88933B 08ADFA0E 8E4E637E 
+  E3D163E3 9A5B5BA4 E2894BD4 74FB06B1 4E3FA95D 47791F89 1BD9FB40 29E037F0 
+  6B4764EB 925B94DB 1B6C7D03 9C77EB73 ADD5B0A4 5ACDBBF6 AAD048EA C6E20534 
+  9D41B0D6 A317A081 8538D780 3871BA24 0AD85A77 7FE09974 05FEE642 9721E12A 
+  AAE5AE83 6DC37D7B 54F852EA 45B9DFD9 7FD0B4F0 3E8A4018 EB63E182 F832CCCF 
+  5CB20E71 3BBD9462 CDBB3D17 66BF18E9 A9AD6F52 824B16E5 7E6083FB 513FD8E6 
+  53D4AB50 4C5B27A4 9A9A96F8 2401668D D551E33C 04C6FBF0 380AB448 617B814B 
+  D7DE3835 7B4E7977 0CFC3ADC 27710ACB D21C210E 778C5C61 9A1A7959 C5B6CB90 C380
+  	quit
+!
+!
+memory free low-watermark processor 55011
+!
+!
+spanning-tree mode rapid-pvst
+!
+!
+username admin privilege 15 secret 9 $9$Qa2jUX0OUGnjO.$v717HjeCxT.vrWdloPhDdVIxux5HKOthINRgFXBrYDw
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
 interface Loopback0
  ip address 172.16.2.1 255.255.255.255
 !
+
 interface Ethernet0/1
  ip address 10.0.0.54 255.255.255.252
  ip ospf network point-to-point
@@ -28,18 +149,12 @@ interface Ethernet1/3
  no ip address
  shutdown
 !
-!router rip
-! version 2
-! network 10.0.0.0
-! network 172.16.0.0
-! no auto-summary
-!
-router ospf 1 
+router ospf 1
  router-id 172.16.2.1
  prefix-suppression
- network 172.16.2.1 0.0.0.0 area 0
  network 10.0.0.52 0.0.0.3 area 0
  network 10.0.0.56 0.0.0.3 area 0
+ network 172.16.2.1 0.0.0.0 area 0
 !
 router bgp 200
  bgp router-id 172.16.2.1
@@ -74,6 +189,29 @@ ip ftp password 123456
 ip http server
 ip http secure-server
 ip route 190.0.0.0 255.255.255.248 10.0.0.62 tag 190
+ip route vrf clab-mgmt 0.0.0.0 0.0.0.0 Ethernet0/0 172.20.20.1
+ip ssh bulk-mode 131072
+!
+ipv6 route vrf clab-mgmt ::/0 Ethernet0/0 3FFF:172:20:20::1
 !
 route-map to_EXTERNAL permit 10 
  match tag 190
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+!
+end
